@@ -7,14 +7,15 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
 
-    <title>Welcome!</title>
+    <title>Login</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="../../css/dashboard.css" rel="stylesheet">
+    <link href="css/dashboard.css" rel="stylesheet">
 
     <![endif]-->
   </head>
@@ -30,12 +31,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="home.view.html">Form Maker</a>
+          <a class="navbar-brand" href="home.html">Form Maker</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="../users/register.view.html">Register</a></li>
-            <li><a href="../users/login.view.html">Login</a></li>
+            <li><a href="register.html">Register</a></li>
+            <li class="active"><a>Login<span class="sr-only">(current)</span></a></li>
             <li><a href="#">Username</a></li>
             <li><a href="#">Logout</a></li>
           </ul>
@@ -47,25 +48,33 @@
       <div class="row">
         <div class="col-sm-2 col-md-1 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
-            <li><a href="../users/profile.view.html">Profile</a></li>
-            <li><a href="../admin/admin.view.html">Admin</a></li>
-            <li><a href="../forms/forms.view.html">Forms</a></li>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="admin.html">Admin</a></li>
+            <li><a href="forms.html">Forms</a></li>
           </ul>
         </div>
         <div class="col-sm-10 col-sm-offset-2 col-md-10 col-md-offset-1 main">
-              <h2 class="page-header">Welcome!</h2>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit,
-                vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus,
-                ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique,
-                tortor mauris molestie elit, et lacinia ipsum quam nec dui. Quisque nec mauris
-                sit amet elit iaculis pretium sit amet quis magna. Aenean velit odio, elementum
-                in tempus ut, vehicula eu diam. Pellentesque rhoncus aliquam mattis. Ut vulputate
-                eros sed felis sodales nec vulputate justo hendrerit. Vivamus varius pretium ligula,
-                a aliquam odio euismod sit amet. Quisque laoreet sem sit amet orci ullamcorper at
-                ultricies metus viverra. Pellentesque arcu mauris, malesuada quis ornare accumsan, blandit sed diam.
-              </p>
+          <h2 class="page-header">Login</h2>
+          <form class="form-horizontal">
+            <div class="form-group">
+              <label for="username" class="col-sm-2 control-label">Username:</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="username" placeholder="Username">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="password" class="col-sm-2 control-label">Password:</label>
+              <div class="col-sm-10">
+                <input type="password" class="form-control" id="password" placeholder="Password">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <a class="btn btn-primary btn-block" href="profile.html">Login</a>
+              </div>
+            </div>
+          </form>
           </div>
       </div>
     </div>
@@ -74,6 +83,11 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="../../assets/js/vendor/holder.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
   </body>
 </html>
