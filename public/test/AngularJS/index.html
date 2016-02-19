@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="SongSearch">
+<head>
+    <meta charset="UTF-8">
+    <title>Songs</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="js/app.js"></script>
+</head>
+<body>
+<div class="container">
+    <h3>Songs</h3>
+    <div class="row">
+        <table class="table table-striped" ng-controller="SongSearchController">
+            <thead>
+            <tr>
+                <th>Artist</th>
+                <th>Album</th>
+                <th></th>
+            </tr>
+            <tr>
+                <th><input ng-value="song.artist" ng-model="song.artist" type="text" class="form-control"/></th>
+                <th><input ng-value="song.album" ng-model="song.album" type="text" class="form-control"/></th>
+                <th><button ng-click="AddSong(song)" class="btn btn-primary">Add</button></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="song in songs">
+                <td>{{song.artist}}</td>
+                <td>{{song.album}}</td>
+                <td><button ng-click="SongDelete(song)" class="btn btn-danger">Delete</button></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
