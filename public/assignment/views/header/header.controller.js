@@ -1,3 +1,9 @@
-/**
- * Created by ajyva on 2/19/2016.
- */
+(function(){
+    angular
+        .module("FormBuilderApp")
+        .controller("HeaderController", HeaderController);
+
+    function HeaderController($scope){
+
+    }
+})();

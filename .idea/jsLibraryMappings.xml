@@ -2,6 +2,6 @@
 <project version="4">
   <component name="JavaScriptLibraryMappings">
     <file url="file://$PROJECT_DIR$" libraries="{Openshift Repository node_modules, webdev node_modules}" />
-    <file url="PROJECT" libraries="{angular}" />
+    <file url="PROJECT" libraries="{angular, angular-route, jquery-1.12.0}" />
   </component>
 </project>
