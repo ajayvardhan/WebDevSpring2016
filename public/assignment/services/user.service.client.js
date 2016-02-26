@@ -59,7 +59,7 @@
 
         function deleteUserById(userId, callback){
             for (var user in users) {
-                if (user._id === userId) {
+                if (users[user]._id === userId) {
                     var index = users.indexOf(user);
                     users.splice(index, 1);
                 }
@@ -76,7 +76,7 @@
                         roles : user.roles};
                 }
             }
-            callback(users[u]);
+            callback(user);
         }
     }
 })();

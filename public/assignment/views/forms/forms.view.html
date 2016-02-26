@@ -35,40 +35,22 @@
                         <th>Action</th>
                     </tr>
                     <tr>
-                        <th><input type="text" class="form-control" placeholder="Name"></th>
+                        <th><input ng-model="form.title" type="text" class="form-control" placeholder="Name"></th>
                         <th>
-                            <button type="button" class="btn btn-primary glyphicon glyphicon-plus">
+                            <button ng-click="addForm(form)" type="button" class="btn btn-primary glyphicon glyphicon-plus">
                             </button>
-                            <button type="button" class="btn btn-success glyphicon glyphicon-ok">
+                            <button ng-click="updateForm(form)" type="button" class="btn btn-success glyphicon glyphicon-ok">
                             </button>
                         </th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td><a href="fields.view.html">Registration Form</a></td>
+                    <tr ng-repeat="form in forms">
+                        <td>{{form.title}}</td>
                         <td>
-                            <button type="button" class="btn btn-danger glyphicon glyphicon-remove">
+                            <button ng-click="deleteForm($index)" type="button" class="btn btn-danger glyphicon glyphicon-remove">
                             </button>
-                            <button type="button" class="btn btn-success glyphicon glyphicon-pencil">
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><a href="fields.view.html">Contact List</a></td>
-                        <td>
-                            <button type="button" class="btn btn-danger glyphicon glyphicon-remove">
-                            </button>
-                            <button type="button" class="btn btn-success glyphicon glyphicon-pencil">
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><a href="fields.view.html">To Do List</a></td>
-                        <td>
-                            <button type="button" class="btn btn-danger glyphicon glyphicon-remove">
-                            </button>
-                            <button type="button" class="btn btn-success glyphicon glyphicon-pencil">
+                            <button ng-click="selectForm($index)" type="button" class="btn btn-success glyphicon glyphicon-pencil">
                             </button>
                         </td>
                     </tr>
