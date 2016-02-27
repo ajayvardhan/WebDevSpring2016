@@ -4,7 +4,8 @@
         .factory("UserService", UserService);
 
     function UserService(){
-        var users = [
+        var users =[];
+        users = [
             {	"_id":123, "firstName":"Alice",            "lastName":"Wonderland",
                 "username":"alice",  "password":"alice",   "roles": ["student"]		},
             {	"_id":234, "firstName":"Bob",              "lastName":"Hope",

@@ -3,13 +3,16 @@
         .module("FormBuilderApp")
         .controller("FormsController", FormsController);
 
-    function FormsController($scope, $rootScope, FormService){
+    function FormsController($scope, $rootScope, $location, FormService) {
         var user = $rootScope.currentUser;
-        FormService.findAllFormsForUser(user._id,function(response){
-            $scope.forms = response;
-            console.log(response);
-        });
+        UpdateForms();
+        $scope.$location = $location;
 
+        function UpdateForms() {
+            FormService.findAllFormsForUser(user._id, function (response) {
+                $scope.forms = response;
+            });
+        }
 
         $scope.addForm = addForm;
         $scope.updateForm = updateForm;
@@ -19,31 +22,34 @@
         function addForm(form){
             FormService.createFormForUser(user._id, form, function(response){
                 $scope.forms.push(response);
+                $scope.form = null;
             });
         }
 
         function updateForm(form){
             FormService.updateFormById(form._id, form, function(response){
-                var index = $scope.forms.indexOf(response);
-                $scope.forms[index] = response;
-                $scope.form = null;
+                var id = response._id;
+                for (var form in $scope.forms){
+                    if($scope.forms[form]._id == id){
+                        $scope.forms[form] = response;
+                    }
+                }
             });
+            $scope.form = null;
         }
 
         function deleteForm(index){
             FormService.deleteFormById($scope.forms[index]._id,function(response){
-                var forms_list = [];
-                for (var form in response) {
-                    if (response[form].userId == user._id) {
-                        forms_list.push(response[form]);
-                    }
-                }
-                $scope.forms = forms_list;
+                $scope.forms.splice(index,1);
             });
         }
 
         function selectForm(index){
-            $scope.form = $scope.forms[index];
+            var selectedForm = $scope.forms[index];
+            $scope.form = {
+                _id : selectedForm._id,
+                title: selectedForm.title,
+                userId: selectedForm.userId};
         }
     }
 })();
