@@ -10,9 +10,14 @@
         function login(user) {
             UserService.findUserByCredentials(user.username, user.password,
                 function(response) {
-                    $rootScope.currentUser = response;
+                    if (response) {
+                        $rootScope.currentUser = response;
+                        $location.url("/profile");
+                    }
+                    else{
+                        $scope.message = "Incorrect username/password";
+                    }
                 });
-            $location.url("/profile");
         }
     }
 })();
