@@ -1,10 +1,11 @@
-(function(){
+(function() {
+    "use strict";
     angular
         .module("FormBuilderApp")
         .factory("UserService", UserService);
 
-    function UserService(){
-        var users =[];
+    function UserService() {
+        var users = [];
         users = [
             {	"_id":123, "firstName":"Alice",            "lastName":"Wonderland",
                 "username":"alice",  "password":"alice",   "roles": ["student"]		},
@@ -26,19 +27,17 @@
             deleteUserById: deleteUserById,
             updateUser: updateUser
         };
+
         return api;
 
 
-        function findUserByCredentials(username, password, callback){
-            var found = false;
+        function findUserByCredentials(username, password, callback) {
+            var loggedinUser = null;
             for (var user in users){
-                if(users[user].username===username && users[user].password===password){
-                    found = true;
-                    callback(users[user]);
+                if(users[user].username === username && users[user].password === password){
+                    loggedinUser = users[user];
                 }
-                if(!found){
-                    callback(null);
-                }
+                callback(loggedinUser);
             }
         }
 
@@ -50,9 +49,13 @@
             var _id = (new Date).getTime();
             var username = user.username;
             var password = user.password;
+            var email = user.email;
 
             var newUser = {_id : _id,
-                username : username, password : password};
+                username : username,
+                password : password,
+                email: email
+            };
 
             users.push(newUser);
             callback(newUser);
@@ -74,7 +77,7 @@
                     users[u] = {_id : userId,
                         firstName : user.firstName, lastName : user.lastName,
                         username : user.username, password : user.password,
-                        roles : user.roles};
+                        roles : user.roles, email : user.email};
                 }
             }
             callback(user);

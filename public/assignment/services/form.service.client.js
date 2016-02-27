@@ -1,10 +1,10 @@
-(function(){
+(function() {
     "use strict";
     angular
         .module("FormBuilderApp")
         .factory("FormService", FormService);
 
-    function FormService(){
+    function FormService() {
         var forms = [];
         forms = [
             {"_id": "000", "title": "Contacts", "userId": 123},
@@ -21,7 +21,7 @@
 
         return api;
 
-        function createFormForUser(userId, form, callback){
+        function createFormForUser(userId, form, callback) {
             var _id = (new Date).getTime();
             var title = form.title;
             var newForm = {_id: _id, title: title, userId: userId};
@@ -29,17 +29,17 @@
             callback(newForm);
         }
 
-        function findAllFormsForUser(userId, callback){
+        function findAllFormsForUser(userId, callback) {
             var forms_list = [];
             for (var form in forms) {
-                if (forms[form].userId == userId) {
+                if (forms[form].userId === userId) {
                     forms_list.push(forms[form]);
                 }
             }
             callback(forms_list);
         }
 
-        function deleteFormById(formId, callback){
+        function deleteFormById(formId, callback) {
             for (var form in forms) {
                 if (forms[form]._id === formId) {
                     var index = forms.indexOf(forms[form]);
@@ -49,9 +49,9 @@
             callback(forms);
         }
 
-        function updateFormById(formId, newForm, callback){
+        function updateFormById(formId, newForm, callback) {
             for (var form in forms) {
-                if (forms[form]._id == formId) {
+                if (forms[form]._id === formId) {
                     forms[form] = {_id : formId, title: newForm.title, userId: newForm.userId};
                 }
             }
