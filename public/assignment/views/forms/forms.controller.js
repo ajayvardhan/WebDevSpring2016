@@ -13,14 +13,14 @@
         $scope.deleteForm = deleteForm;
         $scope.selectForm = selectForm;
 
-        function updateForms() {
+        function updateFormsForUser() {
             FormService.findAllFormsForUser(user._id,
                 function (response) {
                     $scope.forms = response;
                 });
         }
 
-        updateForms();
+        updateFormsForUser();
 
         function addForm(form) {
             FormService.createFormForUser(user._id, form,

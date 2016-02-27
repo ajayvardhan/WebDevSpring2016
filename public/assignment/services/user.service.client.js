@@ -45,7 +45,7 @@
             callback(users);
         }
 
-        function createUser(user, callback){
+        function createUser(user, callback) {
             var _id = (new Date).getTime();
             var username = user.username;
             var password = user.password;
@@ -61,17 +61,17 @@
             callback(newUser);
         }
 
-        function deleteUserById(userId, callback){
+        function deleteUserById(userId, callback) {
             for (var user in users) {
                 if (users[user]._id === userId) {
-                    var index = users.indexOf(user);
+                    var index = users.indexOf(users[user]);
                     users.splice(index, 1);
                 }
             }
             callback(users);
         }
 
-        function updateUser(userId, user, callback){
+        function updateUser(userId, user, callback) {
             for (var u in users) {
                 if (users[u]._id === userId) {
                     users[u] = {_id : userId,

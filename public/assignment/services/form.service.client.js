@@ -30,13 +30,13 @@
         }
 
         function findAllFormsForUser(userId, callback) {
-            var forms_list = [];
+            var formsList = [];
             for (var form in forms) {
                 if (forms[form].userId === userId) {
-                    forms_list.push(forms[form]);
+                    formsList.push(forms[form]);
                 }
             }
-            callback(forms_list);
+            callback(formsList);
         }
 
         function deleteFormById(formId, callback) {
@@ -52,7 +52,11 @@
         function updateFormById(formId, newForm, callback) {
             for (var form in forms) {
                 if (forms[form]._id === formId) {
-                    forms[form] = {_id : formId, title: newForm.title, userId: newForm.userId};
+                    forms[form] = {
+                        _id : formId,
+                        title: newForm.title,
+                        userId: newForm.userId
+                    };
                 }
             }
             callback(newForm);
