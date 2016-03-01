@@ -49,12 +49,10 @@
             var _id = (new Date).getTime();
             var username = user.username;
             var password = user.password;
-            var email = user.email;
 
             var newUser = {_id : _id,
                 username : username,
-                password : password,
-                email: email
+                password : password
             };
 
             users.push(newUser);

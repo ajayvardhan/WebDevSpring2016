@@ -1,10 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app="NowWatching" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Project</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Now Watching</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <link href="css/dashboard.css" rel="stylesheet">
+    <script src="js/app.js"></script>
+    <script src="js/config.js"></script>
+    <script src="main/main.controller.js"></script>
+    <script src="views/home/home.controller.js"></script>
+    <script src="views/posts/posts.controller.js"></script>
+    <script src="views/users/login.controller.js"></script>
+    <script src="views/users/register.controller.js"></script>
+    <script src="views/users/users.controller.js"></script>
+    <script src="services/user.service.client.js"></script>
+    <script src="services/posts.service.client.js"></script>
 </head>
-<body>
-<h1>Project</h1>
+
+<body ng-controller="MainController">
+<div ng-include="'views/header/header.view.html'"></div>
+<div ng-include="'views/sidebar/sidebar.view.html'"></div>
+<div ng-view></div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </body>
 </html>
