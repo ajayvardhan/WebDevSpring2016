@@ -5,7 +5,13 @@
                 <thead>
                 <tr>
                     <th>
+                        ID
+                    </th>
+                    <th>
                         Username
+                    </th>
+                    <th>
+                        Password
                     </th>
                     <th>
                         First Name
@@ -16,8 +22,12 @@
                     <th></th>
                 </tr>
                 <tr>
+                    <th></th>
                     <th>
                         <input ng-model="newUser.username" type="text" class="form-control" placeholder="username">
+                    </th>
+                    <th>
+                        <input ng-model="newUser.password" type="password" class="form-control" placeholder="password">
                     </th>
                     <th>
                         <input ng-model="newUser.firstName" type="text" class="form-control" placeholder="First Name">
@@ -33,13 +43,15 @@
                 </thead>
                 <tbody>
                 <tr ng-repeat="user in users">
+                    <td>{{user._id}}</td>
                     <td ng-click="findUser(user._id)"><a href="">{{user.username}}</a></td>
+                    <td>{{user.password}}</td>
                     <td>{{user.firstName}}</td>
                     <td>{{user.lastName}}</td>
-                    <th>
+                    <td>
                         <button ng-click="deleteUser(user)" class="btn btn-danger glyphicon glyphicon-remove"></button>
                         <button ng-click="selectUser(user)" class="btn btn-primary glyphicon glyphicon-pencil"></button>
-                    </th>
+                    </td>
                 </tr>
                 </tbody>
             </table>

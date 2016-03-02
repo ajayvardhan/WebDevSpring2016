@@ -26,6 +26,10 @@
                 templateUrl: "views/posts/posts.view.html",
                 controller: "PostsController"
             })
+            .when("/post/:id", {
+                templateUrl: "views/posts/post.view.html",
+                controller: "PostController"
+            })
             .when("/profile", {
                 templateUrl: "views/users/editProfile.view.html",
                 controller: "EditProfileController"
@@ -45,6 +49,10 @@
             .when("/movie/:id", {
                 templateUrl: "views/movie/movie.view.html",
                 controller: "MovieController"
+            })
+            .when("/watchlist", {
+                templateUrl: "views/users/watchlist.view.html",
+                controller: "WatchlistController"
             })
 
             .otherwise({

@@ -4,7 +4,7 @@
         .module("NowWatching")
         .controller("PostsController", PostsController);
 
-    function PostsController($scope, $location, $rootScope, MovieService, UserService, PostService) {
+    function PostsController($scope, $location, $rootScope, UserService, PostService) {
 
 
         function fillPosts() {
@@ -23,16 +23,12 @@
         $scope.itemDetails = itemDetails;
         $scope.userDetails = userDetails;
         $scope.addPost = addPost;
+        $scope.deletePost = deletePost;
+        $scope.selectPost = selectPost;
+        $scope.updatePost = updatePost;
 
         function itemDetails(post){
-            MovieService.findMovieByTitle(post.title, function(response){
-                if (response.imdbID) {
-                    $location.url("/movie/" + response.imdbID);
-                }
-                else {
-                    $scope.message = "Movie not found";
-                }
-            })
+            $location.url("/post/" + post._id);
         }
 
         function userDetails(post){
@@ -43,6 +39,27 @@
             PostService.addPost(movie, $rootScope.currentUser._id, function(){
                 $scope.movie = "";
                 fillPosts();
+            })
+        }
+
+        function deletePost(post){
+            PostService.deletePost(post._id,function(){
+
+            })
+        }
+
+        function selectPost(post){
+            $scope.newPost = {
+                _id : post._id,
+                title : post.title,
+                description: post.description,
+                comments: post.comments
+            };
+        }
+
+        function updatePost(post){
+            PostService.updatePost(post, function(){
+                $scope.newPost = "";
             })
         }
     }

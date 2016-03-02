@@ -1,6 +1,9 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-10 col-sm-offset-2 col-md-10 col-md-offset-1 main">
+            <div ng-show="message" class="alert alert-success" role="alert">
+                {{message}}  added to your <a ng-click="goToWatchlist()" href="">Watchlist</a>
+            </div>
             <div class="row">
                 <h2>{{movie.Title}}</h2>
                 <img ng-src="{{movie.Poster}}" height="300px" class="pull-left"/>
@@ -13,6 +16,7 @@
                         {{actorName}}
                     </li>
                 </ul>
+                <button ng-click="addToWatchlist(movie)" class="btn btn-primary">Add to Watchlist</button>
             </div>
         </div>
     </div>

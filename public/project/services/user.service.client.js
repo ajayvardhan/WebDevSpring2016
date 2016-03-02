@@ -8,11 +8,11 @@
         var users = [];
         users = [
             {	"_id":123, "firstName":"Ajay", "lastName":"Vardhan",
-                "username":"ajay",  "password":"ajay"},
+                "username":"ajay",  "password":"ajay", "watchlist": []},
             {	"_id":234, "firstName":"Rajinikanth", "lastName":"",
-                "username":"rajini",    "password":"rajini"},
+                "username":"rajini",    "password":"rajini", "watchlist": []},
             {	"_id":345, "firstName":"Kamal", "lastName":"Haasan",
-                "username":"kamal","password":"kamal"}
+                "username":"kamal","password":"kamal", "watchlist": []}
         ];
 
 
@@ -22,8 +22,19 @@
             findAllUsers: findAllUsers,
             updateUser: updateUser,
             findUser: findUser,
-            findUserByID: findUserByID
+            findUserByID: findUserByID,
+            deleteUser: deleteUser,
+            addToWatchlist: addToWatchlist
         };
+
+        function addToWatchlist(id, movie, callback){
+            for (var user in users) {
+                if (users[user]._id == id) {
+                    users[user].watchlist.push(movie);
+                }
+            }
+            callback();
+        }
 
         function findAllUsers(callback){
             callback(users);
@@ -50,14 +61,12 @@
 
         function createUser(user, callback) {
             var _id = (new Date).getTime();
-            var username = user.username;
-            var password = user.password;
-            var email = user.email;
 
             var newUser = {_id : _id,
-                username : username,
-                password : password,
-                email: email
+                username : user.username,
+                password : user.password,
+                firstName : user.firstName,
+                lastName : user.lastName
             };
 
             users.push(newUser);
@@ -72,7 +81,7 @@
                         username : user.username, password : user.password};
                 }
             }
-            callback(user);
+            callback();
         }
 
         function findUser(name, callback){
@@ -85,6 +94,15 @@
                 }
             }
             callback(foundUsers);
+        }
+
+        function deleteUser(id, callback){
+            for (var u in users) {
+                if (users[u]._id === id) {
+                    users.splice(users.indexOf(users[u]),1);
+                }
+            }
+            callback();
         }
 
     }
