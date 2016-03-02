@@ -13,13 +13,33 @@
                     <th>
                         Last Name
                     </th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <th>
+                        <input ng-model="newUser.username" type="text" class="form-control" placeholder="username">
+                    </th>
+                    <th>
+                        <input ng-model="newUser.firstName" type="text" class="form-control" placeholder="First Name">
+                    </th>
+                    <th>
+                        <input ng-model="newUser.lastName" type="text" class="form-control" placeholder="Last Name">
+                    </th>
+                    <th>
+                        <button ng-click="addUser(newUser)" class="btn btn-primary glyphicon glyphicon-plus"></button>
+                        <button ng-click="updateUser(newUser)" class="btn btn-success glyphicon glyphicon-ok"></button>
+                    </th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr ng-repeat="user in users">
-                    <td>{{user.username}}</td>
+                    <td ng-click="findUser(user._id)"><a href="">{{user.username}}</a></td>
                     <td>{{user.firstName}}</td>
                     <td>{{user.lastName}}</td>
+                    <th>
+                        <button ng-click="deleteUser(user)" class="btn btn-danger glyphicon glyphicon-remove"></button>
+                        <button ng-click="selectUser(user)" class="btn btn-primary glyphicon glyphicon-pencil"></button>
+                    </th>
                 </tr>
                 </tbody>
             </table>

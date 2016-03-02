@@ -1,0 +1,19 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-2 col-md-10 col-md-offset-1 main">
+            <div class="row">
+                <h2>{{movie.Title}}</h2>
+                <img ng-src="{{movie.Poster}}" height="300px" class="pull-left"/>
+                <p>
+                    {{movie.Plot}}
+                </p>
+                <h3>Actors</h3>
+                <ul>
+                    <li ng-repeat="actorName in movie.Actors.split(',')">
+                        {{actorName}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

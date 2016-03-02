@@ -1,18 +1,16 @@
 (function() {
     "use strict";
     angular
-        .module("FormBuilderApp")
+        .module("NowWatching")
         .controller("ProfileController", ProfileController);
 
-    function ProfileController($scope, $rootScope, UserService) {
-        $scope.update = update;
-        $scope.user = $rootScope.currentUser;
+    function ProfileController($scope, $routeParams, UserService, PostService) {
+        UserService.findUserByID($routeParams.id, function(response) {
+            $scope.user = response;
+        });
 
-        function update(user) {
-            UserService.updateUser(user._id, user,
-                function(response) {
-                    $rootScope.currentUser = response;
-                });
-        }
+        PostService.findAllPostsForUser($routeParams.id, function(response){
+            $scope.posts = response;
+        });
     }
 })();

@@ -12,7 +12,7 @@
                 function (response) {
                     $rootScope.currentUser = response;
                 });
-            $location.url("/home");
+            $location.url("/profile");
         }
     }
 })();

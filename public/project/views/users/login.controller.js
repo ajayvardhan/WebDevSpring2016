@@ -12,7 +12,7 @@
                 function(response) {
                     if (response) {
                         $rootScope.currentUser = response;
-                        $location.url("/home");
+                        $location.url("/posts");
                     }
                     else{
                         $scope.message = "Incorrect username/password";

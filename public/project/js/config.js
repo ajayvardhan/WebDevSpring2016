@@ -26,6 +26,26 @@
                 templateUrl: "views/posts/posts.view.html",
                 controller: "PostsController"
             })
+            .when("/profile", {
+                templateUrl: "views/users/editProfile.view.html",
+                controller: "EditProfileController"
+            })
+            .when("/profile/:id", {
+                templateUrl: "views/users/profile.view.html",
+                controller: "ProfileController"
+            })
+            .when("/search", {
+                templateUrl: "views/search/search.view.html",
+                controller: "SearchController"
+            })
+            .when("/search/:key", {
+                templateUrl: "views/search/search.view.html",
+                controller: "SearchController"
+            })
+            .when("/movie/:id", {
+                templateUrl: "views/movie/movie.view.html",
+                controller: "MovieController"
+            })
 
             .otherwise({
                 redirectTo: "/home"

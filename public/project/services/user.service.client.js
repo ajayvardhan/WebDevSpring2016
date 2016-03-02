@@ -16,16 +16,25 @@
         ];
 
 
-        var api = {
+        return {
             findUserByCredentials: findUserByCredentials,
             createUser: createUser,
-            findAllUsers: findAllUsers
+            findAllUsers: findAllUsers,
+            updateUser: updateUser,
+            findUser: findUser,
+            findUserByID: findUserByID
         };
-
-        return api;
 
         function findAllUsers(callback){
             callback(users);
+        }
+
+        function findUserByID(id, callback){
+            for (var user in users){
+                if (users[user]._id == id){
+                    callback(users[user]);
+                }
+            }
         }
 
 
@@ -53,6 +62,29 @@
 
             users.push(newUser);
             callback(newUser);
+        }
+
+        function updateUser(userId, user, callback) {
+            for (var u in users) {
+                if (users[u]._id === userId) {
+                    users[u] = {_id : userId,
+                        firstName : user.firstName, lastName : user.lastName,
+                        username : user.username, password : user.password};
+                }
+            }
+            callback(user);
+        }
+
+        function findUser(name, callback){
+            var foundUsers = [];
+            for (var user in users){
+                var firstName = users[user].firstName.toLowerCase();
+                var lastName = users[user].lastName.toLowerCase();
+                if (firstName.indexOf(name) != -1 || lastName.indexOf(name) != -1){
+                    foundUsers.push(users[user]);
+                }
+            }
+            callback(foundUsers);
         }
 
     }
