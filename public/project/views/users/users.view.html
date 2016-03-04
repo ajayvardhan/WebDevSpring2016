@@ -1,60 +1,62 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-10 col-sm-offset-2 col-md-10 col-md-offset-1 main">
-            <table class="table table-striped table-bordered">
-                <thead>
-                <tr>
-                    <th>
-                        ID
-                    </th>
-                    <th>
-                        Username
-                    </th>
-                    <th>
-                        Password
-                    </th>
-                    <th>
-                        First Name
-                    </th>
-                    <th>
-                        Last Name
-                    </th>
-                    <th></th>
-                </tr>
-                <tr>
-                    <th></th>
-                    <th>
-                        <input ng-model="newUser.username" type="text" class="form-control" placeholder="username">
-                    </th>
-                    <th>
-                        <input ng-model="newUser.password" type="password" class="form-control" placeholder="password">
-                    </th>
-                    <th>
-                        <input ng-model="newUser.firstName" type="text" class="form-control" placeholder="First Name">
-                    </th>
-                    <th>
-                        <input ng-model="newUser.lastName" type="text" class="form-control" placeholder="Last Name">
-                    </th>
-                    <th>
-                        <button ng-click="addUser(newUser)" class="btn btn-primary glyphicon glyphicon-plus"></button>
-                        <button ng-click="updateUser(newUser)" class="btn btn-success glyphicon glyphicon-ok"></button>
-                    </th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="user in users">
-                    <td>{{user._id}}</td>
-                    <td ng-click="findUser(user._id)"><a href="">{{user.username}}</a></td>
-                    <td>{{user.password}}</td>
-                    <td>{{user.firstName}}</td>
-                    <td>{{user.lastName}}</td>
-                    <td>
-                        <button ng-click="deleteUser(user)" class="btn btn-danger glyphicon glyphicon-remove"></button>
-                        <button ng-click="selectUser(user)" class="btn btn-primary glyphicon glyphicon-pencil"></button>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                    <tr>
+                        <th>
+                            ID
+                        </th>
+                        <th>
+                            Username
+                        </th>
+                        <th>
+                            Password
+                        </th>
+                        <th>
+                            First Name
+                        </th>
+                        <th>
+                            Last Name
+                        </th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th>
+                            <input ng-model="newUser.username" type="text" class="form-control" placeholder="username">
+                        </th>
+                        <th>
+                            <input ng-model="newUser.password" type="password" class="form-control" placeholder="password">
+                        </th>
+                        <th>
+                            <input ng-model="newUser.firstName" type="text" class="form-control" placeholder="First Name">
+                        </th>
+                        <th>
+                            <input ng-model="newUser.lastName" type="text" class="form-control" placeholder="Last Name">
+                        </th>
+                        <th class="buttonNoWrap">
+                            <button ng-click="addUser(newUser)" class="btn btn-primary glyphicon glyphicon-plus"></button>
+                            <button ng-click="updateUser(newUser)" class="btn btn-success glyphicon glyphicon-ok"></button>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="user in users">
+                        <td>{{user._id}}</td>
+                        <td ng-click="findUser(user._id)"><a href="">{{user.username}}</a></td>
+                        <td>{{user.password}}</td>
+                        <td>{{user.firstName}}</td>
+                        <td>{{user.lastName}}</td>
+                        <td class="buttonNoWrap">
+                            <button ng-click="deleteUser(user)" class="btn btn-danger glyphicon glyphicon-remove"></button>
+                            <button ng-click="selectUser(user)" class="btn btn-primary glyphicon glyphicon-pencil"></button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

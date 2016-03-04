@@ -18,24 +18,26 @@
             </div>
             <br/>
             <div class="row">
-                <table class="table table-striped table-bordered">
-                    <thead>
-                    <tr>
-                        <th>
-                            {{firstColumn}}
-                        </th>
-                        <th>
-                            {{secondColumn}}
-                        </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr ng-repeat="result in results">
-                        <td ng-click="itemDetails(search, result)"><a href="">{{result.firstItem}}</a></td>
-                        <td>{{result.secondItem}}</td>
-                    </tr>
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                        <tr>
+                            <th>
+                                {{firstColumn}}
+                            </th>
+                            <th>
+                                {{secondColumn}}
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="result in results">
+                            <td ng-click="itemDetails(search, result)"><a href="">{{result.firstItem}}</a></td>
+                            <td>{{result.secondItem}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

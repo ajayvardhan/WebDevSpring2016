@@ -43,7 +43,7 @@
 
         function updateUser(user){
             UserService.updateUser(user._id, user, function(){
-
+                $scope.newUser = "";
             })
         }
 

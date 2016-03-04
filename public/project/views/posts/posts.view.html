@@ -9,57 +9,59 @@
             </div>
             <br/>
             <div class="row">
-                <table class="table table-striped table-bordered">
-                    <thead>
-                    <tr>
-                        <th>
-                            Movie
-                        </th>
-                        <th>
-                            Description
-                        </th>
-                        <th>
-                            Posted By
-                        </th>
-                        <th>
-                            Comments
-                        </th>
-                        <th></th>
-                    </tr>
-                    <tr>
-                        <th>
-                            <input ng-model="newPost.title" type="text" class="form-control" placeholder="Movie">
-                        </th>
-                        <th>
-                            <input ng-model="newPost.description" type="text" class="form-control" placeholder=Description>
-                        </th>
-                        <th></th>
-                        <th>
-                            <input ng-model="newPost.comments" type="text" class="form-control" placeholder="Comments">
-                        </th>
-                        <th>
-                            <button ng-click="addPost(newPost)" class="btn btn-primary glyphicon glyphicon-plus"></button>
-                            <button ng-click="updatePost(newPost)" class="btn btn-success glyphicon glyphicon-ok"></button>
-                        </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr ng-repeat="post in posts">
-                        <td ng-click="itemDetails(post)"><a href="">{{post.title}}</a></td>
-                        <td>{{post.description}}</td>
-                        <td ng-click="userDetails(post)"><a href="">{{post.user}}</a></td>
-                        <td>
-                            <ul ng-repeat="comment in post.comments">
-                                <li>{{comment}}</li>
-                            </ul>
-                        </td>
-                        <td>
-                            <button ng-click="deletePost(post)" class="btn btn-danger glyphicon glyphicon-remove"></button>
-                            <button ng-click="selectPost(post)" class="btn btn-primary glyphicon glyphicon-pencil"></button>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                        <tr>
+                            <th>
+                                Movie
+                            </th>
+                            <th>
+                                Description
+                            </th>
+                            <th>
+                                Posted By
+                            </th>
+                            <th>
+                                Comments
+                            </th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <input ng-model="newPost.title" type="text" class="form-control" placeholder="Movie">
+                            </th>
+                            <th>
+                                <input ng-model="newPost.description" type="text" class="form-control" placeholder=Description>
+                            </th>
+                            <th></th>
+                            <th>
+                                <input ng-model="newPost.comments" type="text" class="form-control" placeholder="Comments">
+                            </th>
+                            <th class="buttonNoWrap">
+                                <button ng-click="addPost(newPost)" class="btn btn-primary glyphicon glyphicon-plus"></button>
+                                <button ng-click="updatePost(newPost)" class="btn btn-success glyphicon glyphicon-ok"></button>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="post in posts">
+                            <td ng-click="itemDetails(post)"><a href="">{{post.title}}</a></td>
+                            <td>{{post.description}}</td>
+                            <td ng-click="userDetails(post)"><a href="">{{post.user}}</a></td>
+                            <td>
+                                <ul ng-repeat="comment in post.comments">
+                                    <li>{{comment}}</li>
+                                </ul>
+                            </td>
+                            <td class="buttonNoWrap">
+                                <button ng-click="deletePost(post)" class="btn btn-danger glyphicon glyphicon-remove"></button>
+                                <button ng-click="selectPost(post)" class="btn btn-primary glyphicon glyphicon-pencil"></button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
