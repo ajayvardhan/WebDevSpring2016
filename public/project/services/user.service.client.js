@@ -8,11 +8,11 @@
         var users = [];
         users = [
             {	"_id":123, "firstName":"Ajay", "lastName":"Vardhan",
-                "username":"ajay",  "password":"ajay", "watchlist": []},
+                "username":"ajay",  "password":"ajay", "watchlist": [], "following": []},
             {	"_id":234, "firstName":"Rajinikanth", "lastName":"",
-                "username":"rajini",    "password":"rajini", "watchlist": []},
+                "username":"rajini",    "password":"rajini", "watchlist": [], "following": []},
             {	"_id":345, "firstName":"Kamal", "lastName":"Haasan",
-                "username":"kamal","password":"kamal", "watchlist": []}
+                "username":"kamal","password":"kamal", "watchlist": [], "following": []}
         ];
 
 
@@ -23,18 +23,8 @@
             updateUser: updateUser,
             findUser: findUser,
             findUserByID: findUserByID,
-            deleteUser: deleteUser,
-            addToWatchlist: addToWatchlist
+            deleteUser: deleteUser
         };
-
-        function addToWatchlist(id, movie, callback){
-            for (var user in users) {
-                if (users[user]._id == id) {
-                    users[user].watchlist.push(movie);
-                }
-            }
-            callback();
-        }
 
         function findAllUsers(callback){
             callback(users);
@@ -104,6 +94,5 @@
             }
             callback();
         }
-
     }
 })();

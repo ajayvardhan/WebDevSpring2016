@@ -67,6 +67,14 @@
         </div>
       </form>
       <button ng-click="goToWatchlist()" class="btn btn-primary">Watchlist</button>
+      <button ng-click="goToFollowing()" class="btn btn-primary">Following</button>
+      <button ng-click="goToFollowers()" class="btn btn-primary">Followers</button>
+      <ul ng-if="listItems" ng-repeat="item in listItems">
+        <li>
+          <a ng-click="goToItem(item)" href="">{{item.first}} {{item.second}}</a>
+          <button ng-show="item.imdbID" ng-click="removeMovie(item)" class="btn btn-danger glyphicon glyphicon-remove"></button>
+        </li>
+      </ul>
     </div>
   </div>
 </div>

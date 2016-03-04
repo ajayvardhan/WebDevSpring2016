@@ -5,8 +5,8 @@
             <h2 ng-click="movieDetails(movie)">Movie: <a href="">{{movie.title}}</a></h2>
             <h3>Description: {{movie.description}}</h3>
             <h3>Posted by: {{movie.user}}</h3>
-            <input ng-model="comment" class="form-control">
-            <button ng-click="addComment(comment)" class="btn btn-primary">Comment</button>
+            <input ng-show="currentUser" ng-model="comment" class="form-control">
+            <button ng-show="currentUser" ng-click="addComment(comment)" class="btn btn-primary">Comment</button>
             <h3>Comments:</h3>
             <ul ng-repeat="comment in movie.comments">
                 <li>{{comment}}</li>
