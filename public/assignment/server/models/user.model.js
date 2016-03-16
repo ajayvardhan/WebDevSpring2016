@@ -14,6 +14,8 @@ module.exports = function() {
     return api;
 
     function createUser(user){
+        data.push(user);
+        return data;
     }
 
     function findAllUsers(){
@@ -35,6 +37,12 @@ module.exports = function() {
     }
 
     function updateUser(id, user) {
+        for (var u in data){
+            if(data[u]._id === id){
+                data[u] = user;
+            }
+        }
+        return data;
     }
 
     function deleteUser(id) {

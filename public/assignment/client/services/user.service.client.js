@@ -13,10 +13,20 @@
             createUser: createUser,
             deleteUserById: deleteUserById,
             updateUser: updateUser,
-            findUserByUsername: findUserByUsername
+            findUserByUsername: findUserByUsername,
+            getCurrentUser: getCurrentUser,
+            logout: logout
         };
 
         return api;
+
+        function logout(){
+            return $http.post("/api/assignment/logout");
+        }
+
+        function getCurrentUser(){
+            return $http.get("/api/assignment/loggedin");
+        }
 
         function setCurrentUser(user){
             $rootScope.currentUser = user;

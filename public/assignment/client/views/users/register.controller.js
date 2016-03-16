@@ -8,11 +8,12 @@
         $scope.register = register;
 
         function register(user) {
-            UserService.createUser(user,
-                function (response) {
-                    $rootScope.currentUser = response;
+            UserService
+                .createUser(user)
+                .then(function(response){
+                    UserService.setCurrentUser(user);
+                    $location.url("/profile");
                 });
-            $location.url("/profile");
         }
     }
 })();

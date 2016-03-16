@@ -6,13 +6,14 @@
 
     function ProfileController($scope, $rootScope, UserService) {
         $scope.update = update;
-        $scope.user = $rootScope.currentUser;
+        UserService
+            .getCurrentUser()
+            .then(function(response){
+                $scope.user = response.data;
+            });
 
         function update(user) {
-            UserService.updateUser(user._id, user,
-                function(response) {
-                    $rootScope.currentUser = response;
-                });
+            UserService.updateUser(user._id, user);
         }
     }
 })();
