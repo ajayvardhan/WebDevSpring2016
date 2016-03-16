@@ -13,26 +13,20 @@ module.exports = function(app) {
     return api;
 
     function createForm(form){
-        console.log(form);
     }
 
     function findAllForms(){
-        console.log(data);
     }
 
     function findFormByID(id){
-        console.log(id);
     }
 
     function findFormByTitle(title){
-        console.log(title);
     }
 
     function updateForm(id, user) {
-        console.log(id, user);
     }
 
     function deleteForm(id) {
-        console.log(id);
     }
 };

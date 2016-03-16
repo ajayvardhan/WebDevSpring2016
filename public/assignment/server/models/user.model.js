@@ -1,6 +1,6 @@
 var data = require("./user.mock.json");
 
-module.exports = function(app) {
+module.exports = function() {
     var api = {
         findUserByCredentials: findUserByCredentials,
         createUser: createUser,
@@ -14,30 +14,29 @@ module.exports = function(app) {
     return api;
 
     function createUser(user){
-        console.log(user);
     }
 
     function findAllUsers(){
-        console.log(data);
     }
 
     function findUserByID(id){
-        console.log(id);
     }
 
     function findUserByUsername(username){
-        console.log(username);
     }
 
     function findUserByCredentials(credentials) {
-        console.log(credentials);
+        for (var user in data){
+            if(data[user].username === credentials.username && data[user].password === credentials.password){
+                return data[user];
+            }
+        }
+        return null;
     }
 
     function updateUser(id, user) {
-        console.log(id, user);
     }
 
     function deleteUser(id) {
-        console.log(id);
     }
 };
