@@ -8,7 +8,7 @@ var session       = require('express-session');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(multer());
-app.use(session({ secret: "ajay" }));
+app.use(session({ secret: process.env.webdev_secret }));
 app.use(cookieParser());
 app.use(express.static(__dirname + '/public'));
 
