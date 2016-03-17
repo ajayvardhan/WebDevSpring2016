@@ -42,12 +42,18 @@ module.exports = function(app, userModel) {
     }
 
     function findAllUsers(req, res){
+        var users = userModel.findAllUsers();
+        res.json(users);
     }
 
     function findUserByID(req, res){
+        var user = userModel.findUserByID(parseInt(req.params.id));
+        res.json(user);
     }
 
     function findUserByUsername(req, res){
+        var user = userModel.findUserByID(req.query.username);
+        res.json(user);
     }
 
     function updateUser(req, res){
@@ -57,5 +63,7 @@ module.exports = function(app, userModel) {
     }
 
     function deleteUser(req, res){
+        var users = userModel.deleteUser(parseInt(req.params.id));
+        res.json(users);
     }
 };

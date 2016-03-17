@@ -5,22 +5,30 @@
         .controller("FormsController", FormsController);
 
     function FormsController($scope, $rootScope, $location, FormService) {
-        var user = $rootScope.currentUser;
+        var user = {};
         $scope.location = $location;
+
+        function init(){
+            UserService
+                .getCurrentUser()
+                .then(function(response){
+                    user = response.data;
+                });
+
+            FormService.findAllFormsForUser(user._id,
+                function (response) {
+                    $scope.forms = response;
+                });
+
+        }
+
+        init();
 
         $scope.addForm = addForm;
         $scope.updateForm = updateForm;
         $scope.deleteForm = deleteForm;
         $scope.selectForm = selectForm;
 
-        function updateFormsForUser() {
-            FormService.findAllFormsForUser(user._id,
-                function (response) {
-                    $scope.forms = response;
-                });
-        }
-
-        updateFormsForUser();
 
         function addForm(form) {
             FormService.createFormForUser(user._id, form,

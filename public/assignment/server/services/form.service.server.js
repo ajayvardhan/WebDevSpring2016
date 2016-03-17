@@ -1,27 +1,32 @@
-module.exports = function(app) {
+module.exports = function(app, formModel) {
     app.get("/api/assignment/user/:userId/form", findFormsForUser);
     app.get("/api/assignment/form/:formId", findFormByID);
     app.delete("/api/assignment/form/:formId", deleteForm);
     app.post("/api/assignment/user/:userId/form", createForm);
-    app.post("/api/assignment/form/:formId", updateForm);
+    app.put("/api/assignment/form/:formId", updateForm);
 
     function findFormsForUser(req, res){
-        console.log(req.params.userId);
+        var forms = formModel.findFormsForUser(parseInt(req.params.userId));
+        res.json(forms);
     }
 
     function findFormByID(req, res){
-        console.log(req.params.formId);
+        var form = formModel.findFormByID(parseInt(req.params.formId));
+        res.json(form);
     }
 
     function deleteForm(req, res){
-        console.log(req.params.formId);
+        var forms = formModel.deleteForm(parseInt(req.params.formId));
+        res.json(forms);
     }
 
     function createForm(req, res){
-        console.log(req.params.userId);
+        var forms = formModel.createForm(parseInt(req.params.userId), req.body);
+        res.json(forms);
     }
 
     function updateForm(req, res){
-        console.log(req.params.formId);
+        var forms = formModel.updateForm(parseInt(req.params.formId), req.body);
+        res.json(forms);
     }
 };

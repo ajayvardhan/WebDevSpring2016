@@ -15,7 +15,8 @@
             updateUser: updateUser,
             findUserByUsername: findUserByUsername,
             getCurrentUser: getCurrentUser,
-            logout: logout
+            logout: logout,
+            findUserByID: findUserByID
         };
 
         return api;
@@ -30,6 +31,10 @@
 
         function setCurrentUser(user){
             $rootScope.currentUser = user;
+        }
+
+        function findUserByID(userId){
+            return $http.get("/api/assignment/user/" + userId);
         }
 
         function findUserByUsername(username){
