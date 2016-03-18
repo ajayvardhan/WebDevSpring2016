@@ -11,7 +11,11 @@
             UserService
                 .createUser(user)
                 .then(function(response){
-                    UserService.setCurrentUser(user);
+                    for (var i in response.data){
+                        if (response.data[i].username == user.username) {
+                            UserService.setCurrentUser(response.data[i]);
+                        }
+                    }
                     $location.url("/profile");
                 });
         }

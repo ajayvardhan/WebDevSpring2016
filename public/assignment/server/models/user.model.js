@@ -1,4 +1,5 @@
 var data = require("./user.mock.json");
+var uuid = require('node-uuid');
 
 module.exports = function() {
     var api = {
@@ -14,7 +15,7 @@ module.exports = function() {
     return api;
 
     function createUser(user){
-        var _id = Guid.raw();
+        var _id = uuid.v1();
         var username = user.username;
         var password = user.password;
 
@@ -33,7 +34,7 @@ module.exports = function() {
 
     function findUserByID(id){
         for (var user in data){
-            if(data[user]._id === id){
+            if(data[user]._id == id){
                 return data[user];
             }
         }
@@ -42,7 +43,7 @@ module.exports = function() {
 
     function findUserByUsername(username){
         for (var user in data){
-            if(data[user].username === username){
+            if(data[user].username == username){
                 return data[user];
             }
         }
@@ -51,7 +52,7 @@ module.exports = function() {
 
     function findUserByCredentials(credentials) {
         for (var user in data){
-            if(data[user].username === credentials.username && data[user].password === credentials.password){
+            if(data[user].username == credentials.username && data[user].password == credentials.password){
                 return data[user];
             }
         }
@@ -60,7 +61,7 @@ module.exports = function() {
 
     function updateUser(id, user) {
         for (var u in data){
-            if(data[u]._id === id){
+            if(data[u]._id == id){
                 data[u] = user;
             }
         }
@@ -69,7 +70,7 @@ module.exports = function() {
 
     function deleteUser(id) {
         for (var u in data){
-            if(data[u]._id === id){
+            if(data[u]._id == id){
                 data.splice(data.indexOf(data[u]), 1);
             }
         }

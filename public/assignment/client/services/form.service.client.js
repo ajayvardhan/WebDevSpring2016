@@ -4,13 +4,7 @@
         .module("FormBuilderApp")
         .factory("FormService", FormService);
 
-    function FormService() {
-        var forms = [];
-        forms = [
-            {"_id": "000", "title": "Contacts", "userId": 123},
-            {"_id": "010", "title": "ToDo",     "userId": 123},
-            {"_id": "020", "title": "CDs",      "userId": 234}
-        ];
+    function FormService($http) {
 
         var api = {
             createFormForUser : createFormForUser,
@@ -55,8 +49,8 @@
             callback(forms);*/
         }
 
-        function updateFormById(formId, newForm, callback) {
-            return $http.put("/api/assignment/form/" + formId);
+        function updateFormById(formId, newForm) {
+            return $http.put("/api/assignment/form/" + formId, newForm);
             /*
             for (var form in forms) {
                 if (forms[form]._id === formId) {

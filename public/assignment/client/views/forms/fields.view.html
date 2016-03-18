@@ -159,7 +159,7 @@
                     <form>
                         <div class="form-group">
                             <label for="addfield">Add New Field:</label>
-                            <select class="form-control" id="addfield">
+                            <select ng-model="fieldType" class="form-control" id="addfield">
                                 <option value="singlelinetext">Single Line Text</option>
                                 <option value="date">Date</option>
                                 <option value="dropdown">Dropdown</option>
@@ -172,7 +172,7 @@
                 </div>
                 <div class="col-sm-6 col-md-6 main">
                     <br/>
-                    <button type="button" class="btn btn-success glyphicon glyphicon-plus">
+                    <button ng-click="addField(fieldType)" type="button" class="btn btn-success glyphicon glyphicon-plus">
                     </button>
                 </div>
             </div>

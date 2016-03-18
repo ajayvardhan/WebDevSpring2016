@@ -47,7 +47,7 @@ module.exports = function(app, userModel) {
     }
 
     function findUserByID(req, res){
-        var user = userModel.findUserByID(parseInt(req.params.id));
+        var user = userModel.findUserByID(req.params.id);
         res.json(user);
     }
 
@@ -57,13 +57,13 @@ module.exports = function(app, userModel) {
     }
 
     function updateUser(req, res){
-        var users = userModel.updateUser(parseInt(req.params.id), req.body);
+        var users = userModel.updateUser(req.params.id, req.body);
         req.session.currentUser = req.body;
         res.json(users);
     }
 
     function deleteUser(req, res){
-        var users = userModel.deleteUser(parseInt(req.params.id));
+        var users = userModel.deleteUser(req.params.id);
         res.json(users);
     }
 };

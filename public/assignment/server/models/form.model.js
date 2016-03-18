@@ -1,4 +1,5 @@
 var data = require("./form.mock.json");
+var uuid = require('node-uuid');
 
 module.exports = function() {
     var api = {
@@ -14,7 +15,7 @@ module.exports = function() {
     return api;
 
     function createForm(userId, form){
-        var _id = Guid.raw();
+        var _id = uuid.v1();
         var title = form.title;
         var newForm = {_id: _id, title: title, userId: userId, fields: []};
         data.push(newForm);
@@ -27,7 +28,7 @@ module.exports = function() {
 
     function findFormByID(id){
         for (var form in data){
-            if(data[form]._id === id){
+            if(data[form]._id == (id)){
                 return data[form];
             }
         }
@@ -36,7 +37,7 @@ module.exports = function() {
 
     function findFormByTitle(title){
         for (var form in data){
-            if(data[form].title === title){
+            if(data[form].title == (title)){
                 return data[form];
             }
         }
@@ -45,7 +46,7 @@ module.exports = function() {
 
     function updateForm(id, form) {
         for (var f in data){
-            if(data[f]._id === id){
+            if(data[f]._id == (id)){
                 data[f] = form;
             }
         }
@@ -54,7 +55,7 @@ module.exports = function() {
 
     function deleteForm(id) {
         for (var f in data){
-            if(data[f]._id === id){
+            if(data[f]._id == (id)){
                 data.splice(data.indexOf(data[f]), 1);
             }
         }
@@ -64,7 +65,7 @@ module.exports = function() {
     function findFormsForUser(userId){
         var forms = [];
         for (var form in data){
-            if(data[form].userId === userId){
+            if(data[form].userId == (userId)){
                 forms.push(data[form])
             }
         }

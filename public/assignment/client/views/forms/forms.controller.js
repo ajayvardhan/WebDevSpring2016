@@ -4,25 +4,20 @@
         .module("FormBuilderApp")
         .controller("FormsController", FormsController);
 
-    function FormsController($scope, $rootScope, $location, FormService) {
-        var user = {};
+    function FormsController($scope, $location, $rootScope, FormService) {
+        var user = $rootScope.currentUser;
         $scope.location = $location;
 
-        function init(){
-            UserService
-                .getCurrentUser()
-                .then(function(response){
-                    user = response.data;
-                });
-
-            FormService.findAllFormsForUser(user._id,
-                function (response) {
-                    $scope.forms = response;
-                });
-
+        function updateForms(){
+            FormService
+                .findAllFormsForUser(user._id)
+                .then(
+                    function (response) {
+                        $scope.forms = response.data;
+                    });
         }
 
-        init();
+        updateForms();
 
         $scope.addForm = addForm;
         $scope.updateForm = updateForm;
@@ -31,31 +26,40 @@
 
 
         function addForm(form) {
-            FormService.createFormForUser(user._id, form,
-                function(response) {
-                    $scope.forms.push(response);
-                    $scope.form = null;
-                });
+            FormService
+                .createFormForUser(user._id, form)
+                .then(
+                    function(response) {
+                        updateForms();
+                        //$scope.forms.push(response.data);
+                        $scope.form = null;
+                    });
         }
 
         function updateForm(form) {
-            FormService.updateFormById(form._id, form,
-                function(response) {
-                    var id = response._id;
-                    for (var form in $scope.forms){
-                        if ($scope.forms[form]._id === id) {
-                            $scope.forms[form] = response;
-                        }
-                    }
-                });
-            $scope.form = null;
+            FormService
+                .updateFormById(form._id, form)
+                .then(
+                    function(response) {
+                        updateForms();
+                        $scope.form = null;
+                        /*
+                         var id = response.data._id;
+                         for (var form in $scope.forms){
+                         if ($scope.forms[form]._id === id) {
+                         $scope.forms[form] = response.data;
+                         }
+                         }*/
+                    });
         }
 
         function deleteForm(index) {
-            FormService.deleteFormById($scope.forms[index]._id,
-                function(response) {
-                    $scope.forms.splice(index,1);
-                });
+            FormService
+                .deleteFormById($scope.forms[index]._id)
+                .then(
+                    function(response) {
+                        updateForms();
+                    });
         }
 
         function selectForm(index) {
