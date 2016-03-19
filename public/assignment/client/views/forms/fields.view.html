@@ -40,11 +40,14 @@
                                         <input type="checkbox"
                                                value="option.value"/> {{option.label}}
                                     </div>
-                                    <div ng-switch-when="RADIOS"
-                                         ng-repeat="option in field.options"
-                                         class="form-group">
-                                        <input type="radio"
-                                               value="option.value"/> {{option.label}}
+                                    <div ng-switch-when="RADIOS">
+                                        <form class="form-group">
+                                            <div ng-repeat="option in field.options">
+                                                <input type="radio"
+                                                       name="option.value"
+                                                       value="option.value"/> {{option.label}}
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </form>
