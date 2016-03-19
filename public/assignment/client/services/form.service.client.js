@@ -5,63 +5,34 @@
         .factory("FormService", FormService);
 
     function FormService($http) {
-
         var api = {
             createFormForUser : createFormForUser,
             findAllFormsForUser : findAllFormsForUser,
             deleteFormById : deleteFormById,
-            updateFormById : updateFormById
+            updateFormById : updateFormById,
+            findFieldsForForm : findFieldsForForm
         };
 
         return api;
 
+        function findFieldsForForm(id){
+            return $http.get("/api/assignment/form/" + id + "/field");
+        }
+
         function createFormForUser(userId, form) {
             return $http.post("/api/assignment/user/" + userId + "/form", form);
-            /*
-            var _id = (new Date).getTime();
-            var title = form.title;
-            var newForm = {_id: _id, title: title, userId: userId};
-            forms.push(newForm);
-            callback(newForm);*/
         }
 
         function findAllFormsForUser(userId) {
             return $http.get("/api/assignment/user/" + userId + "/form");
-            /*
-            var formsList = [];
-            for (var form in forms) {
-                if (forms[form].userId === userId) {
-                    formsList.push(forms[form]);
-                }
-            }
-            callback(formsList);*/
         }
 
         function deleteFormById(formId) {
             return $http.delete("/api/assignment/form/" + formId);
-            /*
-            for (var form in forms) {
-                if (forms[form]._id === formId) {
-                    var index = forms.indexOf(forms[form]);
-                    forms.splice(index, 1);
-                }
-            }
-            callback(forms);*/
         }
 
         function updateFormById(formId, newForm) {
             return $http.put("/api/assignment/form/" + formId, newForm);
-            /*
-            for (var form in forms) {
-                if (forms[form]._id === formId) {
-                    forms[form] = {
-                        _id : formId,
-                        title: newForm.title,
-                        userId: newForm.userId
-                    };
-                }
-            }
-            callback(newForm);*/
         }
     }
 })();

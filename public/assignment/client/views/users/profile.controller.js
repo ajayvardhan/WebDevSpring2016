@@ -4,12 +4,14 @@
         .module("FormBuilderApp")
         .controller("ProfileController", ProfileController);
 
-    function ProfileController($scope, $rootScope, UserService) {
-        $scope.update = update;
+    function ProfileController(UserService) {
+        var vm = this;
+        
+        vm.update = update;
         UserService
             .getCurrentUser()
             .then(function(response){
-                $scope.user = response.data;
+                vm.user = response.data;
             });
 
         function update(user) {

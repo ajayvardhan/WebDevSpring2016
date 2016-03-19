@@ -5,12 +5,12 @@
             <h2 class="page-header">Forms</h2>
             <ul class="nav nav-tabs">
                 <li role="presentation"
-                    ng-class={'active':location.url()==='/forms'}>
-                    <a>Forms</a>
+                    ng-class={'active':model.location.url()==='/forms'}>
+                    <a href="/forms">Forms</a>
                 </li>
                 <li role="presentation"
-                    ng-class={'active':location.url()==='/fields'}>
-                    <a href="#/fields">Fields</a>
+                    ng-class={'active':model.location.url()==='/form/:formId/fields'}>
+                    <a href="">Fields</a>
                 </li>
             </ul>
             <div class="table-responsive">
@@ -27,16 +27,16 @@
                     </tr>
                     <tr>
                         <th>
-                            <input ng-model="form.title"
+                            <input ng-model="model.form.title"
                                    type="text" class="form-control"
                                    placeholder="Name">
                         </th>
                         <th>
-                            <button ng-click="addForm(form)"
+                            <button ng-click="model.addForm(model.form)"
                                     type="button"
                                     class="btn btn-primary glyphicon glyphicon-plus">
                             </button>
-                            <button ng-click="updateForm(form)"
+                            <button ng-click="model.updateForm(model.form)"
                                     type="button"
                                     class="btn btn-success glyphicon glyphicon-ok">
                             </button>
@@ -44,14 +44,14 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="form in forms">
-                        <td>{{form.title}}</td>
+                    <tr ng-repeat="form in model.forms">
+                        <td><a ng-click="model.formFields(form)" href="">{{form.title}}</a></td>
                         <td>
-                            <button ng-click="deleteForm($index)"
+                            <button ng-click="model.deleteForm($index)"
                                     type="button"
                                     class="btn btn-danger glyphicon glyphicon-remove">
                             </button>
-                            <button ng-click="selectForm($index)"
+                            <button ng-click="model.selectForm($index)"
                                     type="button"
                                     class="btn btn-success glyphicon glyphicon-pencil">
                             </button>

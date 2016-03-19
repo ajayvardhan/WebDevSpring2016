@@ -4,9 +4,11 @@
         .module("FormBuilderApp")
         .controller("HeaderController", HeaderController);
 
-    function HeaderController($scope, $rootScope, $location, UserService) {
-        $scope.logout = logout;
-        $scope.location = $location;
+    function HeaderController($location, UserService) {
+        var vm = this;
+
+        vm.location = $location;
+        vm.logout = logout;
 
         function init() {
             UserService

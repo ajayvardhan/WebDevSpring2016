@@ -1,156 +1,70 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Form Fields</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/dashboard.css" rel="stylesheet">
-</head>
-
-<body>
-
-
+<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 <div class="container-fluid">
     <div class="row">
-
         <div class="col-sm-10 col-sm-offset-2 col-md-10 col-md-offset-1 main">
             <h2 class="page-header">Forms : Registration Form</h2>
             <ul class="nav nav-tabs">
                 <li role="presentation"><a href="forms.view.html">Forms</a></li>
                 <li role="presentation" class="active"><a href="#">Fields</a></li>
             </ul>
-            <div class="row">
-                <div class="col-sm-6 col-md-6 main">
-                    <form>
-                        <div class="form-group">
-                            <label for="firstname">First Name:</label>
-                            <input type="text" class="form-control" id="firstname" placeholder="First Name">
+            <div ui-sortable>
+                <div ng-repeat="field in model.fields" class="row">
+                    <div ng-switch="field.type">
+                        <div class="col-sm-6 col-md-6 main">
+                            <form>
+                                <div class="form-group">
+                                    <label>{{field.label}}</label>
+                                    <input ng-switch-when="TEXT"
+                                           type="text"
+                                           class="form-control"
+                                           placeholder={{field.placeholder}}>
+                                    <input ng-switch-when="EMAIL"
+                                           type="email"
+                                           class="form-control"
+                                           placeholder={{field.placeholder}}>
+                                    <select ng-switch-when="OPTIONS" class="form-control">
+                                        <option ng-repeat="option in field.options" value="option.value">{{option.label}}</option>
+                                    </select>
+                                <textarea ng-switch-when="TEXTAREA"
+                                          class="form-control"
+                                          placeholder={{field.placeholder}}>
+                                    </textarea>
+                                    <input ng-switch-when="DATE"
+                                           type="date"
+                                           class="form-control"
+                                           placeholder={{field.placeholder}}>
+                                    <div ng-switch-when="CHECKBOXES"
+                                         ng-repeat="option in field.options"
+                                         class="form-group">
+                                        <input type="checkbox"
+                                               value="option.value"/> {{option.label}}
+                                    </div>
+                                    <div ng-switch-when="RADIOS"
+                                         ng-repeat="option in field.options"
+                                         class="form-group">
+                                        <input type="radio"
+                                               value="option.value"/> {{option.label}}
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                    </form>
-                </div>
-                <div class="col-sm-6 col-md-6 main">
-                    <br>
-                    <button type="button" class="btn btn-primary glyphicon glyphicon-pencil">
-                    </button>
-                    <button type="button" class="btn btn-success glyphicon glyphicon-plus">
-                    </button>
-                    <button type="button" class="btn btn-danger glyphicon glyphicon-remove">
-                    </button>
-                    <button type="button" class="btn glyphicon glyphicon-menu-hamburger">
-                    </button>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6 col-md-6 main">
-                    <form>
-                        <div class="form-group">
-                            <label for="lastname">Last Name:</label>
-                            <input type="text" class="form-control" id="lastname" placeholder="Last Name">
+                        <div class="col-sm-6 col-md-6 main">
+                            <br>
+                            <button ng-click="model.editField(field)"
+                                    type="button"
+                                    class="btn btn-primary glyphicon glyphicon-pencil"
+                                    data-toggle="modal"
+                                    data-target="#myModal">
+                            </button>
+                            <button type="button" class="btn btn-success glyphicon glyphicon-plus">
+                            </button>
+                            <button ng-click="model.removeField(field)" type="button" class="btn btn-danger glyphicon glyphicon-remove">
+                            </button>
+                            <button type="button" class="btn glyphicon glyphicon-menu-hamburger">
+                            </button>
                         </div>
-                    </form>
-                </div>
-                <div class="col-sm-6 col-md-6 main">
-                    <br>
-                    <button type="button" class="btn btn-primary glyphicon glyphicon-pencil">
-                    </button>
-                    <button type="button" class="btn btn-success glyphicon glyphicon-plus">
-                    </button>
-                    <button type="button" class="btn btn-danger glyphicon glyphicon-remove">
-                    </button>
-                    <button type="button" class="btn glyphicon glyphicon-menu-hamburger">
-                    </button>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6 col-md-6 main">
-                    <form>
-                        <div class="form-group">
-                            <label for="dob">Date of Birth:</label>
-                            <input type="date" class="form-control" id="dob">
-                        </div>
-                    </form>
-                </div>
-                <div class="col-sm-6 col-md-6 main">
-                    <br>
-                    <button type="button" class="btn btn-primary glyphicon glyphicon-pencil">
-                    </button>
-                    <button type="button" class="btn btn-success glyphicon glyphicon-plus">
-                    </button>
-                    <button type="button" class="btn btn-danger glyphicon glyphicon-remove">
-                    </button>
-                    <button type="button" class="btn glyphicon glyphicon-menu-hamburger">
-                    </button>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6 col-md-6 main">
-                    <form>
-                        <div class="form-group">
-                            <label for="gender">Gender:</label>
-                            <select class="form-control" id="gender">
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
-                            </select>
-                        </div>
-                    </form>
-                </div>
-                <div class="col-sm-6 col-md-6 main">
-                    <br>
-                    <button type="button" class="btn btn-primary glyphicon glyphicon-pencil">
-                    </button>
-                    <button type="button" class="btn btn-success glyphicon glyphicon-plus">
-                    </button>
-                    <button type="button" class="btn btn-danger glyphicon glyphicon-remove">
-                    </button>
-                    <button type="button" class="btn glyphicon glyphicon-menu-hamburger">
-                    </button>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6 col-md-6 main">
-                    <form>
-                        <div class="form-group">
-                            <label>Roles:</label><br>
-                            <input type="checkbox" name="roles"/> Admin<br>
-                            <input type="checkbox" name="roles"/> Student<br>
-                            <input type="checkbox" name="roles"/> User<br>
-                        </div>
-                    </form>
-                </div>
-                <div class="col-sm-6 col-md-6 main">
-                    <br>
-                    <button type="button" class="btn btn-primary glyphicon glyphicon-pencil">
-                    </button>
-                    <button type="button" class="btn btn-success glyphicon glyphicon-plus">
-                    </button>
-                    <button type="button" class="btn btn-danger glyphicon glyphicon-remove">
-                    </button>
-                    <button type="button" class="btn glyphicon glyphicon-menu-hamburger">
-                    </button>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6 col-md-6 main">
-                    <form>
-                        <div class="form-group">
-                            <label>License Agreement:</label><br>
-                            <input type="radio" name="licenseagreement"/> Yes<br>
-                            <input type="radio" name="licenseagreement"/> No<br>
-                        </div>
-                    </form>
-                </div>
-                <div class="col-sm-6 col-md-6 main">
-                    <br>
-                    <button type="button" class="btn btn-primary glyphicon glyphicon-pencil">
-                    </button>
-                    <button type="button" class="btn btn-success glyphicon glyphicon-plus">
-                    </button>
-                    <button type="button" class="btn btn-danger glyphicon glyphicon-remove">
-                    </button>
-                    <button type="button" class="btn glyphicon glyphicon-menu-hamburger">
-                    </button>
+                    </div>
                 </div>
             </div>
             <hr class="col-sm-8 col-md-8"/>
@@ -159,7 +73,7 @@
                     <form>
                         <div class="form-group">
                             <label for="addfield">Add New Field:</label>
-                            <select ng-model="fieldType" class="form-control" id="addfield">
+                            <select ng-model="model.fieldType" class="form-control" id="addfield">
                                 <option value="singlelinetext">Single Line Text</option>
                                 <option value="date">Date</option>
                                 <option value="dropdown">Dropdown</option>
@@ -172,18 +86,55 @@
                 </div>
                 <div class="col-sm-6 col-md-6 main">
                     <br/>
-                    <button ng-click="addField(fieldType)" type="button" class="btn btn-success glyphicon glyphicon-plus">
+                    <button ng-click="model.addField(model.fieldType)"
+                            type="button"
+                            class="btn btn-success glyphicon glyphicon-plus">
                     </button>
+                </div>
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Field Properties</h4>
+                            </div>
+                            <div class="modal-body">
+                                <label for="label">Label:</label>
+                                <input ng-model="model.field.label"
+                                       type="text"
+                                       value="model.field.label"
+                                       class="form-control"
+                                       id="label"
+                                       placeholder = "Label">
+                            </div>
+                            <div ng-show="model.field.placeholder" class="modal-body">
+                                <label for="placeholder">Placeholder:</label>
+                                <input ng-model="model.field.placeholder"
+                                       type="text"
+                                       value="model.field.placeholder"
+                                       class="form-control"
+                                       id="placeholder"
+                                       placeholder = "Placeholder">
+                            </div>
+                            <div ng-show="model.field.options" class="modal-body">
+                                <label for="options">Options:</label>
+                                <textarea ng-model="model.field.fieldOptions"
+                                          cols="40"
+                                          rows="5"
+                                          class="form-control"
+                                          id="options">
+                                </textarea>
+                            </div>
+                            <div class="modal-footer">
+                                <button ng-click="model.createField(model.field)" type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </body>
-</html>
