@@ -11,12 +11,11 @@
     <script src="jgaSortable.js"></script>
 </head>
 <body>
-<div class="container" ng-controller="SortableController">
-
-    <ul jga-sortable>
-        <li ng-repeat="user in users">{{user.first}}</li>
-    </ul>
-    {{users}}
+<div ng-app='MyModule'>
+    <div ng-controller='defaultController'>
+        <input auto-complete ui-items="names" ng-model="selected">
+        selected = {{selected}}
+    </div>
 </div>
 </body>
 </html>

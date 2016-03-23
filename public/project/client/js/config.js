@@ -1,0 +1,54 @@
+(function() {
+    "use strict";
+    angular
+        .module("NowWatching")
+        .config(configuration);
+
+    function configuration($routeProvider) {
+        $routeProvider
+            .when("/home", {
+                templateUrl: "views/home/home.view.html",
+                controller: "HomeController"
+            })
+            .when("/users", {
+                templateUrl: "views/users/users.view.html",
+                controller: "UsersController"
+            })
+            .when("/posts", {
+                templateUrl: "views/posts/posts.view.html",
+                controller: "PostsController"
+            })
+            .when("/post/:id", {
+                templateUrl: "views/posts/post.view.html",
+                controller: "PostController"
+            })
+            .when("/profile", {
+                templateUrl: "views/users/editProfile.view.html",
+                controller: "EditProfileController"
+            })
+            .when("/profile/:id", {
+                templateUrl: "views/users/profile.view.html",
+                controller: "ProfileController"
+            })
+            .when("/search", {
+                templateUrl: "views/search/search.view.html",
+                controller: "SearchController"
+            })
+            .when("/search/:key", {
+                templateUrl: "views/search/search.view.html",
+                controller: "SearchController"
+            })
+            .when("/movie/:id", {
+                templateUrl: "views/movie/movie.view.html",
+                controller: "MovieController"
+            })
+            .when("/watchlist", {
+                templateUrl: "views/users/watchlist.view.html",
+                controller: "WatchlistController"
+            })
+
+            .otherwise({
+                redirectTo: "/home"
+            });
+    }
+})();

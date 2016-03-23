@@ -1,0 +1,9 @@
+.buttonNoWrap{
+    white-space: nowrap;
+}
+
+.movie-panel {
+    float: left;
+    width: 130px;
+    margin-right: 15px;
+}

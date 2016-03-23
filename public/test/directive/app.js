@@ -1,13 +1,25 @@
 (function(){
     angular
-        .module("SortableApp", ["jgaSortable"])
-        .controller("SortableController", SortableController);
+        .module('MyModule', [])
+        .controller('defaultController', defaultController)
+        .directive('autoComplete', autoComplete);
 
-    function SortableController($scope) {
-        $scope.users = [
-            {first: "Alice", last: "Wonderland"},
-            {first: "Bob", last: "Hope"},
-            {first: "Charlie", last: "Brown"}
-        ];
+    function defaultController($scope){
+        $scope.names = ["john", "bill", "charlie", "robert", "alban", "oscar", "marie", "celine",
+            "brad", "drew", "rebecca", "michel", "francis", "jean", "paul", "pierre", "nicolas",
+            "alfred", "gerard", "louis", "albert", "edouard", "benoit", "guillaume", "nicolas", "joseph"];
+    }
+
+    function autoComplete($timeout){
+        return function(scope, iElement, iAttrs) {
+            iElement.autocomplete({
+                source: scope[iAttrs.uiItems],
+                select: function() {
+                    $timeout(function() {
+                        iElement.trigger('input');
+                    }, 0);
+                }
+            });
+        };
     }
 })();

@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-2 col-md-10 col-md-offset-1 main">
+            <div id="showMessage" ng-show="message" class="alert alert-danger" role="alert">{{message}}</div>
+            <h2><a ng-click="userDetails(movie)" href="">{{movie.user}}</a> is now watching <a ng-click="movieDetails(movie)" href="">{{movie.title}}</a></h2>
+            <h3 class="text-muted">{{movie.description}}</h3>
+            <br>
+            <textarea style="height : 60px; width : 500px" ng-show="currentUser" ng-model="comment" class="form-control"></textarea>
+            <br>
+            <button ng-show="currentUser" ng-click="addComment(comment)" class="btn btn-primary">Comment</button>
+            <h3>Comments:</h3>
+            <div ng-repeat="comment in movie.comments">
+                <div style="height : 40px; width : 500px" class="thumbnail">
+                    {{comment}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

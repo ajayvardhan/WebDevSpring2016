@@ -8,6 +8,7 @@
         var end = null;
         function link(scope, element, attributes) {
             var jgaAxis = attributes.jgaAxis;
+            console.log(scope);
             $(element).sortable({
                 axis: jgaAxis,
                 start: function(event, ui) {
