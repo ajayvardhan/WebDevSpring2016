@@ -6,7 +6,9 @@ var cookieParser  = require('cookie-parser');
 var session       = require('express-session');
 var mongoose       = require('mongoose');
 
-var db = mongoose.connect('mongodb://localhost/NowWatching');
+//var db = mongoose.connect('mongodb://localhost/NowWatching');
+
+var db = mongoose.connect('mongodb://$OPENSHIFT_MONGODB_DB_HOST:$OPENSHIFT_MONGODB_DB_PORT/');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
