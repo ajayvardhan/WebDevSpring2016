@@ -4,18 +4,19 @@
         .module("NowWatching")
         .controller("ProfileController", ProfileController);
 
-    function ProfileController($scope, $routeParams, $location, UserService, PostService, MovieService) {
+    function ProfileController($routeParams, $location, UserService, PostService, MovieService) {
+        var vm = this;
 
-        $scope.posts = [];
+        vm.posts = [];
 
-        $scope.editProfile = editProfile;
-        $scope.goToWatchlist = goToWatchlist;
-        $scope.goToFollowing = goToFollowing;
-        $scope.goToFollowers = goToFollowers;
-        $scope.goToItem = goToItem;
-        $scope.removeMovie = removeMovie;
-        $scope.followUser = followUser;
-        $scope.postDetails = postDetails;
+        vm.editProfile = editProfile;
+        vm.goToWatchlist = goToWatchlist;
+        vm.goToFollowing = goToFollowing;
+        vm.goToFollowers = goToFollowers;
+        vm.goToItem = goToItem;
+        vm.removeMovie = removeMovie;
+        vm.followUser = followUser;
+        vm.postDetails = postDetails;
 
 
         UserService
@@ -23,7 +24,7 @@
             .then(function(response){
                 if(response.data) {
                     if (response.data._id == $routeParams.id){
-                        $scope.showEdit = true;
+                        vm.showEdit = true;
                     }
                 }
             });
@@ -33,7 +34,7 @@
             .findUserByID($routeParams.id)
             .then(
                 function(response) {
-                    $scope.user = response.data;
+                    vm.user = response.data;
                 });
 
         PostService
@@ -63,8 +64,8 @@
                         }
                         post.user = u.data.firstName + " " + u.data.lastName;
                     });
-            $scope.posts.push(post);
-            $scope.posts = $scope.posts.reverse();
+            vm.posts.push(post);
+            vm.posts = vm.posts.reverse();
         }
 
         UserService
@@ -74,7 +75,7 @@
                     response.data._id != $routeParams.id &&
                     response.data.following.indexOf($routeParams.id) == -1)
                 {
-                    $scope.showFollow = true;
+                    vm.showFollow = true;
                 }
             });
 
@@ -87,8 +88,8 @@
                         .followUser(response.data._id, $routeParams.id)
                         .then(
                             function(response){
-                                $scope.showFollow = false;
-                                $scope.message = "You have now followed " + user.firstName + " " + user.lastName;
+                                vm.showFollow = false;
+                                vm.message = "You have now followed " + user.firstName + " " + user.lastName;
                             }
                         )
                 });
@@ -100,7 +101,7 @@
         }
 
         function goToWatchlist() {
-            $scope.listItems = [];
+            vm.listItems = [];
             UserService
                 .findUserByID($routeParams.id)
                 .then(function(response){
@@ -110,7 +111,7 @@
                             .then(
                                 function(res)
                                 {
-                                    $scope.listItems.push
+                                    vm.listItems.push
                                     (
                                         {
                                             imdbID: res.data.imdbID,
@@ -125,7 +126,7 @@
         }
 
         function goToFollowing(){
-            $scope.listItems = [];
+            vm.listItems = [];
             UserService
                 .findUserByID($routeParams.id)
                 .then(function(response){
@@ -134,7 +135,7 @@
                             .findUserByID(response.data.following[r])
                             .then(
                                 function(res){
-                                    $scope.listItems.push({
+                                    vm.listItems.push({
                                         _id : res.data._id,
                                         first : res.data.firstName,
                                         second : res.data.lastName
@@ -146,7 +147,7 @@
         }
 
         function goToFollowers(){
-            $scope.listItems = [];
+            vm.listItems = [];
             UserService
                 .findUserByID($routeParams.id)
                 .then(function(response){
@@ -156,7 +157,7 @@
                             function(res){
                                 for (var r in res.data){
                                     if (res.data[r].following.indexOf(response.data._id) != -1){
-                                        $scope.listItems.push({
+                                        vm.listItems.push({
                                             _id : res.data[r]._id,
                                             first : res.data[r].firstName,
                                             second : res.data[r].lastName

@@ -14,10 +14,10 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#/search">Search</a></li>
-                    <li><a ng-hide="currentUser" ng-click="showModal()" href="" data-toggle="modal" data-target="#myModal1">Register</a></li>
-                    <li><a ng-show="currentUser" ng-click="goToProfile()" href="">{{currentUser.username}}</a></li>
-                    <li><a ng-hide="currentUser" ng-click="showModal()" href="" data-toggle="modal" data-target="#myModal">Login</a></li>
-                    <li><a ng-show="currentUser" ng-click="logout()" href="">Logout</a></li>
+                    <li><a ng-hide="currentUser" ng-click="model.showModal()" href="" data-toggle="modal" data-target="#myModal1">Register</a></li>
+                    <li><a ng-show="currentUser" ng-click="model.goToProfile()" href="">{{currentUser.username}}</a></li>
+                    <li><a ng-hide="currentUser" ng-click="model.showModal()" href="" data-toggle="modal" data-target="#myModal">Login</a></li>
+                    <li><a ng-show="currentUser" ng-click="model.logout()" href="">Logout</a></li>
                 </ul>
             </div>
         </div>
@@ -30,8 +30,6 @@
                     <h4 class="modal-title">Login</h4>
                 </div>
                 <div class="modal-body">
-                    <!--<div id="showMessage" ng-show="message" class="alert alert-danger" role="alert">{{message}}</div>-->
-
                     <form class="form-horizontal">
                         <div class="form-group">
                             <label for="username"
@@ -39,7 +37,7 @@
                                 Username:
                             </label>
                             <div class="col-sm-10">
-                                <input ng-model="user.username"
+                                <input ng-model="model.user.username"
                                        type="text" class="form-control"
                                        id="username"
                                        placeholder="Username">
@@ -51,7 +49,7 @@
                                 Password:
                             </label>
                             <div class="col-sm-10">
-                                <input ng-model="user.password"
+                                <input ng-model="model.user.password"
                                        type="password"
                                        class="form-control"
                                        id="password"
@@ -60,7 +58,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
-                                <button ng-click="login(user)"
+                                <button ng-click="model.login(model.user)"
                                         class="btn btn-primary btn-block">Login</button>
                             </div>
                         </div>
@@ -81,7 +79,7 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Register</h4>
                 </div>
-                <div ng-show="message" class="alert alert-danger" role="alert">{{message}}</div>
+                <div ng-show="model.message" class="alert alert-danger" role="alert">{{model.message}}</div>
                 <div class="modal-body">
                     <form class="form-horizontal">
                         <div class="form-group">
@@ -90,7 +88,7 @@
                                 Username:
                             </label>
                             <div class="col-sm-10">
-                                <input ng-model="user.username"
+                                <input ng-model="model.user.username"
                                        type="text"
                                        class="form-control"
                                        id="newusername"
@@ -103,7 +101,7 @@
                                 Password:
                             </label>
                             <div class="col-sm-10">
-                                <input ng-model="user.newpassword"
+                                <input ng-model="model.user.newpassword"
                                        type="password"
                                        class="form-control"
                                        id="newpassword"
@@ -116,7 +114,7 @@
                                 Verify Password:
                             </label>
                             <div class="col-sm-10">
-                                <input ng-model="user.password2"
+                                <input ng-model="model.user.password2"
                                        type="password"
                                        class="form-control"
                                        id="verifypassword"
@@ -129,7 +127,7 @@
                                 First Name:
                             </label>
                             <div class="col-sm-10">
-                                <input ng-model="user.firstname"
+                                <input ng-model="model.user.firstname"
                                        type="text"
                                        class="form-control"
                                        id="firstname"
@@ -142,7 +140,7 @@
                                 Last Name:
                             </label>
                             <div class="col-sm-10">
-                                <input ng-model="user.lastname"
+                                <input ng-model="model.user.lastname"
                                        type="text"
                                        class="form-control"
                                        id="lastname"
@@ -151,7 +149,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
-                                <button ng-click="register(user)"
+                                <button ng-click="model.register(model.user)"
                                         class="btn btn-primary btn-block">Register</button>
                             </div>
                         </div>

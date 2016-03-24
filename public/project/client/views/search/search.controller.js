@@ -4,18 +4,20 @@
         .module("NowWatching")
         .controller("SearchController", SearchController);
 
-    function SearchController($scope, $location, MovieService, UserService, PostService) {
-        $scope.searchResults = searchResults;
-        $scope.itemDetails = itemDetails;
+    function SearchController($location, MovieService, UserService, PostService) {
+        var vm = this;
+
+        vm.searchResults = searchResults;
+        vm.itemDetails = itemDetails;
 
 
         function searchResults(search){
             var key = search.keyword.toLowerCase();
-            $scope.results = [];
+            vm.results = [];
             switch(search.type){
                 case "Users":
-                    $scope.firstColumn = "Username";
-                    $scope.secondColumn = "Name";
+                    vm.firstColumn = "Username";
+                    vm.secondColumn = "Name";
                     UserService.findUser(key)
                         .then(function(response){
                             for (var r in response.data){
@@ -24,13 +26,13 @@
                                     firstItem: response.data[r].firstName,
                                     secondItem: response.data[r].lastName
                                 };
-                                $scope.results.push(newResult);
+                                vm.results.push(newResult);
                             }
                         });
                     break;
                 case "Posts":
-                    $scope.firstColumn = "Movie";
-                    $scope.secondColumn = "Description";
+                    vm.firstColumn = "Movie";
+                    vm.secondColumn = "Description";
                     PostService
                         .findPosts(key)
                         .then(function(response){
@@ -40,13 +42,13 @@
                                     firstItem: response.data[r].title,
                                     secondItem: response.data[r].description
                                 };
-                                $scope.results.push(newResult);
+                                vm.results.push(newResult);
                             }
                         });
                     break;
                 case "Movies":
-                    $scope.firstColumn = "Title";
-                    $scope.secondColumn = "Year";
+                    vm.firstColumn = "Title";
+                    vm.secondColumn = "Year";
                     MovieService
                         .findMovieBySearch(key)
                         .then(function(response){
@@ -57,7 +59,7 @@
                                     secondItem: response.data.Search[r].Year,
                                     poster: response.data.Search[r].Poster
                                 };
-                                $scope.results.push(newResult);
+                                vm.results.push(newResult);
                             }
                         });
                     break;

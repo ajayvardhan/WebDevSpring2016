@@ -7,3 +7,17 @@
     width: 130px;
     margin-right: 15px;
 }
+
+.noUnderline {
+    text-decoration: none;
+}
+
+.textAreaSize {
+    height : 60px;
+    width : 500px;
+}
+
+.commentBoxSize {
+    height : 40px;
+    width : 500px;
+}

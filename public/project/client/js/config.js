@@ -8,43 +8,43 @@
         $routeProvider
             .when("/home", {
                 templateUrl: "views/home/home.view.html",
-                controller: "HomeController"
-            })
-            .when("/users", {
-                templateUrl: "views/users/users.view.html",
-                controller: "UsersController"
+                controller: "HomeController",
+                controllerAs: "model"
             })
             .when("/posts", {
                 templateUrl: "views/posts/posts.view.html",
-                controller: "PostsController"
+                controller: "PostsController",
+                controllerAs: "model"
             })
             .when("/post/:id", {
                 templateUrl: "views/posts/post.view.html",
-                controller: "PostController"
+                controller: "PostController",
+                controllerAs: "model"
             })
             .when("/profile", {
                 templateUrl: "views/users/editProfile.view.html",
-                controller: "EditProfileController"
+                controller: "EditProfileController",
+                controllerAs: "model"
             })
             .when("/profile/:id", {
                 templateUrl: "views/users/profile.view.html",
-                controller: "ProfileController"
+                controller: "ProfileController",
+                controllerAs: "model"
             })
             .when("/search", {
                 templateUrl: "views/search/search.view.html",
-                controller: "SearchController"
+                controller: "SearchController",
+                controllerAs: "model"
             })
             .when("/search/:key", {
                 templateUrl: "views/search/search.view.html",
-                controller: "SearchController"
+                controller: "SearchController",
+                controllerAs: "model"
             })
             .when("/movie/:id", {
                 templateUrl: "views/movie/movie.view.html",
-                controller: "MovieController"
-            })
-            .when("/watchlist", {
-                templateUrl: "views/users/watchlist.view.html",
-                controller: "WatchlistController"
+                controller: "MovieController",
+                controllerAs: "model"
             })
 
             .otherwise({

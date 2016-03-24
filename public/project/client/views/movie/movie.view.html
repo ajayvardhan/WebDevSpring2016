@@ -1,14 +1,14 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-10 col-sm-offset-2 col-md-10 col-md-offset-1 main">
-            <div ng-show="message" class="alert alert-success" role="alert">
-                {{message}}  added to your Watchlist
+            <div ng-show="model.message" class="alert alert-success" role="alert">
+                {{model.message}}  added to your Watchlist
             </div>
             <div class="row">
-                <h2>{{movie.Title}}</h2>
-                <img ng-src="{{movie.Poster}}" height="300px" class="pull-left"/>
+                <h2>{{model.movie.Title}}</h2>
+                <img ng-src="{{model.movie.Poster}}" height="300px" class="pull-left"/>
                 <p>
-                    {{movie.Plot}}
+                    {{model.movie.Plot}}
                 </p>
                 <h3>Actors</h3>
                 <ul>
@@ -16,7 +16,7 @@
                         {{actorName}}
                     </li>
                 </ul>
-                <button ng-show="showWatchlist" ng-click="addToWatchlist()" class="btn btn-primary">Add to Watchlist</button>
+                <button ng-show="model.showWatchlist" ng-click="addToWatchlist()" class="btn btn-primary">Add to Watchlist</button>
             </div>
         </div>
     </div>

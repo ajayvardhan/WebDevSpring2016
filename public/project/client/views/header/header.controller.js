@@ -4,13 +4,15 @@
         .module("NowWatching")
         .controller("HeaderController", HeaderController);
 
-    function HeaderController($scope, $rootScope, $location, UserService) {
-        $scope.logout = logout;
-        $scope.location = $location;
-        $scope.login = login;
-        $scope.register = register;
-        $scope.showModal = showModal;
-        $scope.goToProfile = goToProfile;
+    function HeaderController($rootScope, $location, UserService) {
+        var vm = this;
+
+        vm.logout = logout;
+        vm.location = $location;
+        vm.login = login;
+        vm.register = register;
+        vm.showModal = showModal;
+        vm.goToProfile = goToProfile;
 
         function init() {
             UserService
@@ -38,7 +40,7 @@
         }
 
         function login(user) {
-            $scope.user = null;
+            vm.user = null;
             UserService
                 .findUserByCredentials(user.username, user.password)
                 .then(
@@ -70,11 +72,11 @@
         }
 
         function register(user) {
-            $scope.user = null;
+            vm.user = null;
 
 
             if (user.newpassword != user.password2){
-                $scope.message = "Passwords don't match";
+                vm.message = "Passwords don't match";
             }
             else {
                 UserService
@@ -82,7 +84,7 @@
                     .then(
                         function(response){
                             if(response.data){
-                                $scope.message = "Username already exists";
+                                vm.message = "Username already exists";
                             }
                             else{
                                 var newUser =
@@ -106,8 +108,8 @@
         }
 
         function showModal(){
-            $scope.message = null;
-            $scope.user = null;
+            vm.message = null;
+            vm.user = null;
         }
 
     }

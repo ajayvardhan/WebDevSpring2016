@@ -4,10 +4,12 @@
         .module("NowWatching")
         .controller("PostController", PostController);
 
-    function PostController($scope, $routeParams, $location, MovieService, UserService, PostService) {
-        $scope.movieDetails = movieDetails;
-        $scope.userDetails = userDetails;
-        $scope.addComment = addComment;
+    function PostController($routeParams, $location, MovieService, UserService, PostService) {
+        var vm = this;
+
+        vm.movieDetails = movieDetails;
+        vm.userDetails = userDetails;
+        vm.addComment = addComment;
 
 
         PostService
@@ -28,7 +30,7 @@
                                 response.data.userID = u.data._id;
                             });
                     response.data.comments = response.data.comments.reverse();
-                    $scope.movie = response.data;
+                    vm.movie = response.data;
                 });
 
         function movieDetails(movie){
@@ -40,7 +42,7 @@
                             $location.url("/movie/" + response.data.imdbID);
                         }
                         else {
-                            $scope.message = "Movie not found";
+                            vm.message = "Movie not found";
                         }
                     });
         }
@@ -54,10 +56,10 @@
                 .addComment($routeParams.id, newComment)
                 .then(
                     function(response){
-                        $scope.comment="";
-                        $scope.movie.comments.reverse();
-                        $scope.movie.comments.push(comment);
-                        $scope.movie.comments.reverse();
+                        vm.comment="";
+                        vm.movie.comments.reverse();
+                        vm.movie.comments.push(comment);
+                        vm.movie.comments.reverse();
                     })
         }
     }

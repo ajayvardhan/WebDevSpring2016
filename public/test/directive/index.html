@@ -1,21 +1,20 @@
-<html lang="en" ng-app="SortableApp">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.min.js"></script>
-    <script src="app.js"></script>
-    <script src="jgaSortable.js"></script>
-</head>
-<body>
-<div ng-app='MyModule'>
-    <div ng-controller='defaultController'>
-        <input auto-complete ui-items="names" ng-model="selected">
-        selected = {{selected}}
-    </div>
-</div>
-</body>
-</html>
+<script type="text/javascript"
+        src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js">
+</script>
+<script type="text/javascript" src="jgaSortable.js"></script>
+<link rel="stylesheet" href="slider.css" media="all"
+      type="text/css">
+
+<script type="text/javascript">
+    (function($) {
+        $(function() { //on DOM ready
+            $("#scroller").simplyScroll();
+        });
+    })(jQuery);
+</script>
+
+<ul id="scroller">
+    <li><img src="image1.jpg" width="290" height="200"></li>
+    <li><img src="image2.jpg" width="290" height="200"></li>
+    <li><img src="image3.jpg" width="290" height="200"></li>
+</ul>

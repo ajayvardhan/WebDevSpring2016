@@ -1,5 +1,5 @@
 (function() {
     "use strict";
     angular
-        .module("NowWatching",["ngRoute"]);
+        .module("NowWatching",["ngRoute", "ui.bootstrap"]);
 })();

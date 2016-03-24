@@ -2,17 +2,17 @@
     <div class="row">
         <div class="col-sm-10 col-sm-offset-2 col-md-10 col-md-offset-1 main">
             <div class="row">
-                <div id="showMessage" ng-show="message" class="alert alert-success" role="alert">{{message}}</div>
-                <h2>{{user.firstName}} {{user.lastName}}</h2>
-                <button ng-show="showEdit" ng-click="editProfile()" class="btn btn-primary">Edit Profile</button>
-                <button ng-show="showFollow" ng-click="followUser(user)" class="btn btn-primary">Follow</button>
+                <div id="showMessage" ng-show="model.message" class="alert alert-success" role="alert">{{model.message}}</div>
+                <h2>{{model.user.firstName}} {{model.user.lastName}}</h2>
+                <button ng-show="model.showEdit" ng-click="model.editProfile()" class="btn btn-primary">Edit Profile</button>
+                <button ng-show="model.showFollow" ng-click="model.followUser(model.user)" class="btn btn-primary">Follow</button>
             </div>
             <br>
             <div class="row">
                 <div class="text-center">
-                    <div ng-repeat="post in posts">
+                    <div ng-repeat="post in model.posts">
                         <div class="col-lg-3">
-                            <a ng-click="postDetails(post)" style="text-decoration: none" href="" class="thumbnail">
+                            <a ng-click="model.postDetails(post)" href="" class="thumbnail noUnderline">
                                 <div class="row">
                                     {{post.user}}
                                 </div>
@@ -31,18 +31,19 @@
                 </div>
             </div>
             <br><br>
-            <button ng-click="goToWatchlist()" class="btn btn-primary">Watchlist</button>
-            <button ng-click="goToFollowing()" class="btn btn-primary">Following</button>
-            <button ng-click="goToFollowers()" class="btn btn-primary">Followers</button>
+            <button ng-click="model.goToWatchlist()" class="btn btn-primary">Watchlist</button>
+            <button ng-click="model.goToFollowing()" class="btn btn-primary">Following</button>
+            <button ng-click="model.goToFollowers()" class="btn btn-primary">Followers</button>
             <br><br>
-            <div ng-if="listItems" class="panel panel-default movie-panel"
-                 ng-repeat="item in listItems">
-                    <div class="panel-heading">
-                        <a ng-click="goToItem(item)" href="">{{item.first}} {{item.second}}</a>
-                    </div>
-                    <div class="panel-body">
-                        <a ng-click="goToItem(item)" href=""><img ng-src="{{item.poster}}" width="100px"/></a>
-                    </div>
+            <div ng-if="model.listItems"
+                 class="panel panel-default movie-panel"
+                 ng-repeat="item in model.listItems">
+                <div class="panel-heading">
+                    <a ng-click="model.goToItem(item)" href="">{{item.first}} {{item.second}}</a>
+                </div>
+                <div class="panel-body">
+                    <a ng-click="model.goToItem(item)" href=""><img ng-src="{{item.poster}}" width="100px"/></a>
+                </div>
             </div>
         </div>
     </div>

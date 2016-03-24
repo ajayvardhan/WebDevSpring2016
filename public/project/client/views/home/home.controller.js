@@ -4,8 +4,41 @@
         .module("NowWatching")
         .controller("HomeController", HomeController);
 
-    function HomeController($scope, $location, UserService, PostService) {
-        $scope.posts = [];
+    function HomeController($location, UserService, PostService) {
+        var vm = this;
+
+        vm.posts = [];
+
+        /*vm.myInterval = 1000;
+        vm.noWrapSlides = false;
+        vm.active = 0;
+        var slides = vm.slides = [
+            {
+                image: '/the/path/to/the/image0.jgp',
+                text: 'Test 0',
+                id: 0
+            },
+            {
+                image: '/the/path/to/the/image1.jgp',
+                text: 'Test 1',
+                id: 1
+            },
+            {
+                image: '/the/path/to/the/image2.jgp',
+                text: 'Test 2',
+                id: 2
+            },
+            {
+                image: '/the/path/to/the/image3.jgp',
+                text: 'Test 3',
+                id: 3
+            },
+            {
+                image: '/the/path/to/the/image4.jgp',
+                text: 'Test 4',
+                id: 4
+            }
+        ];*/
 
 
         function init() {
@@ -26,13 +59,13 @@
                     function (u) {
                         post.user = u.data.firstName + " " + u.data.lastName;
                     });
-            $scope.posts.push(post);
-            $scope.posts = $scope.posts.reverse();
+            vm.posts.push(post);
+            vm.posts = vm.posts.reverse();
         }
 
         init();
 
-        $scope.postDetails = postDetails;
+        vm.postDetails = postDetails;
 
         function postDetails(post){
             $location.url("/post/" + post._id);

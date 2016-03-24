@@ -4,7 +4,8 @@
         .module("NowWatching")
         .controller("PostsController", PostsController);
 
-    function PostsController($scope, $timeout, $location, $rootScope, UserService, PostService) {
+    function PostsController($timeout, $location, $rootScope, UserService, PostService) {
+        var vm = this;
 
         /*(function update() {
             $timeout(update, 10000);
@@ -23,7 +24,7 @@
                     }
                 });*/
 
-            $scope.posts = [];
+            vm.posts = [];
             PostService.findAllPosts()
                 .then(
                     function (response) {
@@ -48,20 +49,20 @@
                         }
                         post.user = u.data.firstName + " " + u.data.lastName;
                     });
-            $scope.posts.push(post);
-            $scope.posts = $scope.posts.reverse();
+            vm.posts.push(post);
+            vm.posts = vm.posts.reverse();
         }
 
         init();
 
 
 
-        $scope.postDetails = postDetails;
-        $scope.userDetails = userDetails;
-        $scope.addPost = addPost;
-        $scope.deletePost = deletePost;
-        $scope.selectPost = selectPost;
-        $scope.updatePost = updatePost;
+        vm.postDetails = postDetails;
+        vm.userDetails = userDetails;
+        vm.addPost = addPost;
+        vm.deletePost = deletePost;
+        vm.selectPost = selectPost;
+        vm.updatePost = updatePost;
 
         function postDetails(post){
             $location.url("/post/" + post._id);
@@ -77,7 +78,7 @@
                 .addPost(movie, movie.userID)
                 .then(
                     function(response){
-                        $scope.movie = "";
+                        vm.movie = "";
                         init();
                     });
         }
@@ -90,7 +91,7 @@
         }
 
         function selectPost(post){
-            $scope.newPost = {
+            vm.newPost = {
                 _id : post._id,
                 title : post.title,
                 description: post.description,
@@ -102,7 +103,7 @@
             PostService.updatePost(post)
                 .then(
                     function(response){
-                        $scope.newPost = "";
+                        vm.newPost = "";
                     });
         }
     }

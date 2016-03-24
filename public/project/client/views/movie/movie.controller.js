@@ -3,15 +3,17 @@
         .module("NowWatching")
         .controller("MovieController", MovieController);
 
-    function MovieController($scope, $location, $routeParams, UserService, MovieService) {
-        $scope.imdbID = $routeParams.id;
+    function MovieController($location, $routeParams, UserService, MovieService) {
+        var vm = this;
+
+        vm.imdbID = $routeParams.id;
 
         function init(){
             MovieService
-                .findMovieByImdbID($scope.imdbID)
+                .findMovieByImdbID(vm.imdbID)
                 .then(
                 function(response) {
-                    $scope.movie = response.data;
+                    vm.movie = response.data;
                 }
             );
         }
@@ -21,18 +23,18 @@
             .getCurrentUser()
             .then(function(response){
                 if(response.data) {
-                    if (response.data.watchlist.indexOf($scope.imdbID) == -1){
-                        $scope.showWatchlist = true;
+                    if (response.data.watchlist.indexOf(vm.imdbID) == -1){
+                        vm.showWatchlist = true;
                     }
                 }
             });
 
-/*        if ($rootScope.currentUser && $rootScope.currentUser.watchlist.indexOf($scope.imdbID) == -1){
-            $scope.showWatchlist = true;
+/*        if ($rootScope.currentUser && $rootScope.currentUser.watchlist.indexOf(vm.imdbID) == -1){
+            vm.showWatchlist = true;
         }*/
 
-        $scope.addToWatchlist = addToWatchlist;
-        $scope.goToWatchlist = goToWatchlist;
+        vm.addToWatchlist = addToWatchlist;
+        vm.goToWatchlist = goToWatchlist;
 
         function addToWatchlist(){
             UserService
@@ -40,17 +42,17 @@
                 .then(
                     function(response){
                         UserService
-                            .addMovieToWatchlist(response.data._id, $scope.imdbID)
+                            .addMovieToWatchlist(response.data._id, vm.imdbID)
                             .then(
                                 function(res){
-                                    $scope.showWatchlist = false;
-                                    $scope.message = $scope.movie.Title;
+                                    vm.showWatchlist = false;
+                                    vm.message = vm.movie.Title;
                                 }
                             )
                     });
-            /*$rootScope.currentUser.watchlist.push($scope.imdbID);
-            $scope.showWatchlist = false;
-            $scope.message = $scope.movie.Title;*/
+            /*$rootScope.currentUser.watchlist.push(vm.imdbID);
+            vm.showWatchlist = false;
+            vm.message = vm.movie.Title;*/
         }
 
         function goToWatchlist(){

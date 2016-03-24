@@ -1,9 +1,8 @@
-<body>
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-10 col-sm-offset-2 col-md-10 col-md-offset-1 main">
       <h2 class="page-header">Profile</h2>
-      <div id="showMessage" ng-show="message" class="alert alert-success" role="alert">{{message}}</div>
+      <div id="showMessage" ng-show="model.message" class="alert alert-success" role="alert">{{model.message}}</div>
       <form class="form-horizontal">
         <div class="form-group">
           <label for="username"
@@ -11,7 +10,7 @@
             Username:
           </label>
           <div class="col-sm-10">
-            <input ng-model="user.username"
+            <input ng-model="model.user.username"
                    type="text"
                    class="form-control"
                    id="username"
@@ -25,7 +24,7 @@
             Password:
           </label>
           <div class="col-sm-10">
-            <input ng-model="user.password"
+            <input ng-model="model.user.password"
                    type="password"
                    class="form-control"
                    id="password"
@@ -38,7 +37,7 @@
             First Name:
           </label>
           <div class="col-sm-10">
-            <input ng-model="user.firstName"
+            <input ng-model="model.user.firstName"
                    type="text"
                    class="form-control"
                    id="firstname"
@@ -51,7 +50,7 @@
             Last Name:
           </label>
           <div class="col-sm-10">
-            <input ng-model="user.lastName"
+            <input ng-model="model.user.lastName"
                    type="text"
                    class="form-control"
                    id="lastname"
@@ -60,7 +59,7 @@
         </div>
         <div class="form-group">
           <div class="col-sm-offset-2 col-sm-10">
-            <a ng-click="update(user)"
+            <a ng-click="model.update(model.user)"
                class="btn btn-primary btn-block">
               Update
             </a>
@@ -70,4 +69,3 @@
     </div>
   </div>
 </div>
-</body>
