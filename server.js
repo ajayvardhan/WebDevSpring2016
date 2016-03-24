@@ -6,9 +6,20 @@ var cookieParser  = require('cookie-parser');
 var session       = require('express-session');
 var mongoose       = require('mongoose');
 
-//var db = mongoose.connect('mongodb://localhost/NowWatching');
 
-var db = mongoose.connect('mongodb://$OPENSHIFT_MONGODB_DB_HOST:$OPENSHIFT_MONGODB_DB_PORT/');
+
+var connection_string = 'localhost/NowWatching';
+
+if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD){
+    connection_string = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
+        process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" +
+        process.env.OPENSHIFT_MONGODB_DB_HOST + ':' +
+        process.env.OPENSHIFT_MONGODB_DB_PORT + '/' +
+        process.env.OPENSHIFT_APP_NAME;
+}
+
+
+var db = mongoose.connect(connection_string);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
