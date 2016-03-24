@@ -12,15 +12,15 @@
         };
 
         function findMovieBySearch(title) {
-            return $http.get("http://www.omdbapi.com/?s="+title);
+            return $http.get("http://www.omdbapi.com/?s="+title+"&apikey=fdb29024");
         }
 
         function findMovieByImdbID(imdbID) {
-            return $http.get("http://www.omdbapi.com/?i="+imdbID);
+            return $http.get("http://www.omdbapi.com/?i="+imdbID+"&apikey=fdb29024");
         }
 
         function findMovieByTitle(title){
-            return $http.get("http://www.omdbapi.com/?t="+title);
+            return $http.get("http://www.omdbapi.com/?t="+title+"&apikey=fdb29024");
         }
 
     }
