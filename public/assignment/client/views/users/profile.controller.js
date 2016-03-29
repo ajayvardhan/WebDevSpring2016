@@ -12,10 +12,16 @@
             .getCurrentUser()
             .then(function(response){
                 vm.user = response.data;
+                vm.user.emails = response.data.emails[0];
             });
 
         function update(user) {
-            UserService.updateUser(user._id, user);
+            UserService
+                .updateUser(user._id, user)
+                .then(function(response){
+                    vm.user = response.data;
+                    vm.user.emails = response.data.emails[0];
+                });
         }
     }
 })();

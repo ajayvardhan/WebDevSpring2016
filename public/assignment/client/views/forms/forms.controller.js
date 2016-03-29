@@ -38,6 +38,7 @@
                 .createFormForUser(user._id, form)
                 .then(
                     function(response) {
+                        console.log(response.data);
                         updateForms();
                         vm.form = null;
                     });

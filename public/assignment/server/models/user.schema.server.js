@@ -5,9 +5,9 @@ module.exports = function(mongoose) {
         password: String,
         firstName: String,
         lastName: String,
-        watchlist: [String],
-        following: [String]
-        }, {collection: 'project.nowwatching.user'});
+        emails: [String],
+        phones: [String]
+    }, {collection: 'user'});
     
     return UserSchema;
 };
