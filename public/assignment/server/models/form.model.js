@@ -115,7 +115,7 @@ module.exports = function(db, mongoose) {
 
     function deleteForm(id) {
         var deferred = q.defer();
-        FormModel.delete({_id : id},
+        FormModel.remove({_id : id},
             function (err, doc) {
                 if (err) {
                     deferred.reject(err);
@@ -136,7 +136,7 @@ module.exports = function(db, mongoose) {
 
     function findFormsForUser(userId){
         var deferred = q.defer();
-        FormModel.findOne({userId : userId},
+        FormModel.find({userId : userId},
             function (err, doc) {
                 if (err) {
                     deferred.reject(err);

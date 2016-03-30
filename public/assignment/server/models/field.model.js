@@ -1,6 +1,10 @@
 var q = require("q");
 
-module.exports = function(formModel) {
+module.exports = function(db, mongoose) {
+
+    var FormSchema = require("./form.schema.server.js")(mongoose);
+
+    var form = mongoose.model('FormModel', FormSchema);
 
     var api = {
         findFieldsForForm : findFieldsForForm,
@@ -13,102 +17,105 @@ module.exports = function(formModel) {
     return api;
 
     function findFieldForForm(formId, fieldId){
-        return formModel
-            .findById(formId)
-            .then(
-                function(form){
-                    return form.fields.id(fieldId);
-                }
-            );
-
-
-        /*for (var form in data){
-            if(data[form]._id == formId){
-                for (var f in data[form].fields){
-                    if(data[form].fields[f]._id == fieldId){
-                        return data[form].fields[field];
+        var deferred = q.defer();
+        form.findById(formId,
+            function (err, doc) {
+                if (err) {
+                    deferred.reject(err);
+                } else {
+                    for (var field in doc.fields){
+                        if (doc.fields[field]._id == fieldId){
+                            deferred.resolve(doc.fields[field]);
+                        }
                     }
                 }
-            }
-        }*/
+            });
+        return deferred.promise;
     }
 
     function updateFieldForForm(formId, fieldId, field){
-        return formModel
-            .findById(formId)
-            .then(
-                function(form){
-                    var new_field = form.fields.id(fieldId);
-                    new_field.label  = field.label;
-                    new_field.type  = field.type;
-                    new_field.placeholder  = field.placeholder;
-                    new_field.options  = field.options;
-                    return form.save();
-                }
-            );
-
-        /*for (var form in data){
-            if(data[form]._id == formId){
-                for (var f in data[form].fields){
-                    if(data[form].fields[f]._id == fieldId){
-                        data[form].fields[field] = field;
+        var deferred = q.defer();
+        form.findById(formId,
+            function (err, doc) {
+                if (err) {
+                    deferred.reject(err);
+                } else {
+                    for (var f in doc.fields){
+                        if (doc.fields[f]._id == fieldId){
+                            doc.fields[f] = field;
+                        }
                     }
+                    doc.save(function(err,doc){
+                        if (err){
+                            deferred.reject(err);
+                        }
+                        else{
+                            deferred.resolve(doc);
+                        }
+                    });
                 }
-                return data[form].fields;
-            }
-        }*/
+            });
+        return deferred.promise;
     }
 
     function deleteFieldForForm(formId, fieldId){
-        return formModel
-            .findById(formId)
-            .then(
-                function(form){
-                    form.fields.id(fieldId).remove();
-                    return form.save();
-                }
-            );
-
-        /*for (var form in data){
-            if(data[form]._id == formId){
-                for (var field in data[form].fields){
-                    if(data[form].fields[field]._id == fieldId){
-                        data[form].fields.splice(data[form].fields.indexOf(data[form].fields[field]), 1);
+        var deferred = q.defer();
+        form.findById(formId,
+            function (err, doc) {
+                if (err) {
+                    deferred.reject(err);
+                } else {
+                    for (var field in doc.fields){
+                        if (doc.fields[field]._id == fieldId){
+                            doc.fields.splice(doc.fields.indexOf(doc.fields[field]), 1);
+                        }
                     }
+                    doc.save(function(err,doc){
+                        if (err){
+                            deferred.reject(err);
+                        }
+                        else{
+                            deferred.resolve(doc);
+                        }
+                    });
                 }
-                return data[form].fields;
-            }
-        }*/
+            });
+        return deferred.promise;
     }
 
     function createFieldForForm(id, field){
-        return formModel.findById(id)
-            .then(
-                function(form) {
-                    form.fields.push(field);
-                    return form.save();
+        var deferred = q.defer();
+        form.findById(id,
+            function (err, doc) {
+                if (err) {
+                    deferred.reject(err);
+                } else {
+                    doc.fields.push(field);
+                    doc.save(function(err,doc){
+                        if (err){
+                            deferred.reject(err);
+                        }
+                        else{
+                            deferred.resolve(doc);
+                        }
+                    });
                 }
-            );
-
-        /*for (var form in data){
-            if(data[form]._id == id){
-                var f = field;
-                f._id = uuid.v1();
-                data[form].fields.push(f);
-                return data[form].fields;
-            }
-        }*/
+            });
+        return deferred.promise;
     }
 
     function findFieldsForForm(id){
-        return formModel.findById(id).select("fields");
+        var deferred = q.defer();
+        form.findById(id,
+            function (err, doc) {
+                if (err) {
+                    deferred.reject(err);
+                } else {
+                    deferred.resolve(doc.fields);
+                }
 
-        /*for (var form in data){
-            if(data[form]._id == (id)){
-                return data[form].fields;
-            }
-        }
-        return null;*/
+            });
+        return deferred.promise;
     }
 
 };

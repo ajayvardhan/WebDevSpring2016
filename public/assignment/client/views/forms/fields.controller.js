@@ -14,7 +14,7 @@
                     function(response){
                         vm.fields = response.data;
                     }
-                )
+                );
         }
 
         init();
@@ -39,7 +39,7 @@
                 .deleteFieldFromForm($routeParams.formId, field._id)
                 .then(
                     function(response){
-                        vm.fields = response.data;
+                        init();
                     }
                 )
         }
@@ -99,12 +99,11 @@
                     ]
                 }
             }
-
             FieldService
                 .createFieldForForm($routeParams.formId, vm.field)
                 .then(
                     function(response){
-                        vm.fields = response.data;
+                        vm.fields = response.data.fields;
                     }
                 );
         }

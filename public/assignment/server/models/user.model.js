@@ -20,8 +20,9 @@ module.exports = function(db, mongoose) {
 
     function createUser(user){
         var deferred = q.defer();
-        UserModel.insert(
-            {username: user.username, password : user.password, $push: { emails: user.emails }},
+        UserModel.create(
+            {username: user.username, password : user.password,
+                emails: user.emails },
             function (err, doc) {
             if (err) {
                 deferred.reject(err);
@@ -123,12 +124,10 @@ module.exports = function(db, mongoose) {
     }
 
     function updateUser(id, user) {
-        var user_emails = user.emails;
         var deferred = q.defer();
         UserModel.findOneAndUpdate(
             {_id : id},
-            {password : user.password, firstName : user.firstName,
-                lastName : user.lastName, emails: user_emails},
+            {$set: user},
             function(err, doc) {
                 if (err) {
                     deferred.reject(err);

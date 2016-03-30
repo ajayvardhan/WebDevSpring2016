@@ -4,19 +4,25 @@
         .module("FormBuilderApp")
         .controller("FormsController", FormsController);
 
-    function FormsController($location, $rootScope, FormService) {
+    function FormsController($location, UserService, FormService) {
         var vm = this;
 
-        var user = $rootScope.currentUser;
         vm.location = $location;
 
         function updateForms(){
-            FormService
-                .findAllFormsForUser(user._id)
+            UserService
+                .getCurrentUser()
                 .then(
-                    function (response) {
-                        vm.forms = response.data;
-                    });
+                    function(response){
+                        FormService
+                            .findAllFormsForUser(response.data._id)
+                            .then(
+                                function (res) {
+                                    vm.forms = res.data;
+                                });
+                    }
+                );
+
         }
 
         updateForms();
@@ -34,14 +40,19 @@
 
 
         function addForm(form) {
-            FormService
-                .createFormForUser(user._id, form)
+            UserService
+                .getCurrentUser()
                 .then(
-                    function(response) {
-                        console.log(response.data);
-                        updateForms();
-                        vm.form = null;
-                    });
+                    function(response){
+                        FormService
+                            .createFormForUser(response.data._id, form)
+                            .then(
+                                function(res) {
+                                    updateForms();
+                                    vm.form = null;
+                                });
+                    }
+                );
         }
 
         function updateForm(form) {

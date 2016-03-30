@@ -15,9 +15,6 @@ module.exports = function(app, formModel) {
                     res.status(400).send(err);
                 }
             );
-
-        /*var forms = formModel.findFormsForUser(req.params.userId);
-        res.json(forms);*/
     }
 
     function findFormByID(req, res){
@@ -30,9 +27,6 @@ module.exports = function(app, formModel) {
                     res.status(400).send(err);
                 }
             );
-
-        /*var form = formModel.findFormByID(req.params.formId);
-        res.json(form);*/
     }
 
     function deleteForm(req, res){
@@ -45,15 +39,11 @@ module.exports = function(app, formModel) {
                     res.status(400).send(err);
                 }
             );
-
-        /*var forms = formModel.deleteForm(req.params.formId);
-        res.json(forms);*/
     }
 
     function createForm(req, res){
         var form  = req.body;
-        form.userID = req.params.userId;
-
+        form.userId = req.params.userId;
         formModel.createForm(form)
             .then(
                 function (doc) {
@@ -63,9 +53,6 @@ module.exports = function(app, formModel) {
                     res.status(400).send(err);
                 }
             );
-
-        /*var forms = formModel.createForm(form);
-        res.json(forms);*/
     }
 
     function updateForm(req, res){
@@ -78,8 +65,5 @@ module.exports = function(app, formModel) {
                     res.status(400).send(err);
                 }
             );
-
-        /*var forms = formModel.updateForm(req.params.formId, req.body);
-        res.json(forms);*/
     }
 };

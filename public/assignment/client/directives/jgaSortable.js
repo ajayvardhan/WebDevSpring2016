@@ -15,7 +15,6 @@
                 },
                 stop: function(event, ui) {
                     end = ui.item.index();
-                    console.log(scope.model.fields);
                     var temp = scope.model.fields[start];
                     scope.model.fields[start] = scope.model.fields[end];
                     scope.model.fields[end] = temp;

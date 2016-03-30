@@ -5,6 +5,7 @@ module.exports = function(app, fieldModel) {
     app.post("/api/assignment/form/:formId/field", createField);
     app.post("/api/assignment/form/:formId/field/:fieldId", updateField);
 
+
     function findFieldsForForm(req, res){
         fieldModel.findFieldsForForm(req.params.formId)
             .then(
@@ -15,9 +16,6 @@ module.exports = function(app, fieldModel) {
                     res.status(400).send(err);
                 }
             );
-
-        /*var fields = fieldModel.findFieldsForForm(req.params.formId);
-        res.json(fields);*/
     }
 
     function findFieldByID(req, res){
@@ -30,9 +28,6 @@ module.exports = function(app, fieldModel) {
                     res.status(400).send(err);
                 }
             );
-
-        /*var field = fieldModel.findFieldForForm(req.params.formId, req.params.fieldId);
-        res.json(field);*/
     }
 
     function deleteField(req, res){
@@ -45,9 +40,6 @@ module.exports = function(app, fieldModel) {
                     res.status(400).send(err);
                 }
             );
-
-        /*var fields = fieldModel.deleteFieldForForm(req.params.formId, req.params.fieldId);
-        res.json(fields);*/
     }
 
     function createField(req, res){
@@ -60,9 +52,6 @@ module.exports = function(app, fieldModel) {
                     res.status(400).send(err);
                 }
             );
-
-        /*var fields = fieldModel.createFieldForForm(req.params.formId, req.body);
-        res.json(fields);*/
     }
 
     function updateField(req, res){
@@ -75,8 +64,5 @@ module.exports = function(app, fieldModel) {
                     res.status(400).send(err);
                 }
             );
-
-        /*var fields = fieldModel.updateFieldForForm(req.params.formId, req.params.fieldId, req.body);
-        res.json(fields);*/
     }
 };

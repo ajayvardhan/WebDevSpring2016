@@ -4,7 +4,6 @@ module.exports = function(app, userModel) {
     app.put("/api/assignment/user/:id", updateUser);
     app.get("/api/assignment/user", findUserByUsername);
     app.get("/api/assignment/user", findAllUsers);
-    app.get("/api/assignment/", findUserByCredentials);
     app.post("/api/assignment/user", createUser);
     app.get("/api/assignment/user/:id", findUserByID);
     app.delete("/api/assignment/user/:id", deleteUser);
@@ -22,7 +21,6 @@ module.exports = function(app, userModel) {
         else{
             res.send(null);
         }
-
     }
 
     function findUserByCredentials(req, res){
@@ -115,6 +113,7 @@ module.exports = function(app, userModel) {
         userModel.updateUser(req.params.id, req.body)
             .then(
                 function (doc) {
+                    req.session.currentUser = doc;
                     res.json(doc);
                 },
                 function ( err ) {
