@@ -125,9 +125,16 @@ module.exports = function(db, mongoose) {
 
     function updateUser(id, user) {
         var deferred = q.defer();
-        UserModel.findOneAndUpdate(
+        UserModel.update(
             {_id : id},
-            {$set: user},
+            {
+                $set: {
+                    password: user.password,
+                    firstName : user.firstName,
+                    lastName: user.lastName,
+                    $push: { emails: user.emails }
+                }
+            },
             function(err, doc) {
                 if (err) {
                     deferred.reject(err);
@@ -136,13 +143,6 @@ module.exports = function(db, mongoose) {
                 }
             });
         return deferred.promise;
-
-        /*for (var u in data){
-            if(data[u]._id == id){
-                data[u] = user;
-            }
-        }
-        return data;*/
     }
 
     function deleteUser(id) {

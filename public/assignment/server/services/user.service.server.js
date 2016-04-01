@@ -113,17 +113,13 @@ module.exports = function(app, userModel) {
         userModel.updateUser(req.params.id, req.body)
             .then(
                 function (doc) {
-                    req.session.currentUser = doc;
+                    req.session.currentUser = req.body;
                     res.json(doc);
                 },
                 function ( err ) {
                     res.status(400).send(err);
                 }
             );
-
-        /*var users = userModel.updateUser(req.params.id, req.body);
-        req.session.currentUser = req.body;
-        res.json(users);*/
     }
 
     function deleteUser(req, res){
