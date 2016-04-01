@@ -18,34 +18,24 @@ module.exports = function(db, mongoose) {
 
     return api;
 
-    function createUser(user){
+    function createUser(user) {
         var deferred = q.defer();
         UserModel.create(
-            {username: user.username, password : user.password,
-                emails: user.emails },
+            {
+                username: user.username, password: user.password,
+                emails: user.emails
+            },
             function (err, doc) {
-            if (err) {
-                deferred.reject(err);
-            } else {
-                deferred.resolve(doc);
-            }
+                if (err) {
+                    deferred.reject(err);
+                } else {
+                    deferred.resolve(doc);
+                }
 
-        });
+            });
         return deferred.promise;
-/*
-        var _id = uuid.v1();
-        var username = user.username;
-        var password = user.password;
-
-        var newUser = {_id : _id,
-            username : username,
-            password : password
-        };
-
-        data.push(newUser);
-        return data;*/
     }
-
+    
     function findAllUsers(){
         var deferred = q.defer();
         UserModel.find(function (err, doc) {
@@ -71,13 +61,6 @@ module.exports = function(db, mongoose) {
 
             });
         return deferred.promise;
-
-/*        for (var user in data){
-            if(data[user]._id == id){
-                return data[user];
-            }
-        }
-        return null;*/
     }
 
     function findUserByUsername(username){
@@ -92,13 +75,6 @@ module.exports = function(db, mongoose) {
 
             });
         return deferred.promise;
-
-        /*for (var user in data){
-            if(data[user].username == username){
-                return data[user];
-            }
-        }
-        return null;*/
     }
 
     function findUserByCredentials(credentials) {
@@ -114,13 +90,6 @@ module.exports = function(db, mongoose) {
                 }
             });
         return deferred.promise;
-
-        /*for (var user in data){
-            if(data[user].username == credentials.username && data[user].password == credentials.password){
-                return data[user];
-            }
-        }
-        return null;*/
     }
 
     function updateUser(id, user) {
@@ -128,12 +97,10 @@ module.exports = function(db, mongoose) {
         UserModel.update(
             {_id : id},
             {
-                $set: {
-                    password: user.password,
-                    firstName : user.firstName,
-                    lastName: user.lastName,
-                    $push: { emails: user.emails }
-                }
+                password: user.password,
+                firstName : user.firstName,
+                lastName: user.lastName,
+                emails: user.emails
             },
             function(err, doc) {
                 if (err) {
@@ -157,12 +124,5 @@ module.exports = function(db, mongoose) {
 
             });
         return deferred.promise;
-
-        /*for (var u in data){
-            if(data[u]._id == id){
-                data.splice(data.indexOf(data[u]), 1);
-            }
-        }
-        return data;*/
     }
 };

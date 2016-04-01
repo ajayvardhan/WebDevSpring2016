@@ -10,6 +10,9 @@
         vm.register = register;
 
         function register(user) {
+            var emails = user.emails;
+            user.emails = [];
+            user.emails.push(emails);
             UserService
                 .createUser(user)
                 .then(function(response){

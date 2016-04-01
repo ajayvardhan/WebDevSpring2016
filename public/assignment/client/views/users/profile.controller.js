@@ -15,10 +15,11 @@
             });
 
         function update(user) {
+            var emails = user.emails.split(",");
+            user.emails = emails;
             UserService
                 .updateUser(user._id, user)
                 .then(function(response){
-                    console.log(user);
                     UserService
                         .setCurrentUser(user);
                 });
