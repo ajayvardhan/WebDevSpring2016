@@ -8,6 +8,7 @@
         var vm = this;
         
         vm.update = update;
+
         UserService
             .getCurrentUser()
             .then(function(response){
@@ -15,7 +16,8 @@
             });
 
         function update(user) {
-            var emails = user.emails.split(",");
+            var emails = user.emails.toString();
+            emails = emails.split(",");
             user.emails = emails;
             UserService
                 .updateUser(user._id, user)

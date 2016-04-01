@@ -110,7 +110,6 @@
 
 
         function createField(field){
-            console.log(field);
             FieldService
                 .createFieldForForm($routeParams.formId, vm.field)
                 .then(

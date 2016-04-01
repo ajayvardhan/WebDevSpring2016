@@ -3,6 +3,7 @@
   <div class="row">
     <div class="col-sm-10 col-sm-offset-2 col-md-10 col-md-offset-1 main">
       <h2 class="page-header">Register</h2>
+      <div ng-show="model.message" class="alert alert-danger" role="alert">{{model.message}}</div>
       <form class="form-horizontal">
         <div class="form-group">
           <label for="username"
