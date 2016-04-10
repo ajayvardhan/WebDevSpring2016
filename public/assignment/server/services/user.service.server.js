@@ -9,7 +9,7 @@ module.exports = function(app, userModel) {
 
     app.post("/api/assignment/login", passport.authenticate('local'), login);
     app.get("/api/assignment/loggedin", getCurrentUser);
-    app.put("/api/assignment/user/:id", auth, updateUser);
+    app.put("/api/assignment/user/:id",  updateUser);
     app.put("/api/assignment/admin/user/:id",  modifyUser);
     app.get("/api/assignment/user", findUserByUsername);
     app.get("/api/assignment/admin/user",  findAllUsers);
@@ -226,9 +226,11 @@ module.exports = function(app, userModel) {
             .updateUser(req.params.id, newUser)
             .then(
                 function(user){
+                    console.log("success" + user);
                     res.json(user);
                 },
                 function(err){
+                    console.log("failure" + err);
                     res.status(400).send(err);
                 }
             )
