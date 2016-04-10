@@ -44,7 +44,6 @@ module.exports = function(db, mongoose) {
     }
 
     function updateUser(id, user) {
-        console.log("model" + user);
         return UserModel.update({_id: id}, {$set: user});
     }
 
