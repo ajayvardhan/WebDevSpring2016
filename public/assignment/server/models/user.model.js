@@ -19,110 +19,35 @@ module.exports = function(db, mongoose) {
     return api;
 
     function createUser(user) {
-        var deferred = q.defer();
-        UserModel.create(
-            {
-                username: user.username, password: user.password,
-                emails: user.emails
-            },
-            function (err, doc) {
-                if (err) {
-                    deferred.reject(err);
-                } else {
-                    deferred.resolve(doc);
-                }
-
-            });
-        return deferred.promise;
+        return UserModel.create(user);
     }
     
     function findAllUsers(){
-        var deferred = q.defer();
-        UserModel.find(function (err, doc) {
-            if (err) {
-                deferred.reject(err);
-            } else {
-                deferred.resolve(doc);
-            }
-
-        });
-        return deferred.promise;
+        return UserModel.find();
     }
 
     function findUserByID(id){
-        var deferred = q.defer();
-        UserModel.findById(id,
-            function (err, doc) {
-                if (err) {
-                    deferred.reject(err);
-                } else {
-                    deferred.resolve(doc);
-                }
-
-            });
-        return deferred.promise;
+        return UserModel.findById(id);
     }
 
     function findUserByUsername(username){
-        var deferred = q.defer();
-        UserModel.findOne({username : username},
-            function (err, doc) {
-                if (err) {
-                    deferred.reject(err);
-                } else {
-                    deferred.resolve(doc);
-                }
-
-            });
-        return deferred.promise;
+        return UserModel.findOne({username: username});
     }
 
     function findUserByCredentials(credentials) {
-        var deferred = q.defer();
-        UserModel.findOne(
-            { username: credentials.username,
-                password: credentials.password },
-            function(err, doc) {
-                if (err) {
-                    deferred.reject(err);
-                } else {
-                    deferred.resolve(doc);
-                }
-            });
-        return deferred.promise;
+        return UserModel.findOne(
+            {
+                username: credentials.username,
+                password: credentials.password
+            }
+        );
     }
 
     function updateUser(id, user) {
-        var deferred = q.defer();
-        UserModel.update(
-            {_id : id},
-            {
-                password: user.password,
-                firstName : user.firstName,
-                lastName: user.lastName,
-                emails: user.emails
-            },
-            function(err, doc) {
-                if (err) {
-                    deferred.reject(err);
-                } else {
-                    deferred.resolve(doc);
-                }
-            });
-        return deferred.promise;
+        return UserModel.update({_id: id}, {$set: user});
     }
 
     function deleteUser(id) {
-        var deferred = q.defer();
-        UserModel.delete({_id : id},
-            function (err, doc) {
-                if (err) {
-                    deferred.reject(err);
-                } else {
-                    deferred.resolve(doc);
-                }
-
-            });
-        return deferred.promise;
+        return UserModel.remove({_id: id});
     }
 };

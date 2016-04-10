@@ -10,21 +10,11 @@
         vm.location = $location;
         vm.logout = logout;
 
-        function init() {
-            UserService
-                .getCurrentUser()
-                .then(function(response){
-                    UserService.setCurrentUser(response.data);
-                });
-        }
-
-        init();
-
         function logout() {
             UserService
                 .logout()
                 .then(function(response){
-                    UserService.setCurrentUser(response.data);
+                    UserService.setCurrentUser(null);
                     $location.url("/home");
                 })
         }

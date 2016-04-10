@@ -5,6 +5,7 @@ var multer        = require('multer');
 var cookieParser  = require('cookie-parser');
 var session       = require('express-session');
 var mongoose       = require('mongoose');
+var passport      = require('passport');
 
 
 
@@ -24,8 +25,14 @@ var db = mongoose.connect('mongodb://' + connection_string);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(multer());
-app.use(session({ secret: process.env.webdev_secret }));
+app.use(session({
+    secret: process.env.webdev_secret,
+    resave: true,
+    saveUninitialized: true
+}));
 app.use(cookieParser());
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.static(__dirname + '/public'));
 
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';

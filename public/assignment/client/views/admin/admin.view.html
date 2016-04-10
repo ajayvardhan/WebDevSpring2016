@@ -1,4 +1,3 @@
-<body>
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-10 col-sm-offset-2 col-md-10 col-md-offset-1 main">
@@ -8,56 +7,69 @@
         <table class="table table-striped table-bordered">
           <thead>
           <tr>
-            <th>
-              <button type="button" class="btn btn-default glyphicon glyphicon-triangle-bottom"></button>
-              Username
+            <th class="text-center">
+              <span ng-show="orderByField == 'username'">
+                <span ng-show="!reverseSort" class="glyphicon glyphicon-triangle-top"></span>
+                <span ng-show="reverseSort" class="glyphicon glyphicon-triangle-bottom"></span>
+              </span>
+              <a href="" ng-click="orderByField='username'; reverseSort = !reverseSort">
+              Username</a>
+              <input ng-model="model.selectedUser.username" type="text" class="form-control" placeholder="Username">
             </th>
-            <th>
-              <button type="button" class="btn btn-default glyphicon glyphicon-triangle-bottom"></button>
+            <th class="text-center">
               Password
+              <input ng-model="model.selectedUser.password" type="password" class="form-control" placeholder="Password">
             </th>
-            <th>
-              <button type="button" class="btn btn-default glyphicon glyphicon-triangle-bottom"></button>
+            <th class="text-center">
+              <span ng-show="orderByField == 'firstName'">
+                <span ng-show="!reverseSort" class="glyphicon glyphicon-triangle-top"></span>
+                <span ng-show="reverseSort" class="glyphicon glyphicon-triangle-bottom"></span>
+              </span>
+              <a href="" ng-click="orderByField='firstName'; reverseSort = !reverseSort">
+              First Name</a>
+              <input ng-model="model.selectedUser.firstName" type="text" class="form-control" placeholder="First Name">
+            </th>
+            <th class="text-center">
+              <span ng-show="orderByField == 'lastName'">
+                <span ng-show="!reverseSort" class="glyphicon glyphicon-triangle-top"></span>
+                <span ng-show="reverseSort" class="glyphicon glyphicon-triangle-bottom"></span>
+              </span>
+              <a href="" ng-click="orderByField='lastName'; reverseSort = !reverseSort">
+              Last Name</a>
+              <input ng-model="model.selectedUser.lastName" type="text" class="form-control" placeholder="Last Name">
+            </th>
+            <th class="text-center">
               Role
+              <input ng-model="model.selectedUser.roles" type="text" class="form-control" placeholder="role1, role2">
             </th>
-            <th>Action</th>
+            <th class="text-center">
+              Actions<br/>
+              <button ng-click="model.addUser(model.selectedUser)" type="button" class="btn btn-primary glyphicon glyphicon-plus"></button>
+              <button ng-click="model.modifyUser(model.selectedUser)" type="button" class="btn btn-success glyphicon glyphicon-ok"></button>
+            </th>
           </tr>
-          <tr>
+          <!--<tr>
             <th><input type="text" class="form-control" placeholder="Username"></th>
             <th><input type="text" class="form-control" placeholder="Password"></th>
+            <th><input type="text" class="form-control" placeholder="First Name"></th>
+            <th><input type="text" class="form-control" placeholder="Last Name"></th>
             <th><input type="text" class="form-control" placeholder="role1, role2"></th>
             <th>
-              <button type="button" class="btn btn-primary glyphicon glyphicon-plus"></button>
-              <button type="button" class="btn btn-success glyphicon glyphicon-ok"></button>
+              <button type="button" class="btn btn-primary">Add</button>
+              <button type="button" class="btn btn-success">Update</button>
             </th>
-          </tr>
+          </tr>-->
           </thead>
           <tbody>
-          <tr>
-            <td>Alice</td>
+          <tr ng-repeat="user in model.users | orderBy:orderByField:reverseSort">
+            <td>{{user.username}}</td>
             <td></td>
-            <td>Student</td>
-            <td>
-              <button type="button" class="btn btn-danger glyphicon glyphicon-remove"></button>
-              <button type="button" class="btn btn-success glyphicon glyphicon-pencil"></button>
-            </td>
-          </tr>
-          <tr>
-            <td>Bob</td>
-            <td></td>
-            <td>Faculty | Admin</td>
-            <td>
-              <button type="button" class="btn btn-danger glyphicon glyphicon-remove"></button>
-              <button type="button" class="btn btn-success glyphicon glyphicon-pencil"></button>
-            </td>
-          </tr>
-          <tr>
-            <td>Charlie</td>
-            <td></td>
-            <td></td>
-            <td>
-              <button type="button" class="btn btn-danger glyphicon glyphicon-remove"></button>
-              <button type="button" class="btn btn-success glyphicon glyphicon-pencil"></button>
+            <td>{{user.firstName}}</td>
+            <td>{{user.lastName}}</td>
+            <td>{{user.roles}}</td>
+            <td class="text-center">
+              <button ng-click="model.removeUser(user)" type="button" class="btn btn-danger glyphicon glyphicon-remove"></button>
+              <button ng-click="model.selectUser(user)" type="button" class="btn btn-primary glyphicon glyphicon-cog"></button>
             </td>
           </tr>
           </tbody>
@@ -66,4 +78,3 @@
     </div>
   </div>
 </div>
-</body>

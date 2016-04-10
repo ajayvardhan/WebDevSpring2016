@@ -4,23 +4,23 @@
         .module("FormBuilderApp")
         .controller("LoginController", LoginController);
 
-    function LoginController($location, UserService) {
+    function LoginController($location, $rootScope, UserService) {
         var vm = this;
 
         vm.login = login;
 
         function login(user) {
             UserService
-                .findUserByCredentials(user.username, user.password)
-                .then(function(response) {
-                    if (response.data) {
+                .findUserByCredentials(user)
+                .then(
+                    function(response)
+                    {
                         UserService.setCurrentUser(response.data);
                         $location.url("/profile");
-                    }
-                    else{
-                        vm.message = "Incorrect username/password";
-                    }
-                });
+                    },
+                    function(err) {
+                        vm.message = err;
+                    });
         }
     }
 })();

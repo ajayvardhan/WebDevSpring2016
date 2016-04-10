@@ -4,16 +4,18 @@
         .module("FormBuilderApp")
         .controller("ProfileController", ProfileController);
 
-    function ProfileController(UserService) {
+    function ProfileController(UserService, $rootScope) {
         var vm = this;
         
         vm.update = update;
 
         UserService
             .getCurrentUser()
-            .then(function(response){
-                vm.user = response.data;
-            });
+            .then(
+                function(response){
+                    vm.user = response.data;
+                }
+            );
 
         function update(user) {
             var emails = user.emails.toString();
