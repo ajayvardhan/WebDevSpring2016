@@ -222,6 +222,7 @@ module.exports = function(app, userModel) {
         for (var email in newUser.emails){
             newUser.emails[email] = newUser.emails[email].trim();
         }
+        console.log(newUser);
         userModel
             .updateUser(req.params.id, newUser)
             .then(
