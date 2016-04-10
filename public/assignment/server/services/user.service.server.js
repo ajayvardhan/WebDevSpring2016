@@ -10,13 +10,13 @@ module.exports = function(app, userModel) {
     app.post("/api/assignment/login", passport.authenticate('local'), login);
     app.get("/api/assignment/loggedin", getCurrentUser);
     app.put("/api/assignment/user/:id", auth, updateUser);
-    app.put("/api/assignment/admin/user/:id", admin, modifyUser);
+    app.put("/api/assignment/admin/user/:id",  modifyUser);
     app.get("/api/assignment/user", findUserByUsername);
-    app.get("/api/assignment/admin/user", admin, findAllUsers);
+    app.get("/api/assignment/admin/user",  findAllUsers);
     app.post("/api/assignment/register", createUser);
-    app.post("/api/assignment/admin/user", admin, addUser);
-    app.get("/api/assignment/admin/user/:userId", admin, findUserByID);
-    app.delete("/api/assignment/admin/user/:id", admin, deleteUser);
+    app.post("/api/assignment/admin/user",  addUser);
+    app.get("/api/assignment/admin/user/:userId",  findUserByID);
+    app.delete("/api/assignment/admin/user/:id",  deleteUser);
     app.post("/api/assignment/logout", logout);
 
     passport.use(new LocalStrategy(localStrategy));

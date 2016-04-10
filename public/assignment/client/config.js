@@ -35,10 +35,10 @@
             .when("/admin", {
                 templateUrl: "views/admin/admin.view.html",
                 controller: "AdminController",
-                controllerAs: "model",
+                controllerAs: "model"/*,
                 resolve: {
                     loggedin: checkAdmin
-                }
+                }*/
             })
             .when("/forms", {
                 templateUrl: "views/forms/forms.view.html",
