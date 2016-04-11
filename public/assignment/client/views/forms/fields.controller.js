@@ -12,7 +12,7 @@
                 .findFieldsForForm($routeParams.formId)
                 .then(
                     function(response){
-                        vm.fields = response.data;
+                        vm.fields = response.data.fields;
                     }
                 );
         }
