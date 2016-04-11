@@ -35,7 +35,7 @@ module.exports = function(db, mongoose) {
     }
 
     function updateForm(id, form) {
-        return FormModel.update({_id: id}, {$set: form});
+        return FormModel.update({_id: id}, {title: form.title});
     }
 
     function deleteForm(id) {
