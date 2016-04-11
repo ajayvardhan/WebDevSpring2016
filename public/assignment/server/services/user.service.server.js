@@ -9,7 +9,7 @@ module.exports = function(app, userModel) {
 
     app.post("/api/assignment/login", passport.authenticate('local'), login);
     app.get("/api/assignment/loggedin", getCurrentUser);
-    app.put("/api/assignment/user/:id", auth, updateUser);
+    app.put("/api/assignment/user/:id", updateUser);
     app.put("/api/assignment/admin/user/:id", admin, modifyUser);
     app.get("/api/assignment/user", findUserByUsername);
     app.get("/api/assignment/admin/user", admin, findAllUsers);
