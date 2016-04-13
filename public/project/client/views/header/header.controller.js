@@ -7,6 +7,8 @@
     function HeaderController($rootScope, $location, UserService) {
         var vm = this;
 
+        vm.searchType = "post";
+
         vm.showSelect = false;
         vm.logout = logout;
         vm.location = $location;
@@ -16,6 +18,37 @@
         vm.goToProfile = goToProfile;
         vm.searchResults = searchResults;
         vm.showSearch = showSearch;
+        vm.showSearchBar = showSearchBar;
+        vm.postSearch = postSearch;
+        vm.userSearch = userSearch;
+        vm.movieSearch = movieSearch;
+        vm.searchKey = searchKey;
+
+        function searchKey(key){
+            switch(vm.searchType) {
+                case "user":
+                    $location.url("/profile/" + key._id);
+                    break;
+                case "post":
+                    $location.url("/post/" + key._id);
+                    break;
+                case "movie":
+                    $location.url("/movie/" + key.imdbID);
+                    break;
+            }
+        }
+
+        function postSearch(){
+            vm.searchType = "post";
+        }
+
+        function userSearch(){
+            vm.searchType = "user";
+        }
+
+        function movieSearch(){
+            vm.searchType = "movie";
+        }
 
         function init() {
             UserService
@@ -137,5 +170,31 @@
         $('.icon').click(function () {
             $('.selectType').toggleClass('expanded');
         });
+
+
+        // _____________________________________________________________
+
+        function showSearchBar(){
+            $( "#searchBar" ).toggle("blind");
+        }
+
+        $("#searchBar").hide();
+
+
+        $( "#txtSearchProdAssign" ).keypress(function(e) {
+            var key = e.which;
+            if(key == 13)
+            {
+                console.log($("#searchMovie"));
+            }
+        });
+
+        /*$('#txtSearchProdAssign').keypress(function (e) {
+            var key = e.which;
+            if(key == 13)  // the enter key code
+            {
+                alert('You pressed enter!');
+            }
+        });*/
     }
 })();

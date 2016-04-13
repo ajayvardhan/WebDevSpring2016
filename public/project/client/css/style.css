@@ -73,3 +73,33 @@
 #fadeshow2 {
     visibility: none;
     display: none;}
+
+.borderLessSearch{
+    box-shadow: grey 0px 1px 0px;
+    border-width: 0px 0px 1px;
+    border-radius: 0px !important
+}
+
+.flatButton{
+    background-image: none;
+    border-radius: 0px !important;
+}
+
+.topMargin{
+    margin-top: 25px;
+}
+
+.borderLessSearchIcon{
+    background-color: white;
+    box-shadow: grey 0px 1px 0px;
+    border-width: 0px 0px 1px;
+    border-radius: 0px !important
+}
+
+.form-control-no-border:focus {
+    border-color:#ccc;
+    -webkit-box-shadow: none;
+    box-shadow: grey 0px 1px 0px;
+}
+
+
