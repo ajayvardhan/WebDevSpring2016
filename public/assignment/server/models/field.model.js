@@ -53,30 +53,6 @@ module.exports = function(db, mongoose) {
                     return f.save();
                 }
             );
-
-
-        /*var deferred = q.defer();
-        form.findById(formId,
-            function (err, doc) {
-                if (err) {
-                    deferred.reject(err);
-                } else {
-                    for (var f in doc.fields){
-                        if (doc.fields[f]._id == fieldId){
-                            doc.fields[f] = field;
-                        }
-                    }
-                    doc.save(function(err,doc){
-                        if (err){
-                            deferred.reject(err);
-                        }
-                        else{
-                            deferred.resolve(doc);
-                        }
-                    });
-                }
-            });
-        return deferred.promise;*/
     }
 
     function deleteFieldForForm(formId, fieldId){
@@ -88,29 +64,6 @@ module.exports = function(db, mongoose) {
                     return f.save();
                 }
             );
-
-        /*var deferred = q.defer();
-        form.findById(formId,
-            function (err, doc) {
-                if (err) {
-                    deferred.reject(err);
-                } else {
-                    for (var field in doc.fields){
-                        if (doc.fields[field]._id == fieldId){
-                            doc.fields.splice(doc.fields.indexOf(doc.fields[field]), 1);
-                        }
-                    }
-                    doc.save(function(err,doc){
-                        if (err){
-                            deferred.reject(err);
-                        }
-                        else{
-                            deferred.resolve(doc);
-                        }
-                    });
-                }
-            });
-        return deferred.promise;*/
     }
 
     function createFieldForForm(id, field){
@@ -121,41 +74,10 @@ module.exports = function(db, mongoose) {
                     return f.save();
                 }
             );
-
-        /*var deferred = q.defer();
-        form.findById(id,
-            function (err, doc) {
-                if (err) {
-                    deferred.reject(err);
-                } else {
-                    doc.fields.push(field);
-                    doc.save(function(err,doc){
-                        if (err){
-                            deferred.reject(err);
-                        }
-                        else{
-                            deferred.resolve(doc);
-                        }
-                    });
-                }
-            });
-        return deferred.promise;*/
     }
 
     function findFieldsForForm(id){
         return form.findById(id).select("fields");
-
-        /*var deferred = q.defer();
-        form.findById(id,
-            function (err, doc) {
-                if (err) {
-                    deferred.reject(err);
-                } else {
-                    deferred.resolve(doc.fields);
-                }
-
-            });
-        return deferred.promise;*/
     }
 
 };

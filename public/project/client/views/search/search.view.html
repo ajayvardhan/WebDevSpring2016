@@ -1,9 +1,44 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-10 col-sm-offset-2 col-md-10 col-md-offset-1 main">
+        <div class="main">
             <div class="row">
                 <div class="col-sm-6 col-md-6">
-                    <input ng-model="model.search.keyword" type="text" class="form-control" placeholder="Users, Movies, Posts...">
+                    <div ng-switch="model.search.type">
+                        <angucomplete-alt
+                                ng-switch-when="Movies"
+                                placeholder="Movie"
+                                selected-object="model.selectedObject"
+                                remote-url="http://www.omdbapi.com/?s="
+                                remote-url-data-field="Search"
+                                minlength = "1"
+                                title-field="Title"
+                                match-class="highlight"
+                                image-field="Poster"
+                                input-class="form-control form-control-small">
+                        </angucomplete-alt>
+                        <angucomplete-alt
+                                ng-switch-when="Users"
+                                placeholder="Users"
+                                selected-object="model.selectedObject"
+                                remote-url="/api/nowwatching/user/name/"
+                                minlength = "1"
+                                title-field="firstName,lastName"
+                                match-class="highlight"
+                                input-class="form-control form-control-small">
+                        </angucomplete-alt>
+                        <angucomplete-alt
+                                ng-switch-when="Posts"
+                                placeholder="Posts"
+                                selected-object="model.selectedObject"
+                                remote-url="/api/nowwatching/posts/search?search="
+                                minlength = "1"
+                                title-field="title"
+                                description-field="description"
+                                match-class="highlight"
+                                input-class="form-control form-control-small">
+                        </angucomplete-alt>
+                    </div>
+                    <!--<input ng-model="model.search.keyword" type="text" class="form-control" placeholder="Users, Movies, Posts...">-->
                 </div>
                 <div class="col-sm-4 col-md-4">
                     <select ng-model="model.search.type" class="form-control">
@@ -13,7 +48,8 @@
                     </select>
                 </div>
                 <div class="col-sm-2 col-md-2">
-                    <button ng-click="model.searchResults(model.search)" class="btn btn-primary glyphicon glyphicon-search"></button>
+                    <button ng-click="model.searchResults(model.selectedObject.originalObject, model.search.type)"
+                            class="btn btn-primary glyphicon glyphicon-search"></button>
                 </div>
             </div>
             <br/>

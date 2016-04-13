@@ -7,23 +7,9 @@
     function PostsController($timeout, $location, $rootScope, UserService, PostService) {
         var vm = this;
 
-        /*(function update() {
-            $timeout(update, 10000);
-            init();
-        }());*/
-
 
 
         function init() {
-/*
-            UserService
-                .getCurrentUser()
-                .then(function(response){
-                    if(response.data) {
-                        //setUserIDForPost(response.data._id);
-                    }
-                });*/
-
             vm.posts = [];
             PostService.findAllPosts()
                 .then(
@@ -72,10 +58,14 @@
             $location.url("/profile/" + post.userID);
         }
 
-        function addPost(movie){
-            movie.userID = $rootScope.currentUser._id;
+        function addPost(movie,description){
+            var newPost = {
+                userID: $rootScope.currentUser._id,
+                movie: movie,
+                description: description
+            };
             PostService
-                .addPost(movie, movie.userID)
+                .addPost(newPost, $rootScope.currentUser._id)
                 .then(
                     function(response){
                         vm.movie = "";

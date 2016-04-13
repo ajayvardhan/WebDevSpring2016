@@ -7,12 +7,15 @@
     function HeaderController($rootScope, $location, UserService) {
         var vm = this;
 
+        vm.showSelect = false;
         vm.logout = logout;
         vm.location = $location;
         vm.login = login;
         vm.register = register;
         vm.showModal = showModal;
         vm.goToProfile = goToProfile;
+        vm.searchResults = searchResults;
+        vm.showSearch = showSearch;
 
         function init() {
             UserService
@@ -112,5 +115,27 @@
             vm.user = null;
         }
 
+        function searchResults(search,type){
+            switch(type) {
+                case "Users":
+                    $location.url("/profile/" + search._id);
+                    break;
+                case "Posts":
+                    $location.url("/post/" + search._id);
+                    break;
+                case "Movies":
+                    $location.url("/movie/" + search.imdbID);
+                    break;
+            }
+        }
+
+
+        function showSearch(){
+            vm.showSelect = true;
+        }
+
+        $('.icon').click(function () {
+            $('.selectType').toggleClass('expanded');
+        });
     }
 })();

@@ -4,7 +4,6 @@ module.exports = function(app, postsModel) {
     app.get("/api/nowwatching/posts/search", findPosts);
     app.get("/api/nowwatching/posts/:id", findPostByID);
     app.post("/api/nowwatching/:userID/posts", addPost);
-    // app.put("/api/nowwatching/posts", updatePost);
     app.post("/api/nowwatching/posts/:id/comments", addComment);
     app.delete("/api/nowwatching/posts/:id", deletePost);
 
@@ -31,13 +30,6 @@ module.exports = function(app, postsModel) {
                 }
             );
     }
-
-/*
-    function updatePost(req, res){
-        var posts = postsModel.updatePost(req.body);
-        res.json(posts);
-    }
-*/
 
 
     function findAllPosts(req, res){
@@ -89,6 +81,7 @@ module.exports = function(app, postsModel) {
     }
 
     function addPost(req, res){
+        console.log(req.body);
         postsModel.addPost(req.body)
             .then(
                 function (doc) {

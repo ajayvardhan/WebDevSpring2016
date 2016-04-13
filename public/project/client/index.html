@@ -10,10 +10,15 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.min.js"></script>
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
     <link href="css/dashboard.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+    <link href="css/angucomplete-alt.css" rel="stylesheet">
+    <link href="css/landing-page.css" rel="stylesheet">
     <script src="js/app.js"></script>
     <script src="js/config.js"></script>
+    <script src="js/angucomplete-alt.min.js"></script>
     <script src="main/main.controller.js"></script>
     <script src="views/home/home.controller.js"></script>
     <script src="views/posts/posts.controller.js"></script>
@@ -29,9 +34,8 @@
     <script src="../../js/ui-bootstrap-tpls-1.2.5.min.js"></script>
 </head>
 
-<body ng-controller="MainController">
+<body ng-controller="MainController" class="index">
 <div ng-include="'views/header/header.view.html'"></div>
 <div ng-view></div>
-
 </body>
 </html>
