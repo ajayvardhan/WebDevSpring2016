@@ -19,8 +19,18 @@
             logout: logout,
             findUserByUsername: findUserByUsername,
             followUser: followUser,
-            addMovieToWatchlist: addMovieToWatchlist
+            addMovieToWatchlist: addMovieToWatchlist,
+            removeMovieFromWatchlist: removeMovieFromWatchlist,
+            unfollowUser: unfollowUser
         };
+
+        function unfollowUser(userID, followID){
+            return $http.put("/api/nowwatching/user/" + userID + "/unfollow/" + followID);
+        }
+
+        function removeMovieFromWatchlist(userID, movieID){
+            return $http.put("/api/nowwatching/user/" + userID + "/watchlist/delete/" + movieID);
+        }
 
         function addMovieToWatchlist(userID, movieID){
             return $http.put("/api/nowwatching/user/" + userID + "/watchlist/" + movieID);

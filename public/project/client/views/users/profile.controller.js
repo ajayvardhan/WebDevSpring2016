@@ -17,67 +17,42 @@
         vm.removeMovie = removeMovie;
         vm.followUser = followUser;
         vm.postDetails = postDetails;
+        vm.goToPosts = goToPosts;
+        vm.removeItem = removeItem;
 
-
-        UserService
-            .getCurrentUser()
-            .then(function(response){
-                if(response.data) {
-                    if (response.data._id == $routeParams.id){
-                        vm.showEdit = true;
-                    }
-                }
-            });
-
-
-        UserService
-            .findUserByID($routeParams.id)
-            .then(
-                function(response) {
-                    vm.user = response.data;
-                });
-
-        PostService
-            .findAllPostsForUser($routeParams.id)
-            .then(
-                function (response) {
-                    for (var r in response.data) {
-                        updateNamesForPosts(response.data[r]);
-                    }
-                });
-
-
-        function editProfile(){
-            $location.url("/profile");
-        }
-
-        function updateNamesForPosts(post){
+        function init() {
             UserService
-                .findUserByID(post.userID)
+                .getCurrentUser()
+                .then(function (response) {
+                    if (response.data) {
+                        if (response.data._id == $routeParams.id) {
+                            vm.showEdit = true;
+                        }
+                    }
+                });
+
+
+            UserService
+                .findUserByID($routeParams.id)
                 .then(
-                    function (u) {
-                        if (!u.data.firstName){
-                            u.data.firstName = "";
-                        }
-                        if (!u.data.lastName){
-                            u.data.lastName = "";
-                        }
-                        post.user = u.data.firstName + " " + u.data.lastName;
+                    function (response) {
+                        vm.user = response.data;
                     });
-            vm.posts.push(post);
-            vm.posts = vm.posts.reverse();
+
+
+            UserService
+                .getCurrentUser()
+                .then(function (response) {
+                    if (response.data &&
+                        response.data._id != $routeParams.id &&
+                        response.data.following.indexOf($routeParams.id) == -1) {
+                        vm.showFollow = true;
+                    }
+                });
+            goToPosts()
         }
 
-        UserService
-            .getCurrentUser()
-            .then(function(response){
-                if (response.data &&
-                    response.data._id != $routeParams.id &&
-                    response.data.following.indexOf($routeParams.id) == -1)
-                {
-                    vm.showFollow = true;
-                }
-            });
+        init();
 
 
         function followUser(user){
@@ -100,7 +75,68 @@
             $location.url("/post/" + post._id);
         }
 
+        function editProfile(){
+            $location.url("/profile");
+        }
+        /*UserService
+         .removeMovieFromWatchlist($routeParams.id, item.imdbID)
+         .then(function(response){
+         goToWatchlist();
+         });*/
+
+        function removeItem(item){
+            switch(vm.searchType) {
+                case "watchlist":
+                    UserService
+                        .removeMovieFromWatchlist($routeParams.id, item.imdbID)
+                        .then(function(response){
+                            goToWatchlist();
+                        });
+                    break;
+                case "following":
+                    UserService
+                        .unfollowUser($routeParams.id, item._id)
+                        .then(function(response){
+                            goToFollowing();
+                        });
+                    break;
+            }
+        }
+
+
+        function goToPosts(){
+            vm.posts = [];
+            vm.listItems = [];
+            vm.searchType = "posts";
+            PostService
+                .findAllPostsForUser($routeParams.id)
+                .then(
+                    function (response) {
+                        for (var r in response.data) {
+                            updateNamesForPosts(response.data[r]);
+                        }
+                    });
+
+
+            function updateNamesForPosts(post){
+                UserService
+                    .findUserByID(post.userID)
+                    .then(
+                        function (u) {
+                            if(!u.data.firstName && !u.data.lastName){
+                                post.user = u.data.username;
+                            }
+                            else {
+                                post.user = u.data.firstName + " " + u.data.lastName;
+                            }
+                        });
+                vm.posts.push(post);
+                vm.posts = vm.posts.reverse();
+            }
+        }
+
         function goToWatchlist() {
+            vm.searchType = "watchlist";
             vm.listItems = [];
             UserService
                 .findUserByID($routeParams.id)
@@ -126,6 +162,7 @@
         }
 
         function goToFollowing(){
+            vm.searchType = "following";
             vm.listItems = [];
             UserService
                 .findUserByID($routeParams.id)
@@ -147,6 +184,7 @@
         }
 
         function goToFollowers(){
+            vm.searchType = "followers";
             vm.listItems = [];
             UserService
                 .findUserByID($routeParams.id)

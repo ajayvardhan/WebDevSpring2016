@@ -1,29 +1,50 @@
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="main">
-            <div id="showMessage" ng-show="model.message" class="alert alert-danger" role="alert">{{model.message}}</div>
-            <h2>
-                <a ng-click="model.userDetails(model.movie)" href="">
-                    {{model.movie.user}}
-                </a>
-                is now watching
-                <a ng-click="model.movieDetails(model.movie)" href="">
-                    {{model.movie.title}}
-                </a>
-            </h2>
-            <h3 class="text-muted">{{model.movie.description}}</h3>
-            <br>
-            <textarea ng-show="currentUser"
-                      ng-model="model.comment"
-                      class="form-control textAreaSize">
-            </textarea>
-            <br>
-            <button ng-show="currentUser" ng-click="model.addComment(model.comment)" class="btn btn-primary">Comment</button>
-            <h3>Comments:</h3>
-            <div ng-repeat="comment in model.movie.comments">
-                <div  class="thumbnail commentBoxSize">
-                    {{comment}}
+            <div class="row">
+                <div class="col-md-4 col-xs-1"></div>
+                <div class="col-md-4 col-xs-10">
+                    <div id="showMessage" ng-show="model.message" class="alert alert-danger" role="alert">{{model.message}}</div>
+                    <h2>
+                        <div class="row">
+                            <a ng-click="model.userDetails(model.movie)" href="">
+                                {{model.movie.user}}
+                            </a>
+                            is now watching
+                        </div>
+                        <div class="row">
+                            <a ng-click="model.movieDetails(model.movie)" href="">
+                                {{model.movie.title}}
+                            </a>
+                        </div>
+                    </h2>
+                    <div class="row">
+                        <h3 class="text-muted">{{model.movie.description}}</h3>
+                    </div>
+                    <div class="row">
+                    <textarea ng-show="currentUser"
+                              ng-model="model.comment"
+                              class="form-control textAreaSize customTextArea">
+                    </textarea>
+                    </div>
+                    <button ng-show="currentUser" ng-click="model.addComment(model.comment)"
+                            class="btn btn-default fixedCommentButton flatButtonColor">Comment</button>
                 </div>
+                <div class="col-md-4 col-xs-1"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2 col-xs-1"></div>
+                <div class="col-md-8 col-xs-10">
+                    <h3>Comments:</h3>
+                    <div ng-repeat="comment in model.movie.comments">
+                        <div class="thumbnail commentBoxSize">
+                            <p>
+                                {{comment}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-xs-1"></div>
             </div>
         </div>
     </div>

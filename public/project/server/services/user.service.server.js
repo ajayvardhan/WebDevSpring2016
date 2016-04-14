@@ -12,7 +12,33 @@ module.exports = function(app, userModel) {
     app.delete("/api/nowwatching/user/:id", deleteUser);
     app.post("/api/nowwatching/logout", logout);
     app.put("/api/nowwatching/user/:userID/follow/:followID", followUser);
+    app.put("/api/nowwatching/user/:userID/unfollow/:followID", unfollowUser);
     app.put("/api/nowwatching/user/:userID/watchlist/:movieID", addMovieToWatchlist);
+    app.put("/api/nowwatching/user/:userID/watchlist/delete/:movieID", removeMovieFromWatchlist);
+
+    function unfollowUser(req, res){
+        userModel.unfollowUser(req.params.userID, req.params.followID)
+            .then(
+                function (doc) {
+                    res.json(doc);
+                },
+                function ( err ) {
+                    res.status(400).send(err);
+                }
+            );
+    }
+
+    function removeMovieFromWatchlist(req, res){
+        userModel.removeMovieFromWatchlist(req.params.userID, req.params.movieID)
+            .then(
+                function(doc){
+                    res.json(doc);
+                },
+                function(err){
+                    res.status(400).send(err);
+                }
+            );
+    }
 
 
     function addMovieToWatchlist(req, res){
@@ -84,14 +110,6 @@ module.exports = function(app, userModel) {
                     res.status(400).send(err);
                 }
             );
-        /*var user = userModel
-            .findUserByCredentials({
-                username : req.query.username,
-                password: req.query.password
-            });
-        console.log(user);
-        req.session.currentUser = user;
-        res.json(user);*/
     }
 
     function createUser(req, res){

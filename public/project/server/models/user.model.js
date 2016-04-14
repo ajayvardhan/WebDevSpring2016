@@ -16,10 +16,26 @@ module.exports = function(db, mongoose) {
         deleteUser: deleteUser,
         findUserByName : findUserByName,
         followUser: followUser,
-        addMovieToWatchlist: addMovieToWatchlist
+        addMovieToWatchlist: addMovieToWatchlist,
+        removeMovieFromWatchlist: removeMovieFromWatchlist,
+        unfollowUser: unfollowUser
     };
 
     return api;
+
+    function unfollowUser(userID, followID){
+        return UserModel.update({_id: userID},
+            {
+                $pull: { following: followID }
+            });
+    }
+
+    function removeMovieFromWatchlist(userID, movieID){
+        return UserModel.update({_id: userID},
+            {
+                $pull: { watchlist: movieID }
+            });
+    }
 
     function addMovieToWatchlist(userID, movieID){
         return UserModel.update({_id: userID},

@@ -2,48 +2,96 @@
     <div class="row">
         <div class="main">
             <div class="row">
-                <div id="showMessage" ng-show="model.message" class="alert alert-success" role="alert">{{model.message}}</div>
-                <h2>{{model.user.firstName}} {{model.user.lastName}}</h2>
-                <button ng-show="model.showEdit" ng-click="model.editProfile()" class="btn btn-primary">Edit Profile</button>
-                <button ng-show="model.showFollow" ng-click="model.followUser(model.user)" class="btn btn-primary">Follow</button>
+                <div class="col-md-4 col-xs-1"></div>
+                <div class="col-md-4 col-xs-10">
+                    <div id="showMessage" ng-show="model.message" class="alert alert-success" role="alert">{{model.message}}</div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <h2>{{model.user.firstName}} {{model.user.lastName}}</h2>
+                        </div>
+                        <div class="col-xs-6">
+                            <button ng-show="model.showEdit" ng-click="model.editProfile()".
+                                    class="btn btn-default flatButtonColor editProfile">Edit Profile</button>
+                            <button ng-show="model.showFollow" ng-click="model.followUser(model.user)"
+                                    class="btn btn-default flatButtonColor editProfile">Follow</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-xs-1"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2 col-xs-1"></div>
+                <div class="col-md-8 col-xs-10">
+                    <ul class="nav nav-tabs nav-justified topMargin">
+                        <li role="presentation" ng-class="{active:model.searchType=='posts'}">
+                            <a ng-click="model.goToPosts()" href="" class="flatButton">Posts</a>
+                        </li>
+                        <li role="presentation" ng-class="{active:model.searchType=='watchlist'}">
+                            <a ng-click="model.goToWatchlist()" href="" class="flatButton">Watchlist</a>
+                        </li>
+                        <li role="presentation" ng-class="{active:model.searchType=='followers'}">
+                            <a ng-click="model.goToFollowers()" href="" class="flatButton">Followers</a>
+                        </li>
+                        <li role="presentation" ng-class="{active:model.searchType=='following'}">
+                            <a ng-click="model.goToFollowing()" href="" class="flatButton">Following</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-2 col-xs-1"></div>
             </div>
             <br>
-            <div class="row">
+            <div ng-show="model.searchType=='posts'" class="row">
                 <div class="text-center">
                     <div ng-repeat="post in model.posts">
-                        <div class="col-lg-3">
-                            <a id="noUnderline" ng-click="model.postDetails(post)" href="" class="thumbnail">
-                                <div class="row">
-                                    {{post.user}}
-                                </div>
-                                <div class="row">
-                                    is now watching
-                                </div>
-                                <div class="row">
-                                    {{post.title}}
-                                </div>
-                                <div class="row text-muted">
-                                    {{post.description}}
-                                </div>
-                            </a>
+                        <div class="row">
+                            <div class="col-md-4 col-xs-1"></div>
+                            <div class="col-md-4 col-xs-10">
+                                <a id="noUnderline" ng-click="model.postDetails(post)" href="" class="thumbnail">
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <img class="img-responsive" ng-src="{{post.movie.Poster}}" width="80px"/>
+                                        </div>
+                                        <br>
+                                        <div class="col-xs-8">
+                                            <div class="row">
+                                                {{post.user}}
+                                            </div>
+                                            <div class="row">
+                                                is now watching
+                                            </div>
+                                            <div class="row">
+                                                {{post.movie.Title}}
+                                            </div>
+                                            <div class="row text-muted">
+                                                {{post.description}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-md-4 col-xs-1"></div>
                         </div>
                     </div>
                 </div>
             </div>
-            <br><br>
-            <button ng-click="model.goToWatchlist()" class="btn btn-primary">Watchlist</button>
-            <button ng-click="model.goToFollowing()" class="btn btn-primary">Following</button>
-            <button ng-click="model.goToFollowers()" class="btn btn-primary">Followers</button>
-            <br><br>
-            <div ng-if="model.listItems"
-                 class="panel panel-default movie-panel"
-                 ng-repeat="item in model.listItems">
-                <div class="panel-heading">
-                    <a ng-click="model.goToItem(item)" href="">{{item.first}} {{item.second}}</a>
+            <div class="row">
+                <div class="col-md-2 col-xs-1"></div>
+                <div class="col-md-8 col-xs-10">
+                    <div ng-if="model.listItems"
+                         class="panel panel-default movie-panel"
+                         ng-repeat="item in model.listItems">
+                        <div style="height:95px" class="panel-heading">
+                            <button type="button" ng-click="model.removeItem(item)"
+                                    ng-hide="model.searchType=='followers'"
+                                    class="close closeButton" aria-hidden="true">×</button>
+                            <a ng-click="model.goToItem(item)" href="">{{item.first}} {{item.second}}</a>
+                        </div>
+                        <div style="height: 200px" class="panel-body">
+                            <a ng-click="model.goToItem(item)" href=""><img ng-src="{{item.poster}}" width="100px"/></a>
+                        </div>
+                    </div>
                 </div>
-                <div class="panel-body">
-                    <a ng-click="model.goToItem(item)" href=""><img ng-src="{{item.poster}}" width="100px"/></a>
-                </div>
+                <div class="col-md-2 col-xs-1"></div>
             </div>
         </div>
     </div>

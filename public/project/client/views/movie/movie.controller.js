@@ -13,6 +13,7 @@
                 .findMovieByImdbID(vm.imdbID)
                 .then(
                 function(response) {
+                    console.log(response.data);
                     vm.movie = response.data;
                 }
             );
@@ -29,12 +30,7 @@
                 }
             });
 
-/*        if ($rootScope.currentUser && $rootScope.currentUser.watchlist.indexOf(vm.imdbID) == -1){
-            vm.showWatchlist = true;
-        }*/
-
         vm.addToWatchlist = addToWatchlist;
-        vm.goToWatchlist = goToWatchlist;
 
         function addToWatchlist(){
             UserService
@@ -50,13 +46,6 @@
                                 }
                             )
                     });
-            /*$rootScope.currentUser.watchlist.push(vm.imdbID);
-            vm.showWatchlist = false;
-            vm.message = vm.movie.Title;*/
-        }
-
-        function goToWatchlist(){
-            $location.url("/watchlist");
         }
 
     }

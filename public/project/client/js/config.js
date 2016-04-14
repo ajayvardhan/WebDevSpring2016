@@ -31,16 +31,6 @@
                 controller: "ProfileController",
                 controllerAs: "model"
             })
-            .when("/search", {
-                templateUrl: "views/search/search.view.html",
-                controller: "SearchController",
-                controllerAs: "model"
-            })
-            .when("/search/:key", {
-                templateUrl: "views/search/search.view.html",
-                controller: "SearchController",
-                controllerAs: "model"
-            })
             .when("/movie/:id", {
                 templateUrl: "views/movie/movie.view.html",
                 controller: "MovieController",
@@ -50,5 +40,6 @@
             .otherwise({
                 redirectTo: "/home"
             });
+
     }
 })();

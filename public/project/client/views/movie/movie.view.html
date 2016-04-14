@@ -1,22 +1,46 @@
 <div class="container-fluid">
     <div class="row">
         <div class="main">
-            <div ng-show="model.message" class="alert alert-success" role="alert">
-                {{model.message}}  added to your Watchlist
-            </div>
             <div class="row">
-                <h2>{{model.movie.Title}}</h2>
-                <img ng-src="{{model.movie.Poster}}" height="300px" class="pull-left"/>
-                <p>
-                    {{model.movie.Plot}}
-                </p>
-                <h3>Actors</h3>
-                <ul>
-                    <li ng-repeat="actorName in movie.Actors.split(',')">
-                        {{actorName}}
-                    </li>
-                </ul>
-                <button ng-show="model.showWatchlist" ng-click="model.addToWatchlist()" class="btn btn-primary">Add to Watchlist</button>
+                <div class="col-md-4 col-xs-1"></div>
+                <div class="col-md-4 col-xs-10">
+                    <div ng-show="model.message" class="alert alert-success" role="alert">
+                        {{model.message}}  added to your Watchlist
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <h2>{{model.movie.Title}}</h2>
+                        </div>
+                        <div class="col-xs-6">
+                            <button ng-show="model.showWatchlist" ng-click="model.addToWatchlist()"
+                                    class="btn btn-default flatButtonColor editProfile">Add to Watchlist</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <img ng-src="{{model.movie.Poster}}" height="300px" class="pull-left img-responsive"/>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="row">
+                                {{model.movie.Plot}}
+                            </div>
+                            <div class="row">
+                                <h4>Director:</h4> {{model.movie.Director}}
+                                <br/>
+                                <h4>Writer:</h4> {{model.movie.Writer}}
+                            </div>
+                            <div class="row"><h4>Actors:</h4></div>
+                            <div class="row">
+                                <ul>
+                                    <li ng-repeat="actorName in model.movie.Actors.split(',')">
+                                        {{actorName}}
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-xs-1"></div>
             </div>
         </div>
     </div>

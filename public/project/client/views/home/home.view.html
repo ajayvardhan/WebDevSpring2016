@@ -17,19 +17,19 @@
                 </uib-slide>
             </uib-carousel>-->
 
-            <div id="fadeshow1" class="row">
+            <div class="row">
                 <div class="text-center">
                     <div ng-repeat="post in model.posts">
                         <div class="row">
-                            <div class="col-xs-4"></div>
-                            <div class="col-xs-4">
+                            <div class="col-md-4 col-xs-1"></div>
+                            <div class="col-md-4 col-xs-10">
                                 <a id="noUnderline" ng-click="model.postDetails(post)" href="" class="thumbnail">
                                     <div class="row">
-                                        <div class="col-xs-6">
-                                            <img ng-src="{{post.movie.Poster}}" width="80px"/>
+                                        <div class="col-xs-4">
+                                            <img class="img-responsive" ng-src="{{post.movie.Poster}}" width="80px"/>
                                         </div>
                                         <br>
-                                        <div class="col-xs-4">
+                                        <div class="col-xs-8">
                                             <div class="row">
                                                 {{post.user}}
                                             </div>
@@ -43,38 +43,10 @@
                                                 {{post.description}}
                                             </div>
                                         </div>
-                                        <div class="col-xs-4"></div>
                                     </div>
                                 </a>
                             </div>
-                            <div class="col-xs-4"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="fadeshow2" style="display:none" class="row">
-                <div class="text-center">
-                    <div ng-repeat="post in model.posts">
-                        <div class="row">
-                            <div class="col-xs-4"></div>
-                            <div class="col-xs-4">
-                                <a id="noUnderline" ng-click="model.postDetails(post)" href="" class="thumbnail">
-                                    <div class="row">
-                                        {{post.user}}
-                                    </div>
-                                    <div class="row">
-                                        is now watching
-                                    </div>
-                                    <div class="row">
-                                        {{post.movie.Title}}
-                                    </div>
-                                    <div class="row text-muted">
-                                        {{post.description}}
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-xs-4"></div>
+                            <div class="col-md-4 col-xs-1"></div>
                         </div>
                     </div>
                 </div>

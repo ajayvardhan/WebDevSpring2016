@@ -27,13 +27,13 @@
                 .findUserByID(post.userID)
                 .then(
                     function (u) {
-                        if (!u.data.firstName){
-                            u.data.firstName = "";
+                        console.log(!u.firstName && !u.lastName);
+                        if(!u.data.firstName && !u.data.lastName){
+                            post.user = u.data.username;
                         }
-                        if (!u.data.lastName){
-                            u.data.lastName = ""
+                        else {
+                            post.user = u.data.firstName + " " + u.data.lastName;
                         }
-                        post.user = u.data.firstName + " " + u.data.lastName;
                     });
             vm.posts.push(post);
             vm.posts = vm.posts.reverse();

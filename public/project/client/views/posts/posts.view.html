@@ -2,8 +2,8 @@
     <div class="row">
         <div class="main">
             <div class="row">
-                <div class="col-xs-4"></div>
-                <div class="col-xs-4">
+                <div class="col-md-4 col-xs-1"></div>
+                <div class="col-md-4 col-xs-10">
                     <angucomplete-alt
                             placeholder="Movie"
                             selected-object="model.selectedMovie"
@@ -13,30 +13,30 @@
                             title-field="Title"
                             match-class="highlight"
                             image-field="Poster"
-                            input-class="form-control form-control-small">
+                            input-class="form-control form-control-small borderLessPost form-control-no-border">
                     </angucomplete-alt>
-                    <!--<input ng-model="model.movie.title" type="text" class="form-control" placeholder="Movie">-->
-                    <br>
-                    <textarea style="resize: none;" ng-model="model.description" class="form-control" placeholder="Description"></textarea>
-                    <br>
-                    <button ng-click="model.addPost(model.selectedMovie.originalObject, model.description)" class="btn btn-primary">Post</button>
+                    <textarea ng-model="model.description" class="form-control customTextArea" placeholder="Description"></textarea>
+                    <button ng-click="model.addPost(model.selectedMovie.originalObject, model.description)"
+                            class="btn btn-default btn-block flatButtonColor">
+                        Post
+                    </button>
                 </div>
-                <div class="col-xs-4"></div>
+                <div class="col-md-4 col-xs-1"></div>
             </div>
             <br/>
-            <div id="fadeshow1" class="row">
+            <div class="row">
                 <div class="text-center">
                     <div ng-repeat="post in model.posts">
                         <div class="row">
-                            <div class="col-xs-4"></div>
-                            <div class="col-xs-4">
+                            <div class="col-md-4 col-xs-1"></div>
+                            <div class="col-md-4 col-xs-10">
                                 <a id="noUnderline" ng-click="model.postDetails(post)" href="" class="thumbnail">
                                     <div class="row">
-                                        <div class="col-xs-6">
-                                            <img ng-src="{{post.movie.Poster}}" width="80px"/>
+                                        <div class="col-xs-4">
+                                            <img class="img-responsive" ng-src="{{post.movie.Poster}}" width="80px"/>
                                         </div>
                                         <br>
-                                        <div class="col-xs-4">
+                                        <div class="col-xs-8">
                                             <div class="row">
                                                 {{post.user}}
                                             </div>
@@ -50,38 +50,10 @@
                                                 {{post.description}}
                                             </div>
                                         </div>
-                                        <div class="col-xs-4"></div>
                                     </div>
                                 </a>
                             </div>
-                            <div class="col-xs-4"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="fadeshow2" style="display:none" class="row">
-                <div class="text-center">
-                    <div ng-repeat="post in model.posts">
-                        <div class="row">
-                            <div class="col-xs-4"></div>
-                            <div class="col-xs-4">
-                                <a id="noUnderline" ng-click="model.postDetails(post)" href="" class="thumbnail">
-                                    <div class="row">
-                                        {{post.user}}
-                                    </div>
-                                    <div class="row">
-                                        is now watching
-                                    </div>
-                                    <div class="row">
-                                        {{post.movie.Title}}
-                                    </div>
-                                    <div class="row text-muted">
-                                        {{post.description}}
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-xs-4"></div>
+                            <div class="col-md-4 col-xs-1"></div>
                         </div>
                     </div>
                 </div>

@@ -39,7 +39,7 @@ module.exports = function(db, mongoose) {
         return PostModel.find(
             {$or :
                 [
-                    {title :  { $regex: new RegExp("^" + search.toLowerCase(), "i") }},
+                    {'movie.Title' :  { $regex: new RegExp("^" + search.toLowerCase(), "i") }},
                     {description : { $regex: new RegExp("^" + search.toLowerCase(), "i") }}
                 ]
             }

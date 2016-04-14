@@ -1,3 +1,7 @@
+a{
+    color:black; !important
+}
+
 .buttonNoWrap{
     white-space: nowrap;
 }
@@ -6,6 +10,13 @@
     float: left;
     width: 130px;
     margin-right: 15px;
+}
+
+.closeButton{
+    position: relative;
+    float:right;
+    left:12px;
+    bottom: 12px;
 }
 
 .post-panel {
@@ -26,8 +37,7 @@
 }
 
 .commentBoxSize {
-    height : 40px;
-    width : 500px;
+    word-wrap: break-word;
 }
 
 .selectType {
@@ -83,6 +93,26 @@
 .flatButton{
     background-image: none;
     border-radius: 0px !important;
+    color:black;
+}
+
+.flatButtonColor{
+    background-image: none;
+    border-radius: 0px !important;
+    background-color: gainsboro;
+    color:black;
+}
+
+.fixedCommentButton{
+    position: relative;
+    left: 398px;
+    bottom: 34px;
+}
+
+.editProfile{
+    position:relative;
+    float:right;
+    top:18px;
 }
 
 .topMargin{
@@ -96,15 +126,32 @@
     border-radius: 0px !important
 }
 
+.borderLessPost{
+    background-color: white;
+    border-radius: 0px !important
+}
+
+
 .form-control-no-border:focus {
     border-color:#ccc;
     -webkit-box-shadow: none;
     box-shadow: grey 0px 1px 0px;
-    z-index: 10;
 }
 
 
 #_dropdown {
     position: absolute;
     top: 41px;
+}
+
+.customTextArea {
+    resize: none;
+    background-color: white;
+    border-radius: 0px;
+}
+
+.customTextArea:focus {
+    border-color:#ccc;
+    -webkit-box-shadow: none;
+    box-shadow: grey 0px 0px 0px;
 }

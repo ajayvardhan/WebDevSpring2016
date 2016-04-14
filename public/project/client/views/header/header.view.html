@@ -48,11 +48,18 @@
         <div id="searchBar" class="row">
             <div class="col-md-4 col-xs-1"></div>
             <div class="col-md-4 col-xs-10">
-                <div class="btn-group btn-group-justified topMargin">
-                    <a ng-click="model.postSearch()" href="" class="btn btn-default flatButton">Posts</a>
-                    <a ng-click="model.userSearch()" href="" class="btn btn-default flatButton">Users</a>
-                    <a ng-click="model.movieSearch()" href="" class="btn btn-default flatButton">Movies</a>
-                </div>
+                <ul class="nav nav-tabs nav-justified topMargin">
+                    <li role="presentation" ng-class="{active:model.searchType=='post'}">
+                        <a ng-click="model.postSearch()" href="" class="flatButton">Posts</a>
+                    </li>
+                    <li role="presentation" ng-class="{active:model.searchType=='user'}">
+                        <a ng-click="model.userSearch()" href="" class="flatButton">Users</a>
+                    </li>
+                    <li role="presentation" ng-class="{active:model.searchType=='movie'}">
+                        <a ng-click="model.movieSearch()" href="" class="flatButton">Movies</a>
+                    </li>
+                </ul>
+
                 <div id="txtSearchProdAssign" ng-switch="model.searchType">
                     <div class="input-group">
                         <angucomplete-alt
@@ -73,7 +80,7 @@
                                 selected-object="model.selectedObject"
                                 remote-url="/api/nowwatching/user/name/"
                                 minlength = "1"
-                                title-field="firstName,lastName"
+                                title-field="username"
                                 match-class="highlight"
                                 input-class="form-control form-control-small borderLessSearch form-control-no-border">
                         </angucomplete-alt>
@@ -83,10 +90,10 @@
                                 selected-object="model.selectedObject"
                                 remote-url="/api/nowwatching/posts/search?search="
                                 minlength = "1"
-                                title-field="title"
+                                title-field="movie.Title"
                                 description-field="description"
                                 match-class="highlight"
-                                image-field="Poster"
+                                image-field="movie.Poster"
                                 input-class="form-control form-control-small borderLessSearch form-control-no-border">
                         </angucomplete-alt>
                         <a ng-click="model.searchKey(model.selectedObject.originalObject)" href="" class="input-group-addon borderLessSearchIcon">
@@ -163,7 +170,7 @@
                                    type="password"
                                    class="form-control"
                                    id="verifypassword"
-                                   placeholder="Password">
+                                   placeholder="Verify Password">
                         </div>
                         <div class="form-group text-center">
                             <button ng-click="model.register(model.user)"

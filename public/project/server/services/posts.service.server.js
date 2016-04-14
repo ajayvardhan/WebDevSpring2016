@@ -81,7 +81,6 @@ module.exports = function(app, postsModel) {
     }
 
     function addPost(req, res){
-        console.log(req.body);
         postsModel.addPost(req.body)
             .then(
                 function (doc) {
