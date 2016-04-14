@@ -27,7 +27,6 @@
                 .findUserByID(post.userID)
                 .then(
                     function (u) {
-                        console.log(!u.firstName && !u.lastName);
                         if(!u.data.firstName && !u.data.lastName){
                             post.user = u.data.username;
                         }

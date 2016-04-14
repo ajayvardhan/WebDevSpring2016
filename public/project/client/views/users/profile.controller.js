@@ -172,11 +172,19 @@
                             .findUserByID(response.data.following[r])
                             .then(
                                 function(res){
-                                    vm.listItems.push({
-                                        _id : res.data._id,
-                                        first : res.data.firstName,
-                                        second : res.data.lastName
-                                    });
+                                    if(!res.data.firstName && !res.data.lastName){
+                                        vm.listItems.push({
+                                            _id : res.data._id,
+                                            first : res.data.username,
+                                            second : ""
+                                        })
+                                    }
+                                    else{
+                                        vm.listItems.push({
+                                            _id : res.data._id,
+                                            first : res.data.firstName,
+                                            second : res.data.lastName
+                                        });}
                                 }
                             )
                     }
@@ -195,11 +203,19 @@
                             function(res){
                                 for (var r in res.data){
                                     if (res.data[r].following.indexOf(response.data._id) != -1){
-                                        vm.listItems.push({
-                                            _id : res.data[r]._id,
-                                            first : res.data[r].firstName,
-                                            second : res.data[r].lastName
-                                        });
+                                        if(!res.data[r].firstName && !res.data[r].lastName){
+                                            vm.listItems.push({
+                                                _id : res.data[r]._id,
+                                                first : res.data[r].username,
+                                                second : ""
+                                            })
+                                        }
+                                        else{
+                                            vm.listItems.push({
+                                                _id : res.data[r]._id,
+                                                first : res.data[r].firstName,
+                                                second : res.data[r].lastName
+                                            });}
                                     }
                                 }
                             }

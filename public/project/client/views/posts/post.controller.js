@@ -20,13 +20,12 @@
                         .findUserByID(response.data.userID)
                         .then(
                             function (u) {
-                                if (!u.data.firstName){
-                                    u.data.firstName = "";
+                                if(!u.data.firstName && !u.data.lastName){
+                                    response.data.user = u.data.username;
                                 }
-                                if (!u.data.lastName){
-                                    u.data.lastName = "";
+                                else {
+                                    response.data.user = u.data.firstName + " " + u.data.lastName;
                                 }
-                                response.data.user = u.data.firstName + " " + u.data.lastName;
                                 response.data.userID = u.data._id;
                             });
                     response.data.comments = response.data.comments.reverse();
@@ -34,17 +33,7 @@
                 });
 
         function movieDetails(movie){
-            MovieService
-                .findMovieByTitle(movie.title)
-                .then(
-                    function(response){
-                        if (response.data.imdbID) {
-                            $location.url("/movie/" + response.data.imdbID);
-                        }
-                        else {
-                            vm.message = "Movie not found";
-                        }
-                    });
+            $location.url("/movie/" + movie.movie.imdbID);
         }
         function userDetails(movie){
             $location.url("/profile/" + movie.userID);

@@ -1,4 +1,4 @@
-module.exports = function(app, userModel) {
+module.exports = function(app, userModel, $http) {
     app.get("/api/nowwatching/user", findAllUsers);
     app.get("/api/nowwatching/user/credentials", findUserByCredentials);
     app.get("/api/nowwatching/user/:id", findUserByID);
@@ -15,6 +15,16 @@ module.exports = function(app, userModel) {
     app.put("/api/nowwatching/user/:userID/unfollow/:followID", unfollowUser);
     app.put("/api/nowwatching/user/:userID/watchlist/:movieID", addMovieToWatchlist);
     app.put("/api/nowwatching/user/:userID/watchlist/delete/:movieID", removeMovieFromWatchlist);
+
+
+
+
+    app.get("/api/movie/:search", findMovie);
+
+    function findMovie(req, res){
+        console.log(req.body);
+        // return $http.get("http://www.omdbapi.com/?s="+req.body+"&apikey=fdb29024");
+    }
 
     function unfollowUser(req, res){
         userModel.unfollowUser(req.params.userID, req.params.followID)
