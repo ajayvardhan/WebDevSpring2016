@@ -14,6 +14,7 @@
             .then(
                 function(response){
                     vm.user = response.data;
+                    vm.userpassword = null;
                 }
             );
 
@@ -21,6 +22,9 @@
             var emails = user.emails.toString();
             emails = emails.split(",");
             user.emails = emails;
+            if(vm.userpassword){
+                user.password = vm.userpassword;
+            }
             UserService
                 .updateUser(user._id, user)
                 .then(function(response){

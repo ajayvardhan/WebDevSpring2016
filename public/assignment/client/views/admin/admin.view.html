@@ -18,7 +18,7 @@
             </th>
             <th class="text-center">
               Password
-              <input ng-model="model.selectedUser.password" type="password" class="form-control" placeholder="Password">
+              <input ng-model="model.selectedUserpassword" type="password" class="form-control" placeholder="Password">
             </th>
             <th class="text-center">
               <span ng-show="orderByField == 'firstName'">
@@ -48,17 +48,6 @@
               <button ng-click="model.modifyUser(model.selectedUser)" type="button" class="btn btn-success glyphicon glyphicon-ok"></button>
             </th>
           </tr>
-          <!--<tr>
-            <th><input type="text" class="form-control" placeholder="Username"></th>
-            <th><input type="text" class="form-control" placeholder="Password"></th>
-            <th><input type="text" class="form-control" placeholder="First Name"></th>
-            <th><input type="text" class="form-control" placeholder="Last Name"></th>
-            <th><input type="text" class="form-control" placeholder="role1, role2"></th>
-            <th>
-              <button type="button" class="btn btn-primary">Add</button>
-              <button type="button" class="btn btn-success">Update</button>
-            </th>
-          </tr>-->
           </thead>
           <tbody>
           <tr ng-repeat="user in model.users | orderBy:orderByField:reverseSort">

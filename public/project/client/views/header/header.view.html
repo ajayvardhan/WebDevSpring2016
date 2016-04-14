@@ -15,65 +15,6 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <!--<li ng-show="model.search.type">
-                        <a>
-                            <div ng-switch="model.search.type">
-                                <angucomplete-alt
-                                        ng-switch-when="Movies"
-                                        placeholder="Movie"
-                                        selected-object="model.selectedObject"
-                                        remote-url="http://www.omdbapi.com/?s="
-                                        remote-url-data-field="Search"
-                                        minlength = "1"
-                                        title-field="Title"
-                                        match-class="highlight"
-                                        image-field="Poster"
-                                        input-class="form-control form-control-small">
-                                </angucomplete-alt>
-                                <angucomplete-alt
-                                        ng-switch-when="Users"
-                                        placeholder="Users"
-                                        selected-object="model.selectedObject"
-                                        remote-url="/api/nowwatching/user/name/"
-                                        minlength = "1"
-                                        title-field="firstName,lastName"
-                                        match-class="highlight"
-                                        input-class="form-control form-control-small">
-                                </angucomplete-alt>
-                                <angucomplete-alt
-                                        ng-switch-when="Posts"
-                                        placeholder="Posts"
-                                        selected-object="model.selectedObject"
-                                        remote-url="/api/nowwatching/posts/search?search="
-                                        minlength = "1"
-                                        title-field="title"
-                                        description-field="description"
-                                        match-class="highlight"
-                                        input-class="form-control form-control-small">
-                                </angucomplete-alt>
-                            </div>
-                        </a>
-                    </li>
-                    <li ng-show="model.search.type">
-                        <a>
-                            <button ng-click="model.searchResults(model.selectedObject.originalObject, model.search.type)"
-                                    class="btn btn-default glyphicon glyphicon-search">
-
-                            </button>
-                        </a>
-                    </li>
-                    <li ng-show="model.showSelect">
-                        <a>
-                            <select ng-model="model.search.type" class="form-control form-control-small">
-                                <option>Posts</option>
-                                <option>Users</option>
-                                <option>Movies</option>
-                            </select>
-                        </a>
-                    </li>
-                    <li>
-                        <a ng-click="model.showSearch()" href=""><span class="glyphicon glyphicon-search"></span></a>
-                    </li>-->
                     <li>
                         <a id="searchBarShow" ng-click="model.showSearchBar()" href=""><span class="glyphicon glyphicon-search"></span></a>
                     </li>
@@ -105,8 +46,8 @@
     </nav>
     <div class="container-fluid">
         <div id="searchBar" class="row">
-            <div class="col-xs-4"></div>
-            <div class="col-xs-4">
+            <div class="col-md-4 col-xs-1"></div>
+            <div class="col-md-4 col-xs-10">
                 <div class="btn-group btn-group-justified topMargin">
                     <a ng-click="model.postSearch()" href="" class="btn btn-default flatButton">Posts</a>
                     <a ng-click="model.userSearch()" href="" class="btn btn-default flatButton">Users</a>
@@ -153,31 +94,9 @@
                         </a>
                     </div>
                 </div>
-
-                <!--<input type="text" class="form-control borderLessSearch"
-                       placeholder="Movie">-->
             </div>
-            <div class="col-xs-4"></div>
+            <div class="col-md-4 col-xs-1"></div>
         </div>
-        <!--<div id="searchBar" class="input-group">
-            <input style="margin-top: 25px; box-shadow: grey 0px 1px 0px; border-width: 0px 0px 1px; border-radius: 0px !important"
-                   type="text" class="form-control"
-                    placeholder="Movie">
-            <div class="input-group-addon">
-                <div class="btn-group" uib-dropdown keyboard-nav dropdown-append-to="appendToEl">
-                    <button id="btn-append-to" type="button" class="btn btn-primary" uib-dropdown-toggle>
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to">
-                        <li role="menuitem"><a href="#">Action</a></li>
-                        <li role="menuitem"><a href="#">Another action</a></li>
-                        <li role="menuitem"><a href="#">Something else here</a></li>
-                        <li class="divider"></li>
-                        <li role="menuitem"><a href="#">Separated link</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>-->
     </div>
     <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -216,7 +135,7 @@
         </div>
     </div>
     <div id="myModal1" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -224,83 +143,37 @@
                 </div>
                 <div ng-show="model.message" class="alert alert-danger" role="alert">{{model.message}}</div>
                 <div class="modal-body row">
-                    <form class="form-horizontal">
+                    <form class="col-md-10 col-md-offset-1 col-xs-12 col-xs-offset-0">
                         <div class="form-group">
-                            <label for="newusername"
-                                   class="col-sm-2 control-label">
-                                Username:
-                            </label>
-                            <div class="col-sm-9">
-                                <input ng-model="model.user.username"
-                                       type="text"
-                                       class="form-control"
-                                       id="newusername"
-                                       placeholder="Username">
-                            </div>
+                            <input ng-model="model.user.username"
+                                   type="text"
+                                   class="form-control"
+                                   id="newusername"
+                                   placeholder="Username">
                         </div>
                         <div class="form-group">
-                            <label for="newpassword"
-                                   class="col-sm-2 control-label">
-                                Password:
-                            </label>
-                            <div class="col-sm-9">
-                                <input ng-model="model.user.newpassword"
-                                       type="password"
-                                       class="form-control"
-                                       id="newpassword"
-                                       placeholder="Password">
-                            </div>
+                            <input ng-model="model.user.newpassword"
+                                   type="password"
+                                   class="form-control"
+                                   id="newpassword"
+                                   placeholder="Password">
                         </div>
                         <div class="form-group">
-                            <label for="verifypassword"
-                                   class="col-sm-2 control-label">
-                                Verify Password:
-                            </label>
-                            <div class="col-sm-9">
-                                <input ng-model="model.user.password2"
-                                       type="password"
-                                       class="form-control"
-                                       id="verifypassword"
-                                       placeholder="Password">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="firstname"
-                                   class="col-sm-2 control-label">
-                                First Name:
-                            </label>
-                            <div class="col-sm-9">
-                                <input ng-model="model.user.firstname"
-                                       type="text"
-                                       class="form-control"
-                                       id="firstname"
-                                       placeholder="First Name">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="lastname"
-                                   class="col-sm-2 control-label">
-                                Last Name:
-                            </label>
-                            <div class="col-sm-9">
-                                <input ng-model="model.user.lastname"
-                                       type="text"
-                                       class="form-control"
-                                       id="lastname"
-                                       placeholder="Last Name">
-                            </div>
+                            <input ng-model="model.user.password2"
+                                   type="password"
+                                   class="form-control"
+                                   id="verifypassword"
+                                   placeholder="Password">
                         </div>
                         <div class="form-group text-center">
-                            <div class="col-sm-offset-2 col-sm-9">
-                                <button ng-click="model.register(model.user)"
-                                        class="btn btn-danger btn-lg">Register</button>
-                            </div>
+                            <button ng-click="model.register(model.user)"
+                                    class="btn btn-danger btn-lg">Register</button>
                         </div>
                     </form>
-                    <div class="modal-footer">
-                        <div class="text-center">
-                            Already have an account? <a href="" data-toggle="modal" data-target="#myModal" data-dismiss="modal">Click here</a> to Login
-                        </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="text-center">
+                        Already have an account? <a href="" data-toggle="modal" data-target="#myModal" data-dismiss="modal">Click here</a> to Login
                     </div>
                 </div>
             </div>

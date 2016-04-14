@@ -34,7 +34,8 @@
                 lastName: user.lastName,
                 emails: user.emails,
                 roles: user.roles
-            }
+            };
+            vm.selectedUserpassword = null;
         }
 
         function addUser(user){
@@ -49,6 +50,9 @@
         }
 
         function modifyUser(user){
+            if(vm.selectedUserpassword){
+                user.password = vm.selectedUserpassword;
+            }
             UserService
                 .modifyUser(user)
                 .then(
