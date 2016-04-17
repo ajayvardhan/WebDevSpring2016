@@ -114,8 +114,13 @@
                     function (response) {
                         for (var r in response.data) {
                             updateNamesForPosts(response.data[r]);
+                            updatePostersForPosts(response.data[r]);
                         }
                     });
+
+            function updatePostersForPosts(post){
+                post.movie.Poster = MovieService.findMoviePoster(post.movie.imdbID);
+            }
 
 
             function updateNamesForPosts(post){
