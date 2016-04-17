@@ -4,7 +4,7 @@
         .module("NowWatching")
         .controller("PostsController", PostsController);
 
-    function PostsController($timeout, $location, $rootScope, UserService, PostService) {
+    function PostsController($timeout, $location, $rootScope, UserService, PostService, MovieService) {
         var vm = this;
 
 
@@ -16,8 +16,13 @@
                     function (response) {
                         for (var r in response.data) {
                             updateNamesForPosts(response.data[r]);
+                            updatePostersForPosts(response.data[r]);
                         }
                     });
+        }
+
+        function updatePostersForPosts(post){
+            post.movie.Poster = MovieService.findMoviePoster(post.movie.imdbID);
         }
 
 

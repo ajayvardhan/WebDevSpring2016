@@ -13,10 +13,11 @@
                 .findMovieByImdbID(vm.imdbID)
                 .then(
                 function(response) {
-                    console.log(response.data);
                     vm.movie = response.data;
                 }
             );
+
+            vm.moviePoster = MovieService.findMoviePoster(vm.imdbID);
         }
 
         init();
