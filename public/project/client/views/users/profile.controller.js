@@ -152,7 +152,7 @@
                                         {
                                             imdbID: res.data.imdbID,
                                             first: res.data.Title,
-                                            poster: res.data.Poster
+                                            poster: MovieService.findMoviePoster(res.data.imdbID)
                                         }
                                     );
                                 }
