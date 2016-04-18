@@ -20,7 +20,7 @@ module.exports = function(app, postsModel) {
     }
 
     function addComment(req, res){
-        postsModel.addComment(req.params.id ,req.body)
+        postsModel.addComment(req.params.id ,req.body.comment)
             .then(
                 function (doc) {
                     res.json(doc);

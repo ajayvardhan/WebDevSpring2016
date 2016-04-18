@@ -217,6 +217,8 @@ module.exports = function(app, userModel) {
     }
 
     function updateUser(req, res){
+        var user = req.body;
+        user.password = bcrypt.hashSync(user.password);
         userModel.updateUser(req.params.id, req.body)
             .then(
                 function (doc) {
@@ -226,9 +228,6 @@ module.exports = function(app, userModel) {
                     res.status(400).send(err);
                 }
             );
-        /*var users = userModel.updateUser(req.params.id, req.body);
-        req.session.currentUser = req.body;
-        res.json(users);*/
     }
 
     function deleteUser(req, res){

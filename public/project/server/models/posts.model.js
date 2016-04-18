@@ -23,7 +23,7 @@ module.exports = function(db, mongoose) {
     function addComment(id, comment){
         return PostModel.update({_id: id},
             {
-                $push: { comments: comment.comment }
+                $push: { comments: comment }
             });
     }
 

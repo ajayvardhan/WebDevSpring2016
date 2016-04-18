@@ -105,8 +105,8 @@ a{
 
 .fixedCommentButton{
     position: relative;
-    left: 398px;
     bottom: 34px;
+    float: right;
 }
 
 .editProfile{
@@ -148,6 +148,10 @@ a{
     resize: none;
     background-color: white;
     border-radius: 0px;
+}
+
+#commentTextArea{
+    height: 100px;
 }
 
 .customTextArea:focus {

@@ -3,7 +3,7 @@
         .module("NowWatching")
         .controller("MovieController", MovieController);
 
-    function MovieController($location, $routeParams, UserService, MovieService) {
+    function MovieController($rootScope, $routeParams, UserService, MovieService) {
         var vm = this;
 
         vm.imdbID = $routeParams.id;
@@ -22,15 +22,17 @@
         }
 
         init();
-        UserService
-            .getCurrentUser()
-            .then(function(response){
-                if(response.data) {
-                    if (response.data.watchlist.indexOf(vm.imdbID) == -1){
-                        vm.showWatchlist = true;
+        if($rootScope.currentUser) {
+            UserService
+                .getCurrentUser()
+                .then(function (response) {
+                    if (response.data) {
+                        if (response.data.watchlist.indexOf(vm.imdbID) == -1) {
+                            vm.showWatchlist = true;
+                        }
                     }
-                }
-            });
+                });
+        }
 
         vm.addToWatchlist = addToWatchlist;
 

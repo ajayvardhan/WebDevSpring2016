@@ -83,7 +83,7 @@
                          ng-repeat="item in model.listItems">
                         <div style="height:95px" class="panel-heading">
                             <button type="button" ng-click="model.removeItem(item)"
-                                    ng-hide="model.searchType=='followers'"
+                                    ng-hide="model.searchType=='followers' || !model.closeButton"
                                     class="close closeButton" aria-hidden="true">×</button>
                             <a ng-click="model.goToItem(item)" href="">{{item.first}} {{item.second}}</a>
                         </div>

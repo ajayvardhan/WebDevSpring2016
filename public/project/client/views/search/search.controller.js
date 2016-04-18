@@ -4,11 +4,24 @@
         .module("NowWatching")
         .controller("SearchController", SearchController);
 
-    function SearchController($location) {
+    function SearchController($location, $routeParams) {
         var vm = this;
 
-        vm.searchResults = searchResults;
-        vm.itemDetails = itemDetails;
+        var searchType = $routeParams.type;
+        var searchID = $routeParams.id;
+
+        function init(){
+            switch(searchType){
+                case "user":
+                    break;
+                case "posts":
+                    break;
+                case "movies":
+                    break;
+            }
+        }
+
+        init();
 
         function searchResults(search, type){
             switch(type) {

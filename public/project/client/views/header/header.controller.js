@@ -16,7 +16,6 @@
         vm.register = register;
         vm.showModal = showModal;
         vm.goToProfile = goToProfile;
-        vm.searchResults = searchResults;
         vm.showSearch = showSearch;
         vm.showSearchBar = showSearchBar;
         vm.postSearch = postSearch;
@@ -50,18 +49,6 @@
             vm.searchType = "movie";
         }
 
-        function init() {
-            /*UserService
-                .getCurrentUser()
-                .then(function(response){
-                    if(response.data) {
-                        UserService.setCurrentUser(response.data);
-                    }
-                });*/
-        }
-
-        init();
-
         function goToProfile(){
             $location.url("/profile/" + $rootScope.currentUser._id);
         }
@@ -70,7 +57,7 @@
             UserService
                 .logout()
                 .then(function(response){
-                    UserService.setCurrentUser(response.data);
+                    UserService.setCurrentUser(null);
                     $location.url("/home");
                 });
         }
@@ -145,21 +132,6 @@
             vm.message = null;
             vm.user = null;
         }
-
-        function searchResults(search,type){
-            switch(type) {
-                case "Users":
-                    $location.url("/profile/" + search._id);
-                    break;
-                case "Posts":
-                    $location.url("/post/" + search._id);
-                    break;
-                case "Movies":
-                    $location.url("/movie/" + search.imdbID);
-                    break;
-            }
-        }
-
 
         function showSearch(){
             vm.showSelect = true;

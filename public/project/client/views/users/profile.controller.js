@@ -27,7 +27,13 @@
                     if (response.data) {
                         if (response.data._id == $routeParams.id) {
                             vm.showEdit = true;
+                            vm.closeButton = true;
                         }
+                    }
+                    if (response.data &&
+                        response.data._id != $routeParams.id &&
+                        response.data.following.indexOf($routeParams.id) == -1) {
+                        vm.showFollow = true;
                     }
                 });
 
@@ -90,6 +96,7 @@
                     UserService
                         .removeMovieFromWatchlist($routeParams.id, item.imdbID)
                         .then(function(response){
+                            vm.message = item.first +" removed from your watchlist";
                             goToWatchlist();
                         });
                     break;
@@ -97,6 +104,7 @@
                     UserService
                         .unfollowUser($routeParams.id, item._id)
                         .then(function(response){
+                            vm.message = "You have unfollowed " + item.first + item.second;
                             goToFollowing();
                         });
                     break;

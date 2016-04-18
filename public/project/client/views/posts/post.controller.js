@@ -4,12 +4,14 @@
         .module("NowWatching")
         .controller("PostController", PostController);
 
-    function PostController($routeParams, $location, MovieService, UserService, PostService) {
+    function PostController($routeParams, $location, UserService, PostService, MovieService) {
         var vm = this;
 
         vm.movieDetails = movieDetails;
         vm.userDetails = userDetails;
         vm.addComment = addComment;
+
+
 
 
         PostService
@@ -28,9 +30,14 @@
                                 }
                                 response.data.userID = u.data._id;
                             });
-                    response.data.comments = response.data.comments.reverse();
+                    // response.data.comments = response.data.comments.reverse();
                     vm.movie = response.data;
+                    vm.movie.movie.Poster = MovieService.findMoviePoster(post.movie.imdbID);
+                    if(vm.movie.comments == []){
+                        vm.showNoComments = true;
+                    }
                 });
+
 
         function movieDetails(movie){
             $location.url("/movie/" + movie.movie.imdbID);
@@ -45,6 +52,7 @@
                 .addComment($routeParams.id, newComment)
                 .then(
                     function(response){
+                        vm.showNoComments = false;
                         vm.comment="";
                         vm.movie.comments.reverse();
                         vm.movie.comments.push(comment);
