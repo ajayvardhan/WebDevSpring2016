@@ -19,7 +19,10 @@
                         </a>
                     </h2>
                     <h3 class="text-muted">{{model.movie.description}}</h3>
-
+                    <button ng-show="model.showDeletePost"
+                            ng-click="model.deletePost()"
+                            class="btn btn-danger flatButton deletePost"
+                            style="float:right;">Delete Post</button>
                     <textarea ng-show="currentUser"
                               id="commentTextArea"
                               ng-model="model.comment"

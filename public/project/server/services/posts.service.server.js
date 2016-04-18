@@ -1,11 +1,21 @@
 module.exports = function(app, postsModel) {
+    var auth = authenticate;
+
     app.get("/api/nowwatching/posts", findAllPosts);
     app.get("/api/nowwatching/:userID/posts", findAllPostsForUser);
     app.get("/api/nowwatching/posts/search", findPosts);
     app.get("/api/nowwatching/posts/:id", findPostByID);
-    app.post("/api/nowwatching/:userID/posts", addPost);
-    app.post("/api/nowwatching/posts/:id/comments", addComment);
-    app.delete("/api/nowwatching/posts/:id", deletePost);
+    app.post("/api/nowwatching/:userID/posts", auth, addPost);
+    app.post("/api/nowwatching/posts/:id/comments", auth, addComment);
+    app.delete("/api/nowwatching/posts/:id", auth, deletePost);
+
+    function authenticate(req, res, next) {
+        if (!req.isAuthenticated()) {
+            res.send(401);
+        } else {
+            next();
+        }
+    }
 
     function deletePost(req, res){
         postsModel.deletePost(req.params.id)

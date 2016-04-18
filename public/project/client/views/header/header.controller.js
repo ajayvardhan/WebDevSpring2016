@@ -68,13 +68,11 @@
                 .findUserByCredentials(user.username, user.password)
                 .then(
                     function(response){
-                        console.log(response.data);
                         UserService.setCurrentUser(response.data);
                         $('#myModal').modal('hide');
                         $location.url("/posts");
                     },
                     function(error){
-                        console.log(error);
                         $( "#username" ).animate({
                                 backgroundColor: "#ff6666"
                             }, 1000 )
@@ -152,15 +150,7 @@
         }
 
         $("#searchBar").hide();
-
-
-        $( "#txtSearchProdAssign" ).keypress(function(e) {
-            var key = e.which;
-            if(key == 13)
-            {
-                console.log($("#searchMovie"));
-            }
-        });
+        
 
     }
 })();

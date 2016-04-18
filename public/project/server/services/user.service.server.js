@@ -11,15 +11,15 @@ module.exports = function(app, userModel) {
     app.get("/api/nowwatching/user/:id", findUserByID);
     app.get("/api/nowwatching/user/name/:name", findUserByName);
     app.get("/api/nowwatching/loggedin", getCurrentUser);
-    app.put("/api/nowwatching/user/:id", updateUser);
+    app.put("/api/nowwatching/user/:id", auth, updateUser);
     app.get("/api/nowwatching/user/username/:username", findUserByUsername);
     app.post("/api/nowwatching/user", createUser);
     app.delete("/api/nowwatching/user/:id", deleteUser);
     app.post("/api/nowwatching/logout", logout);
-    app.put("/api/nowwatching/user/:userID/follow/:followID", followUser);
-    app.put("/api/nowwatching/user/:userID/unfollow/:followID", unfollowUser);
-    app.put("/api/nowwatching/user/:userID/watchlist/:movieID", addMovieToWatchlist);
-    app.put("/api/nowwatching/user/:userID/watchlist/delete/:movieID", removeMovieFromWatchlist);
+    app.put("/api/nowwatching/user/:userID/follow/:followID", auth, followUser);
+    app.put("/api/nowwatching/user/:userID/unfollow/:followID", auth, unfollowUser);
+    app.put("/api/nowwatching/user/:userID/watchlist/:movieID", auth, addMovieToWatchlist);
+    app.put("/api/nowwatching/user/:userID/watchlist/delete/:movieID", auth, removeMovieFromWatchlist);
 
     function authenticate(req, res, next) {
         if (!req.isAuthenticated()) {

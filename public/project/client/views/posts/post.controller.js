@@ -4,20 +4,22 @@
         .module("NowWatching")
         .controller("PostController", PostController);
 
-    function PostController($routeParams, $location, UserService, PostService, MovieService) {
+    function PostController($routeParams, $rootScope, $location, UserService, PostService, MovieService) {
         var vm = this;
 
         vm.movieDetails = movieDetails;
         vm.userDetails = userDetails;
         vm.addComment = addComment;
-
-
+        vm.deletePost = deletePost;
 
 
         PostService
             .findPostByID($routeParams.id)
             .then(
                 function(response){
+                    if($rootScope.currentUser && response.data.userID == $rootScope.currentUser._id){
+                        vm.showDeletePost = true;
+                    }
                     UserService
                         .findUserByID(response.data.userID)
                         .then(
@@ -44,6 +46,16 @@
         }
         function userDetails(movie){
             $location.url("/profile/" + movie.userID);
+        }
+
+        function deletePost(){
+            PostService
+                .deletePost(vm.movie._id)
+                .then(
+                    function(response){
+                        $location.url("/posts");
+                    }
+                )
         }
 
         function addComment(comment){
