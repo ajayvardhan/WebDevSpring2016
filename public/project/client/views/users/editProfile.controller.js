@@ -14,6 +14,7 @@
             .getCurrentUser()
             .then(function(response){
                 vm.user = response.data;
+                delete vm.user.password;
                 vm.userpassword = null;
             });
 
