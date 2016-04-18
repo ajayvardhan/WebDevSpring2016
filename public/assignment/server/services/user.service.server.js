@@ -7,19 +7,19 @@ module.exports = function(app, userModel) {
     var admin = isAdmin;
     var auth = authenticate;
 
-    app.post("/api/assignment/login", passport.authenticate('local'), login);
+    app.post("/api/assignment/login", /*passport.authenticate('local'),*/ login);
     app.get("/api/assignment/loggedin", getCurrentUser);
     app.put("/api/assignment/user/:id", updateUser);
-    app.put("/api/assignment/admin/user/:id", admin, modifyUser);
+    app.put("/api/assignment/admin/user/:id", /*admin,*/ modifyUser);
     app.get("/api/assignment/user", findUserByUsername);
-    app.get("/api/assignment/admin/user", admin, findAllUsers);
+    app.get("/api/assignment/admin/user", /*admin,*/ findAllUsers);
     app.post("/api/assignment/register", createUser);
-    app.post("/api/assignment/admin/user", admin, addUser);
-    app.get("/api/assignment/admin/user/:userId", admin, findUserByID);
-    app.delete("/api/assignment/admin/user/:id", admin, deleteUser);
+    app.post("/api/assignment/admin/user", /*admin,*/ addUser);
+    app.get("/api/assignment/admin/user/:userId", /*admin,*/ findUserByID);
+    app.delete("/api/assignment/admin/user/:id", /*admin,*/ deleteUser);
     app.post("/api/assignment/logout", logout);
 
-    passport.use(new LocalStrategy(localStrategy));
+    /*passport.use(new LocalStrategy(localStrategy));
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
 
@@ -57,7 +57,7 @@ module.exports = function(app, userModel) {
                     done(err, null);
                 }
             );
-    }
+    }*/
 
     function logout(req, res){
         req.logOut();

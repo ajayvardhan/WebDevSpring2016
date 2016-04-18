@@ -9,6 +9,7 @@
 
         vm.posts = [];
 
+
         function init() {
             PostService.findAllPosts()
                 .then(

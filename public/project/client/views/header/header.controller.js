@@ -7,6 +7,7 @@
     function HeaderController($rootScope, $location, UserService) {
         var vm = this;
 
+
         vm.searchType = "post";
 
         vm.showSelect = false;
@@ -51,13 +52,13 @@
         }
 
         function init() {
-            UserService
+            /*UserService
                 .getCurrentUser()
                 .then(function(response){
                     if(response.data) {
                         UserService.setCurrentUser(response.data);
                     }
-                });
+                });*/
         }
 
         init();
@@ -82,7 +83,6 @@
                 .then(
                     function(response){
                         if (response.data) {
-                            UserService.setCurrentUser(response.data);
                             $('#myModal').modal('hide');
                             $location.url("/posts");
                         }
@@ -134,7 +134,6 @@
                                     .createUser(newUser)
                                     .then(
                                         function (response) {
-                                            UserService.setCurrentUser(response.data);
                                         });
                                 $('#myModal1').modal('hide');
                                 $location.url("/posts");
@@ -189,12 +188,5 @@
             }
         });
 
-        /*$('#txtSearchProdAssign').keypress(function (e) {
-            var key = e.which;
-            if(key == 13)  // the enter key code
-            {
-                alert('You pressed enter!');
-            }
-        });*/
     }
 })();

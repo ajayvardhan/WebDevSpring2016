@@ -1,13 +1,19 @@
-module.exports = function(app, userModel, $http) {
+var passport         = require('passport');
+var LocalStrategy    = require('passport-local').Strategy;
+var bcrypt = require("bcrypt-nodejs");
+
+module.exports = function(app, userModel) {
+
+    var auth = authenticate;
+
     app.get("/api/nowwatching/user", findAllUsers);
-    app.get("/api/nowwatching/user/credentials", findUserByCredentials);
+    app.post("/api/nowwatching/user/credentials", passport.authenticate('local'), login);
     app.get("/api/nowwatching/user/:id", findUserByID);
     app.get("/api/nowwatching/user/name/:name", findUserByName);
     app.get("/api/nowwatching/loggedin", getCurrentUser);
-    app.post("/api/nowwatching/user/loggedin", setCurrentUser);
     app.put("/api/nowwatching/user/:id", updateUser);
     app.get("/api/nowwatching/user/username/:username", findUserByUsername);
-    app.get("/api/nowwatching/", findUserByCredentials);
+    // app.get("/api/nowwatching/", findUserByCredentials);
     app.post("/api/nowwatching/user", createUser);
     app.delete("/api/nowwatching/user/:id", deleteUser);
     app.post("/api/nowwatching/logout", logout);
@@ -16,14 +22,52 @@ module.exports = function(app, userModel, $http) {
     app.put("/api/nowwatching/user/:userID/watchlist/:movieID", addMovieToWatchlist);
     app.put("/api/nowwatching/user/:userID/watchlist/delete/:movieID", removeMovieFromWatchlist);
 
+    function authenticate(req, res, next) {
+        if (!req.isAuthenticated()) {
+            res.send(401);
+        } else {
+            next();
+        }
+    }
+
+    passport.use(new LocalStrategy(localStrategy));
+    passport.serializeUser(serializeUser);
+    passport.deserializeUser(deserializeUser);
+
+    function localStrategy(username, password, done) {
+        userModel
+            .findUserByUsername(username)
+            .then(
+                function(user) {
+                    if(user && bcrypt.compareSync(password, user.password)) {
+                        return done(null, user);
+                    } else {
+                        return done(null, false);
+                    }
+                },
+                function(err) {
+                    if (err) { return done(err); }
+                }
+            );
 
 
+    }
 
-    app.get("/api/movie/:search", findMovie);
+    function serializeUser(user, done) {
+        done(null, user);
+    }
 
-    function findMovie(req, res){
-        console.log(req.body);
-        // return $http.get("http://www.omdbapi.com/?s="+req.body+"&apikey=fdb29024");
+    function deserializeUser(user, done) {
+        userModel
+            .findUserByID(user._id)
+            .then(
+                function(user){
+                    done(null, user);
+                },
+                function(err){
+                    done(err, null);
+                }
+            );
     }
 
     function unfollowUser(req, res){
@@ -75,10 +119,6 @@ module.exports = function(app, userModel, $http) {
             );
     }
 
-    function setCurrentUser(req, res){
-        req.session.currentUser = req.body;
-    }
-
     function findUserByName(req, res){
         userModel.findUserByName(req.params.name)
             .then(
@@ -92,38 +132,44 @@ module.exports = function(app, userModel, $http) {
     }
 
     function logout(req, res){
-        req.session.destroy();
-        res.send(null);
+        req.logOut();
+        res.send(200);
     }
 
     function getCurrentUser(req, res){
-        if (req.session.currentUser){
-            res.json(req.session.currentUser);
-        }
-        else{
-            res.send(null);
-        }
-
+        res.send(req.isAuthenticated() ? req.user : '0');
     }
 
-    function findUserByCredentials(req, res){
-        userModel.findUserByCredentials({
-                username : req.query.username,
-                password: req.query.password
-            })
-            .then(
-                function (doc) {
-                    req.session.currentUser = doc;
-                    res.json(doc);
-                },
-                function ( err ) {
-                    res.status(400).send(err);
-                }
-            );
+    function login(req, res){
+        var user = req.user;
+        res.json(user);
     }
 
     function createUser(req, res){
-        userModel.createUser(req.body)
+        var newUser = req.body;
+        newUser.password = bcrypt.hashSync(newUser.password);
+
+        userModel
+            .createUser(newUser)
+            .then(
+                function(user){
+                    if(user){
+                        req.login(user, function(err) {
+                            if(err) {
+                                res.status(400).send(err);
+                            } else {
+                                res.json(user);
+                            }
+                        });
+                    }
+                },
+                function(err){
+                    res.status(400).send(err);
+                }
+            );
+
+
+        /*userModel.createUser(req.body)
             .then(
                 function (doc) {
                     req.session.currentUser = doc;
@@ -132,7 +178,7 @@ module.exports = function(app, userModel, $http) {
                 function ( err ) {
                     res.status(400).send(err);
                 }
-            );
+            );*/
     }
 
     function findAllUsers(req, res){

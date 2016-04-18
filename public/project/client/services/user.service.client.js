@@ -65,7 +65,7 @@
             return $http.post("/api/nowwatching/user/loggedin", user);
         }
         function findUserByCredentials(username, password) {
-            return $http.get("/api/nowwatching/user/credentials?username=" + username + "&password=" + password);
+            return $http.post("/api/nowwatching/user/credentials?username=" + username + "&password=" + password);
         }
 
         function createUser(user) {
