@@ -24,22 +24,21 @@
                 if(vm.userpassword2) {
                     if (vm.userpassword == vm.userpassword2) {
                         user.password = vm.userpassword;
+                        UserService.updateUser(user._id, user)
+                            .then(function(response) {
+                                vm.message = "Your profile has been updated";
+                                vm.userpassword = vm.userpassword2 = null;
+                            });
                     }
                     else {
                         vm.message = "Passwords don't match";
-                        user.password = vm.userpassword = null;
+                        vm.userpassword = vm.userpassword2 = null;
                     }
                 }
                 else{
-                    vm.message = "Confirm password can't be left blank";
+                    vm.message = "Confirm password can't be blank";
                 }
             }
-            UserService.updateUser(user._id, user)
-                .then(function(response) {
-                    vm.message = "Your profile has been updated"
-                });
         }
-
-        
     }
 })();

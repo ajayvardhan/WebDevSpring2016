@@ -68,11 +68,13 @@
                 .findUserByCredentials(user.username, user.password)
                 .then(
                     function(response){
+                        console.log(response.data);
                         UserService.setCurrentUser(response.data);
                         $('#myModal').modal('hide');
                         $location.url("/posts");
                     },
                     function(error){
+                        console.log(error);
                         $( "#username" ).animate({
                                 backgroundColor: "#ff6666"
                             }, 1000 )

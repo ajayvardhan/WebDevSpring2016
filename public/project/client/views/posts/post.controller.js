@@ -32,7 +32,7 @@
                             });
                     // response.data.comments = response.data.comments.reverse();
                     vm.movie = response.data;
-                    vm.movie.movie.Poster = MovieService.findMoviePoster(post.movie.imdbID);
+                    vm.movie.movie.Poster = MovieService.findMoviePoster(vm.movie.movie.imdbID);
                     if(vm.movie.comments == []){
                         vm.showNoComments = true;
                     }
