@@ -14,7 +14,6 @@
                 .then(
                 function(response) {
                     vm.movie = response.data;
-                    vm.moviePoster = vm.movie.Poster;
                 }
             );
 
