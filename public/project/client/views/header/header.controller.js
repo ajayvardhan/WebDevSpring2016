@@ -68,28 +68,28 @@
                 .findUserByCredentials(user.username, user.password)
                 .then(
                     function(response){
-                        if (response.data) {
-                            $('#myModal').modal('hide');
-                            $location.url("/posts");
-                        }
-                        else{
-                            $( "#username" ).animate({
-                                    backgroundColor: "#ff6666"
-                                }, 1000 )
-                                .dequeue()
-                                .effect( "shake" )
-                                .animate({
-                                    backgroundColor: "#ffffff"
-                                }, 1000 );
-                            $( "#password" ).animate({
-                                    backgroundColor: "#ff6666"
-                                }, 1000 )
-                                .dequeue()
-                                .effect( "shake" )
-                                .animate({
-                                    backgroundColor: "#ffffff"
-                                }, 1000 );
-                        }
+                        UserService.setCurrentUser(response.data);
+                        $('#myModal').modal('hide');
+                        $location.url("/posts");
+                    },
+                    function(error){
+                        $( "#username" ).animate({
+                                backgroundColor: "#ff6666"
+                            }, 1000 )
+                            .dequeue()
+                            .effect( "shake" )
+                            .animate({
+                                backgroundColor: "#ffffff"
+                            }, 1000 );
+                        $( "#password" ).animate({
+                                backgroundColor: "#ff6666"
+                            }, 1000 )
+                            .dequeue()
+                            .effect( "shake" )
+                            .animate({
+                                backgroundColor: "#ffffff"
+                            }, 1000 );
+
                     });
         }
 
@@ -120,6 +120,7 @@
                                     .createUser(newUser)
                                     .then(
                                         function (response) {
+                                            UserService.setCurrentUser(response.data);
                                         });
                                 $('#myModal1').modal('hide');
                                 $location.url("/posts");
