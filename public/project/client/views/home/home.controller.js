@@ -18,6 +18,7 @@
                             updateNamesForPosts(response.data[r]);
                             updatePostersForPosts(response.data[r]);
                         }
+                        vm.posts = vm.posts.reverse();
                     });
         }
 
@@ -43,7 +44,6 @@
 
         init();
 
-        vm.posts = vm.posts.reverse();
 
         vm.postDetails = postDetails;
 

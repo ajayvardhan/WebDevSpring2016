@@ -115,6 +115,7 @@
                             updateNamesForPosts(response.data[r]);
                             updatePostersForPosts(response.data[r]);
                         }
+                        vm.posts = vm.posts.reverse();
                     });
 
             function updatePostersForPosts(post){
@@ -136,7 +137,6 @@
                         });
                 vm.posts.push(post);
             }
-            vm.posts = vm.posts.reverse();
         }
 
         function goToWatchlist() {
@@ -162,6 +162,7 @@
                                 }
                             )
                     }
+                    vm.listItems = vm.listItems.reverse();
                 });
         }
 
@@ -192,6 +193,7 @@
                                 }
                             )
                     }
+                    vm.listItems = vm.listItems.reverse();
                 });
         }
 
@@ -224,6 +226,7 @@
                                 }
                             }
                         );
+                    vm.listItems = vm.listItems.reverse();
                 });
         }
 
