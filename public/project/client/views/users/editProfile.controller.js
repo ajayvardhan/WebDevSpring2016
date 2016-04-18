@@ -39,6 +39,12 @@
                     vm.message = "Confirm password can't be blank";
                 }
             }
+            else{
+                UserService.updateUser(user._id, user)
+                    .then(function(response) {
+                        vm.message = "Your profile has been updated";
+                    });
+            }
         }
     }
 })();
