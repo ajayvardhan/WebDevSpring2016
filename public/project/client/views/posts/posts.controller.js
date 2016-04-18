@@ -40,11 +40,11 @@
                         }
                     });
             vm.posts.push(post);
-            vm.posts = vm.posts.reverse();
         }
 
         init();
-
+        
+        vm.posts = vm.posts.reverse();
 
 
         vm.postDetails = postDetails;

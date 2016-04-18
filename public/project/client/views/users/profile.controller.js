@@ -135,8 +135,8 @@
                             }
                         });
                 vm.posts.push(post);
-                vm.posts = vm.posts.reverse();
             }
+            vm.posts = vm.posts.reverse();
         }
 
         function goToWatchlist() {
