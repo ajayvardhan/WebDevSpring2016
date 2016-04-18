@@ -14,10 +14,11 @@
                 .then(
                 function(response) {
                     vm.movie = response.data;
+                    vm.moviePoster = vm.movie.Poster;
                 }
             );
 
-            vm.moviePoster = MovieService.findMoviePoster(vm.imdbID);
+            // vm.moviePoster = MovieService.findMoviePoster(vm.imdbID);
         }
 
         init();

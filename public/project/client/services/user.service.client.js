@@ -62,7 +62,6 @@
 
         function setCurrentUser(user){
             $rootScope.currentUser = user;
-            return $http.post("/api/nowwatching/user/loggedin", user);
         }
         function findUserByCredentials(username, password) {
             return $http.post("/api/nowwatching/user/credentials?username=" + username + "&password=" + password);

@@ -7,7 +7,6 @@
     function HeaderController($rootScope, $location, UserService) {
         var vm = this;
 
-
         vm.searchType = "post";
 
         vm.showSelect = false;
