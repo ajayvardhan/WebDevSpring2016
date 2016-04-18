@@ -89,12 +89,21 @@ module.exports = function(db, mongoose) {
     }
 
     function updateUser(id, user) {
-        return UserModel.update({_id: id},
-            {
-                password: user.password,
-                firstName: user.firstName,
-                lastName: user.lastName
-            });
+        if(user.password) {
+            return UserModel.update({_id: id},
+                {
+                    password: user.password,
+                    firstName: user.firstName,
+                    lastName: user.lastName
+                });
+        }
+        else{
+            return UserModel.update({_id: id},
+                {
+                    firstName: user.firstName,
+                    lastName: user.lastName
+                });
+        }
     }
 
     function deleteUser(id) {

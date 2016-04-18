@@ -13,8 +13,8 @@
         UserService
             .getCurrentUser()
             .then(function(response){
+                delete response.data.password;
                 vm.user = response.data;
-                delete vm.user.password;
                 vm.userpassword = null;
             });
 

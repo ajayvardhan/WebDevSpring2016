@@ -217,7 +217,9 @@ module.exports = function(app, userModel) {
 
     function updateUser(req, res){
         var user = req.body;
-        user.password = bcrypt.hashSync(user.password);
+        if(user.password) {
+            user.password = bcrypt.hashSync(user.password);
+        }
         userModel.updateUser(req.params.id, req.body)
             .then(
                 function (doc) {
