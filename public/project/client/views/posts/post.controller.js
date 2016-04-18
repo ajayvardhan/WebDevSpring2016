@@ -35,7 +35,8 @@
                     // response.data.comments = response.data.comments.reverse();
                     vm.movie = response.data;
                     vm.movie.movie.Poster = MovieService.findMoviePoster(vm.movie.movie.imdbID);
-                    if(vm.movie.comments == []){
+                    console.log(vm.movie.comments);
+                    if(vm.movie.comments.length == 0){
                         vm.showNoComments = true;
                     }
                 });
