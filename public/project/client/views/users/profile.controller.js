@@ -24,17 +24,17 @@
             UserService
                 .getCurrentUser()
                 .then(function (response) {
-                    if (response.data) {
+                    if (response.data!=0) {
                         if (response.data._id == $routeParams.id) {
                             vm.showEdit = true;
                             vm.closeButton = true;
                         }
+                        if (response.data._id != $routeParams.id &&
+                            response.data.following.indexOf($routeParams.id) == -1) {
+                            vm.showFollow = true;
+                        }
                     }
-                    if (response.data &&
-                        response.data._id != $routeParams.id &&
-                        response.data.following.indexOf($routeParams.id) == -1) {
-                        vm.showFollow = true;
-                    }
+
                 });
 
 
@@ -46,15 +46,6 @@
                     });
 
 
-            UserService
-                .getCurrentUser()
-                .then(function (response) {
-                    if (response.data &&
-                        response.data._id != $routeParams.id &&
-                        response.data.following.indexOf($routeParams.id) == -1) {
-                        vm.showFollow = true;
-                    }
-                });
             goToPosts()
         }
 

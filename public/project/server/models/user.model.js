@@ -55,9 +55,9 @@ module.exports = function(db, mongoose) {
         return UserModel.find(
             {$or :
                 [
-                    {firstName :  { $regex: new RegExp("^" + name.toLowerCase(), "i")}},
-                    {lastName : { $regex: new RegExp("^" + name.toLowerCase(), "i") }},
-                    {username : { $regex: new RegExp("^" + name.toLowerCase(), "i") }}
+                    {firstName :  { $regex: name.toLowerCase(), $options: 'i'}},
+                    {lastName : { $regex: name.toLowerCase(), $options: 'i' }},
+                    {username : { $regex: name.toLowerCase(), $options: 'i' }}
                 ]
             }
         );

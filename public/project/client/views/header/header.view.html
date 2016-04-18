@@ -79,7 +79,8 @@
                                 selected-object="model.selectedObject"
                                 remote-url="/api/nowwatching/user/name/"
                                 minlength = "1"
-                                title-field="username"
+                                title-field="firstName,lastName"
+                                description-field="username"
                                 match-class="highlight"
                                 input-class="form-control form-control-small borderLessSearch form-control-no-border">
                         </angucomplete-alt>
@@ -89,7 +90,7 @@
                                 selected-object="model.selectedObject"
                                 remote-url="/api/nowwatching/posts/search?search="
                                 minlength = "1"
-                                title-field="Title"
+                                title-field="movie.Title"
                                 description-field="description"
                                 match-class="highlight"
                                 input-class="form-control form-control-small borderLessSearch form-control-no-border">

@@ -4,7 +4,7 @@
         .module("NowWatching")
         .controller("PostsController", PostsController);
 
-    function PostsController($timeout, $location, $rootScope, UserService, PostService, MovieService) {
+    function PostsController($scope, $location, $rootScope, UserService, PostService, MovieService) {
         var vm = this;
 
 
@@ -72,7 +72,8 @@
                 .addPost(newPost, $rootScope.currentUser._id)
                 .then(
                     function(response){
-                        vm.movie = "";
+                        vm.description = "";
+                        $scope.$broadcast('angucomplete-alt:clearInput');
                         init();
                     });
         }
