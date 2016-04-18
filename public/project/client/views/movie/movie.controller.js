@@ -18,7 +18,7 @@
                 }
             );
 
-            // vm.moviePoster = MovieService.findMoviePoster(vm.imdbID);
+            vm.moviePoster = MovieService.findMoviePoster(vm.imdbID);
         }
 
         init();

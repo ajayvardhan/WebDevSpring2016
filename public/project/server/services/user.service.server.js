@@ -13,7 +13,6 @@ module.exports = function(app, userModel) {
     app.get("/api/nowwatching/loggedin", getCurrentUser);
     app.put("/api/nowwatching/user/:id", updateUser);
     app.get("/api/nowwatching/user/username/:username", findUserByUsername);
-    // app.get("/api/nowwatching/", findUserByCredentials);
     app.post("/api/nowwatching/user", createUser);
     app.delete("/api/nowwatching/user/:id", deleteUser);
     app.post("/api/nowwatching/logout", logout);

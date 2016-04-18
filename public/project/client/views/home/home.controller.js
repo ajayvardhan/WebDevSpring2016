@@ -16,7 +16,7 @@
                     function (response) {
                         for (var r in response.data) {
                             updateNamesForPosts(response.data[r]);
-                            // updatePostersForPosts(response.data[r]);
+                            updatePostersForPosts(response.data[r]);
                         }
                     });
         }
