@@ -123,7 +123,12 @@
                                             UserService.setCurrentUser(response.data);
                                         });
                                 $('#myModal1').modal('hide');
-                                $location.url("/posts");
+                                UserService
+                                    .getCurrentUser()
+                                    .then(function(response){
+                                        console.log(response.data);
+                                    });
+                                // $location.url("/posts");
                             }
                         });
             }
@@ -150,7 +155,7 @@
         }
 
         $("#searchBar").hide();
-        
+
 
     }
 })();
