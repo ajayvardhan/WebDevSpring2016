@@ -11,7 +11,21 @@
 
         function init() {
             vm.posts = [];
-            PostService.findAllPosts()
+            for ( var id in $rootScope.currentUser.following){
+                PostService
+                    .findAllPostsForUser($rootScope.currentUser.following[id])
+                    .then(
+                        function(response){
+                            for (var r in response.data) {
+                                updateNamesForPosts(response.data[r]);
+                                updatePostersForPosts(response.data[r]);
+                            }
+                            vm.posts = vm.posts.reverse();
+                        }
+                    );
+            }
+
+            /*PostService.findAllPosts()
                 .then(
                     function (response) {
                         for (var r in response.data) {
@@ -19,7 +33,7 @@
                             updatePostersForPosts(response.data[r]);
                         }
                         vm.posts = vm.posts.reverse();
-                    });
+                    });*/
         }
 
         function updatePostersForPosts(post){
