@@ -7,13 +7,14 @@
     function PostsController($scope, $location, $rootScope, UserService, PostService, MovieService) {
         var vm = this;
 
-
+        var users = $rootScope.currentUser.following;
+        users.push($rootScope.currentUser._id);
 
         function init() {
             vm.posts = [];
-            for ( var id in $rootScope.currentUser.following){
+            for ( var id in users){
                 PostService
-                    .findAllPostsForUser($rootScope.currentUser.following[id])
+                    .findAllPostsForUser(users[id])
                     .then(
                         function(response){
                             for (var r in response.data) {
