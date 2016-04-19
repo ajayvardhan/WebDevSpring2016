@@ -35,6 +35,12 @@
                         if(!u.data.firstName && !u.data.lastName){
                             post.user = u.data.username;
                         }
+                        else if(!u.data.firstName && u.data.lastName){
+                            post.user = u.data.lastName;
+                        }
+                        else if(u.data.firstName && !u.data.lastName){
+                            post.user = u.data.firstName;
+                        }
                         else {
                             post.user = u.data.firstName + " " + u.data.lastName;
                         }

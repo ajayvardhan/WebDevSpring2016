@@ -216,6 +216,20 @@
                                                 second : ""
                                             })
                                         }
+                                        else if(!res.data[r].firstName && res.data[r].lastName){
+                                            vm.listItems.push({
+                                                _id : res.data[r]._id,
+                                                first : "",
+                                                second : res.data[r].lastName
+                                            })
+                                        }
+                                        else if(res.data[r].firstName && !res.data[r].lastName){
+                                            vm.listItems.push({
+                                                _id : res.data[r]._id,
+                                                first : res.data[r].firstName,
+                                                second : ""
+                                            })
+                                        }
                                         else{
                                             vm.listItems.push({
                                                 _id : res.data[r]._id,
