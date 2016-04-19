@@ -18,7 +18,8 @@
                             {{model.movie.movie.Title}}
                         </a>
                     </h2>
-                    <h3 class="text-muted">{{model.movie.description}}</h3>
+                    <h3 class="text-muted wrapDesc">{{model.movie.description}}</h3>
+                    <br>
                     <button ng-show="model.showDeletePost"
                             ng-click="model.deletePost()"
                             class="btn btn-danger flatButton deletePost"

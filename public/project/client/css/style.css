@@ -96,10 +96,18 @@ a{
     color:black;
 }
 
+.wrapDesc{
+    word-wrap: break-word;
+}
+
+.descWidth{
+    width: 393px;
+}
+
 .deletePost{
     float: right;
     position: relative;
-    bottom: 36px;
+    bottom: 10px;
 }
 
 .flatButtonColor{
