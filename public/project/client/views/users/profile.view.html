@@ -11,10 +11,12 @@
                             <h2>{{model.user.firstName}} {{model.user.lastName}}</h2>
                         </div>
                         <div class="col-xs-6">
-                            <button ng-show="model.showEdit" ng-click="model.editProfile()".
+                            <button ng-show="model.showEdit" ng-click="model.editProfile()"
                                     class="btn btn-default flatButtonColor editProfile">Edit Profile</button>
                             <button ng-show="model.showFollow" ng-click="model.followUser(model.user)"
                                     class="btn btn-default flatButtonColor editProfile">Follow</button>
+                            <button ng-show="model.showUnFollow" ng-click="model.UnfollowUser()"
+                                    class="btn btn-danger flatButton editProfile">Unfollow</button>
                         </div>
                     </div>
                 </div>

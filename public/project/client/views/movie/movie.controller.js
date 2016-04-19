@@ -29,11 +29,25 @@
                         if (response.data.watchlist.indexOf(vm.imdbID) == -1) {
                             vm.showWatchlist = true;
                         }
+                        else{
+                            vm.showRemoveWatchlist = true;
+                        }
                     }
                 });
         }
 
         vm.addToWatchlist = addToWatchlist;
+        vm.removeFromWatchlist = removeFromWatchlist;
+
+        function removeFromWatchlist(){
+            UserService
+                .removeMovieFromWatchlist($rootScope.currentUser._id, vm.imdbID)
+                .then(function(response){
+                    vm.message = vm.movie.Title +" removed from your watchlist";
+                    vm.showRemoveWatchlist = false;
+                    vm.showWatchlist = true;
+                });
+        }
 
         function addToWatchlist(){
             UserService
@@ -45,7 +59,8 @@
                             .then(
                                 function(res){
                                     vm.showWatchlist = false;
-                                    vm.message = vm.movie.Title;
+                                    vm.message = vm.movie.Title +" added to your watchlist";
+                                    vm.showRemoveWatchlist = true;
                                 }
                             )
                     });

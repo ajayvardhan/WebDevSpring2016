@@ -4,7 +4,7 @@
         .module("NowWatching")
         .controller("ProfileController", ProfileController);
 
-    function ProfileController($routeParams, $location, UserService, PostService, MovieService) {
+    function ProfileController($routeParams, $rootScope, $location, UserService, PostService, MovieService) {
         var vm = this;
 
         vm.posts = [];
@@ -19,6 +19,7 @@
         vm.postDetails = postDetails;
         vm.goToPosts = goToPosts;
         vm.removeItem = removeItem;
+        vm.UnfollowUser = UnfollowUser;
 
         function init() {
             UserService
@@ -32,6 +33,10 @@
                         if (response.data._id != $routeParams.id &&
                             response.data.following.indexOf($routeParams.id) == -1) {
                             vm.showFollow = true;
+                        }
+                        if (response.data._id != $routeParams.id &&
+                            response.data.following.indexOf($routeParams.id) != -1) {
+                            vm.showUnFollow = true;
                         }
                     }
 
@@ -50,6 +55,16 @@
         }
 
         init();
+        
+        function UnfollowUser(){
+            UserService
+                .unfollowUser($rootScope.currentUser._id, $routeParams.id)
+                .then(function(response){
+                    vm.message = "You have unfollowed " + vm.user.username;
+                    vm.showUnFollow = false;
+                    vm.showFollow = true;
+                });
+        }
 
 
         function followUser(user){
@@ -61,7 +76,8 @@
                         .then(
                             function(response){
                                 vm.showFollow = false;
-                                vm.message = "You have now followed " + user.firstName + " " + user.lastName;
+                                vm.message = "You have followed " + user.username;
+                                vm.showUnFollow = true;
                             }
                         )
                 });

@@ -5,7 +5,7 @@
                 <div class="col-md-4 col-xs-1"></div>
                 <div class="col-md-4 col-xs-10">
                     <div ng-show="model.message" class="alert alert-success" role="alert">
-                        {{model.message}}  added to your Watchlist
+                        {{model.message}}
                     </div>
                     <div class="row">
                         <div class="col-xs-6">
@@ -14,6 +14,8 @@
                         <div class="col-xs-6">
                             <button ng-show="model.showWatchlist" ng-click="model.addToWatchlist()"
                                     class="btn btn-default flatButtonColor editProfile">Add to Watchlist</button>
+                            <button ng-show="model.showRemoveWatchlist" ng-click="model.removeFromWatchlist()"
+                                    class="btn btn-danger flatButton editProfile">Delete from Watchlist</button>
                         </div>
                     </div>
                     <div class="row">
