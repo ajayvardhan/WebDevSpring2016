@@ -27,12 +27,17 @@
                                 if(!u.data.firstName && !u.data.lastName){
                                     response.data.user = u.data.username;
                                 }
+                                else if(!u.data.firstName && u.data.lastName){
+                                    response.data.user = u.data.lastName;
+                                }
+                                else if(u.data.firstName && !u.data.lastName){
+                                    response.data.user = u.data.firstName;
+                                }
                                 else {
                                     response.data.user = u.data.firstName + " " + u.data.lastName;
                                 }
                                 response.data.userID = u.data._id;
                             });
-                    // response.data.comments = response.data.comments.reverse();
                     vm.movie = response.data;
                     vm.movie.movie.Poster = MovieService.findMoviePoster(vm.movie.movie.imdbID);
                     console.log(vm.movie.comments);
